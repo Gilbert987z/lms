@@ -1,0 +1,45 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+#  main:
+#    allow-bean-definition-overriding:true   # 允许重复服务
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true  #java代码实体类驼峰式命名，数据库表字段以“_”分割，查询语句映射出问题解决
+
+
+# 分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  params: count=countSql
+  supportMethodsArguments: true
+
+
+
+
+
+#  说明：
+#
+#  helperDialect：指定数据库，不指定会自动检测数据库类型
+#
+#  reasonable：合理化参数，默认false，
+#
+#  true：页码小于1，查询第一页数据，页码大于总数时，返回最后一页数据；
+#  false：页码小于等于1都返回第一页数据，页码大于总数时返回空
+#  supportMethodsArguments：默认false，true：分页插件根据params中取值，找到合适值，就自动分页
+
+
+
+
+
+
