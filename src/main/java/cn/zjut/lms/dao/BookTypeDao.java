@@ -25,7 +25,7 @@ public interface BookTypeDao {
     删除
     {id} 要删除人员的 id
      */
-    int delete(int id);
+    int delete(BookType bookType);
 
     /*
     更新

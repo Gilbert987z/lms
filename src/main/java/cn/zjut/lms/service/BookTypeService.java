@@ -49,8 +49,13 @@ public class BookTypeService {
         return bookTypeDao.getById(id);
     }
 
-    public boolean delete(int id) {
-        int flag = bookTypeDao.delete(id);
+    public boolean delete(BookType bookType) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        bookType.setUpdatedAt(currentTime);
+        bookType.setDeletedAt(currentTime);
+
+        int flag = bookTypeDao.delete(bookType);
         if (flag != 1) {
             // 新增失败，回滚事务
             throw new RuntimeException("新增联系方式失败");
@@ -60,6 +65,10 @@ public class BookTypeService {
     }
 
     public boolean update(BookType bookType) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        bookType.setUpdatedAt(currentTime);
+
         int rows = bookTypeDao.update(bookType);
         if (rows != 1) {
             // 新增失败，回滚事务
@@ -70,6 +79,11 @@ public class BookTypeService {
     }
 
     public boolean add(BookType bookType) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        bookType.setCreatedAt(currentTime);
+        bookType.setUpdatedAt(currentTime);
+
         int rows = bookTypeDao.add(bookType);
         if (rows != 1) {
             // 新增失败，回滚事务

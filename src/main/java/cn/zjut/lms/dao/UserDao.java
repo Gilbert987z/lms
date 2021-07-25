@@ -25,7 +25,8 @@ public interface UserDao {
     删除
     {id} 要删除人员的 id
      */
-    int delete(int id);
+//    int delete(int id);
+    int delete(User user);
 
     /*
     更新
@@ -41,4 +42,7 @@ public interface UserDao {
 
 
     int selectCount(); //个数计数，分页使用
+
+    int countUsername(String username);
+    int countMobile(String mobile);
 }

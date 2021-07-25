@@ -80,8 +80,8 @@ public class BookTypeController {
     //根据id删除
     @PostMapping(value = "delete", consumes = "application/json")
     public ResultJson deleteById(@RequestBody BookType bookType) {
-        int id = bookType.getId();
-        boolean result = bookTypeService.delete(id);
+//        int id = bookType.getId();
+        boolean result = bookTypeService.delete(bookType);
         if (result) {
             return ResultJson.ok().message("删除成功");
         } else {

@@ -41,7 +41,7 @@ public class UserController {
     //增加
     @PostMapping(value = "create", consumes = "application/json")
     public ResultJson add(@Valid @RequestBody User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) { //数据校验
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
             for (FieldError fieldError : bindingResult.getFieldErrors()) {
@@ -49,12 +49,24 @@ public class UserController {
             }
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
-        } else {
-            boolean result = userService.add(user);
-            if (result) {
-                return ResultJson.ok().message("增加成功");
+        } else { //数据校验成功
+            String username = user.getUsername();
+            String mobile = user.getMobile();
+
+            int countUsername = userService.countUsername(username);
+            int countMobile = userService.countMobile(mobile);
+
+            if (countUsername > 0) {
+                return ResultJson.error().message("用户名已被占用");
+            } else if (countMobile > 0) {
+                return ResultJson.error().message("电话号码已被占用");
             } else {
-                return ResultJson.error().message("数据不存在");
+                boolean result = userService.add(user);
+                if (result) {
+                    return ResultJson.ok().message("增加成功");
+                } else {
+                    return ResultJson.error().message("数据不存在");
+                }
             }
         }
     }
@@ -83,8 +95,8 @@ public class UserController {
     //根据id删除
     @PostMapping(value = "delete", consumes = "application/json")
     public ResultJson deleteById(@RequestBody User user) {
-        int id = user.getId();
-        boolean result = userService.delete(id);
+//        int id = user.getId();
+        boolean result = userService.delete(user);
         if (result) {
             return ResultJson.ok().message("删除成功");
         } else {

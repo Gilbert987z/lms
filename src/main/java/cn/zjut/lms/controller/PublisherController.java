@@ -79,8 +79,8 @@ public class PublisherController {
     //根据id删除
     @PostMapping(value = "delete", consumes = "application/json")
     public ResultJson deleteById(@RequestBody Publisher publisher) {
-        int id = publisher.getId();
-        boolean result = publisherService.delete(id);
+//        int id = publisher.getId();
+        boolean result = publisherService.delete(publisher);
         if (result) {
             return ResultJson.ok().message("删除成功");
         } else {

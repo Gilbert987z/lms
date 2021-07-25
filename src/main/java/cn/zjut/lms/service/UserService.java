@@ -49,33 +49,53 @@ public class UserService {
         return userDao.getById(id);
     }
 
-    public boolean delete(int id) {
-        int flag = userDao.delete(id);
+    public boolean delete(User user) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        user.setUpdatedAt(currentTime);
+        user.setDeletedAt(currentTime);
+
+        int flag = userDao.delete(user);
         if (flag != 1) {
-            // 新增失败，回滚事务
-            throw new RuntimeException("新增联系方式失败");
+            // 删除失败，回滚事务
+            throw new RuntimeException("删除失败");
 
         }
         return true;
     }
 
     public boolean update(User user) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        user.setUpdatedAt(currentTime);
+
         int rows = userDao.update(user);
         if (rows != 1) {
-            // 新增失败，回滚事务
-            throw new RuntimeException("新增联系方式失败");
+            // 修改失败，回滚事务
+            throw new RuntimeException("修改失败");
 
         }
         return true;
     }
 
     public boolean add(User user) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        user.setCreatedAt(currentTime);
+        user.setUpdatedAt(currentTime);
+
         int rows = userDao.add(user);
         if (rows != 1) {
             // 新增失败，回滚事务
-            throw new RuntimeException("新增联系方式失败");
-
+            throw new RuntimeException("新增失败");
         }
         return true;
+    }
+
+    public int countUsername(String username){
+        return userDao.countUsername(username);
+    }
+    public int countMobile(String mobile){
+        return userDao.countMobile(mobile);
     }
 }

@@ -32,9 +32,9 @@
     <insert id="add" parameterType="cn.zjut.lms.model.User">
         INSERT INTO
         <include refid="table"/>
-        (name,mobile)
+        (username,password,mobile,created_at,updated_at)
         VALUES
-        (#{name},#{mobile})
+        (#{username},#{password},#{mobile},#{createdAt},#{updatedAt})
     </insert>
 
     <!-- 改 -->
@@ -43,18 +43,26 @@
         <include refid="table"/>
         SET
         <!--<if test="name != null">name = #{name}</if>-->
-        name = #{name},mobile = #{mobile}
+        username = #{username},password = #{password},mobile = #{mobile}, updated_at= #{updatedAt}
         WHERE
         id = #{id}
     </update>
 
     <!-- 删 -->
-    <delete id="delete" parameterType="cn.zjut.lms.model.User">
-        DELETE FROM
+    <update id="delete" parameterType="cn.zjut.lms.model.User">
+        UPDATE
         <include refid="table"/>
+        SET
+        updated_at = #{updatedAt}, deleted_at = #{deletedAt}
         WHERE
         id = #{id}
-    </delete>
+    </update>
+<!--    <delete id="delete" parameterType="cn.zjut.lms.model.User">-->
+<!--        DELETE FROM-->
+<!--        <include refid="table"/>-->
+<!--        WHERE-->
+<!--        id = #{id}-->
+<!--    </delete>-->
 
     <!-- _int 是简单类型int整数。  int 是包装类型Integer整数 都是MyBatis内置类型。 -->
     <select id="selectCount" parameterType="cn.zjut.lms.model.User" resultType="_int">
@@ -63,4 +71,15 @@
         where deleted_at is null
     </select>
 
+    <!--用户名查重-->
+    <select id="countUsername" parameterType="cn.zjut.lms.model.User" resultType="_int">
+        select count(id) from
+        <include refid="table"/>
+        where deleted_at is null AND username=#{username}
+    </select>
+    <select id="countMobile" parameterType="cn.zjut.lms.model.User" resultType="_int">
+        select count(id) from
+        <include refid="table"/>
+        where deleted_at is null AND mobile=#{mobile}
+    </select>
 </mapper>

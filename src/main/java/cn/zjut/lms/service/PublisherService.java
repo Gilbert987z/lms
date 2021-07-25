@@ -59,31 +59,45 @@ public class PublisherService {
         return publisherDao.getById(id);
     }
 
-    public boolean delete(int id) {
-        int flag = publisherDao.delete(id);
+    public boolean delete(Publisher publisher) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        publisher.setUpdatedAt(currentTime);
+        publisher.setDeletedAt(currentTime);
+
+        int flag = publisherDao.delete(publisher);
         if (flag != 1) {
             // 新增失败，回滚事务
-            throw new RuntimeException("新增联系方式失败");
+            throw new RuntimeException("删除失败");
 
         }
         return true;
     }
 
     public boolean update(Publisher publisher) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        publisher.setUpdatedAt(currentTime);
+
         int rows = publisherDao.update(publisher);
         if (rows != 1) {
             // 新增失败，回滚事务
-            throw new RuntimeException("新增联系方式失败");
+            throw new RuntimeException("修改失败");
 
         }
         return true;
     }
 
     public boolean add(Publisher publisher) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        publisher.setCreatedAt(currentTime);
+        publisher.setUpdatedAt(currentTime);
+
         int rows = publisherDao.add(publisher);
         if (rows != 1) {
             // 新增失败，回滚事务
-            throw new RuntimeException("新增联系方式失败");
+            throw new RuntimeException("新增失败");
 
         }
         return true;

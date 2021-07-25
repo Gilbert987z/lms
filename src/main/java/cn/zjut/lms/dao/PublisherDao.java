@@ -1,5 +1,6 @@
 package cn.zjut.lms.dao;
 
+import cn.zjut.lms.model.Book;
 import cn.zjut.lms.model.Publisher;
 import cn.zjut.lms.model.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,7 +27,8 @@ public interface PublisherDao {
     删除
     {id} 要删除人员的 id
      */
-    int delete(int id);
+//    int delete(int id);
+    int delete(Publisher publisher);
 
     /*
     更新

@@ -32,9 +32,9 @@
     <insert id="add" parameterType="cn.zjut.lms.model.BookType">
         INSERT INTO
         <include refid="table"/>
-        (book_type,created_at)
+        (book_type,created_at,updated_at)
         VALUES
-        (#{bookType},#{createdAt})
+        (#{bookType},#{createdAt},#{updatedAt})
     </insert>
 
     <!-- 改 -->
@@ -49,12 +49,20 @@
     </update>
 
     <!-- 删 -->
-    <delete id="delete" parameterType="cn.zjut.lms.model.BookType">
-        DELETE FROM
+    <update id="delete" parameterType="cn.zjut.lms.model.BookType">
+        UPDATE
         <include refid="table"/>
+        SET
+        updated_at = #{updatedAt}, deleted_at = #{deletedAt}
         WHERE
         id = #{id}
-    </delete>
+    </update>
+<!--    <delete id="delete" parameterType="cn.zjut.lms.model.BookType">-->
+<!--        DELETE FROM-->
+<!--        <include refid="table"/>-->
+<!--        WHERE-->
+<!--        id = #{id}-->
+<!--    </delete>-->
 
     <!-- _int 是简单类型int整数。  int 是包装类型Integer整数 都是MyBatis内置类型。 -->
     <select id="selectCount" parameterType="cn.zjut.lms.model.BookType" resultType="_int">
