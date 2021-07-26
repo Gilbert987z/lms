@@ -22,8 +22,11 @@ public class BookController {
     //查询所有数据
     @GetMapping("list")
     public ResultJson selectAll(@RequestParam(value = "page", defaultValue = "1") int page,
-                                @RequestParam(value = "size", defaultValue = "10") int size) {
-        Map<String, Object> data = bookService.list(page, size);
+                                @RequestParam(value = "size", defaultValue = "10") int size,
+                                @RequestParam(value = "bookName", defaultValue = "") String bookName,
+                                @RequestParam(value = "publisherId",required = false ) Integer publisherId,
+                                @RequestParam(value = "bookTypeId",required = false) Integer bookTypeId) {
+        Map<String, Object> data = bookService.list(page, size, bookName,publisherId,bookTypeId);
         return ResultJson.ok().data("items", data);
     }
 

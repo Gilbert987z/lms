@@ -4,13 +4,11 @@ import cn.zjut.lms.model.User;
 import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +54,7 @@ public class UserController {
             int countUsername = userService.countUsername(username);
             int countMobile = userService.countMobile(mobile);
 
-            if (countUsername > 0) {
+            if (countUsername > 0) { //查重校验
                 return ResultJson.error().message("用户名已被占用");
             } else if (countMobile > 0) {
                 return ResultJson.error().message("电话号码已被占用");
@@ -83,11 +81,23 @@ public class UserController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
-            boolean result = userService.update(user);
-            if (result) {
-                return ResultJson.ok().message("修改成功");
+            String username = user.getUsername();
+            String mobile = user.getMobile();
+
+            int countUsername = userService.countUsername(username);
+            int countMobile = userService.countMobile(mobile);
+
+            if (countUsername > 0) { //查重校验
+                return ResultJson.error().message("用户名已被占用");
+            } else if (countMobile > 0) {
+                return ResultJson.error().message("电话号码已被占用");
             } else {
-                return ResultJson.error().message("数据不存在");
+                boolean result = userService.update(user);
+                if (result) {
+                    return ResultJson.ok().message("修改成功");
+                } else {
+                    return ResultJson.error().message("数据不存在");
+                }
             }
         }
     }

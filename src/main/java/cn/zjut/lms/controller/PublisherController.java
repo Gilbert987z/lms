@@ -36,7 +36,7 @@ public class PublisherController {
 
     //增加
     @PostMapping(value = "create", consumes = "application/json")
-    public ResultJson add(@Valid @RequestBody Publisher publisher, BindingResult bindingResult) {
+    public ResultJson add(@Valid @RequestBody Publisher publisherModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
@@ -46,18 +46,28 @@ public class PublisherController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
-            boolean result = publisherService.add(publisher);
-            if (result) {
-                return ResultJson.ok().message("增加成功");
-            } else {
-                return ResultJson.error().message("数据不存在");
+            String publisher = publisherModel.getPublisher();
+
+            int countPublisher = publisherService.countPublisher(publisher);
+
+            if (countPublisher > 0){ //查重校验
+                return ResultJson.error().message("出版社名称重复");
+            }else{
+                boolean result = publisherService.add(publisherModel);
+                if (result) {
+                    return ResultJson.ok().message("增加成功");
+                } else {
+                    return ResultJson.error().message("数据不存在");
+                }
             }
+
+
         }
     }
 
     //修改
     @PostMapping(value = "update", consumes = "application/json")
-    public ResultJson update(@Valid @RequestBody Publisher publisher, BindingResult bindingResult) {
+    public ResultJson update(@Valid @RequestBody Publisher publisherModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
@@ -67,11 +77,19 @@ public class PublisherController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
-            boolean result = publisherService.update(publisher);
-            if (result) {
-                return ResultJson.ok().message("修改成功");
-            } else {
-                return ResultJson.error().message("数据不存在");
+            String publisher = publisherModel.getPublisher();
+
+            int countPublisher = publisherService.countPublisher(publisher);
+
+            if (countPublisher > 0){ //查重校验
+                return ResultJson.error().message("出版社名称重复");
+            }else {
+                boolean result = publisherService.update(publisherModel);
+                if (result) {
+                    return ResultJson.ok().message("修改成功");
+                } else {
+                    return ResultJson.error().message("数据不存在");
+                }
             }
         }
     }

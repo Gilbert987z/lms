@@ -92,4 +92,8 @@ public class BookTypeService {
         }
         return true;
     }
+
+    public int countBookType(String bookType){
+        return bookTypeDao.countBookType(bookType);
+    }
 }

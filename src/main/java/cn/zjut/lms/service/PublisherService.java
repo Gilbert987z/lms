@@ -102,4 +102,8 @@ public class PublisherService {
         }
         return true;
     }
+
+    public int countPublisher(String publisher){
+        return publisherDao.countPublisher(publisher);
+    }
 }

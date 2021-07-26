@@ -70,5 +70,10 @@
         <include refid="table"/>
         where deleted_at is null
     </select>
-
+    <!--用户名查重-->
+    <select id="countPublisher" parameterType="cn.zjut.lms.model.Publisher" resultType="_int">
+        select count(id) from
+        <include refid="table"/>
+        where deleted_at is null AND publisher=#{publisher}
+    </select>
 </mapper>

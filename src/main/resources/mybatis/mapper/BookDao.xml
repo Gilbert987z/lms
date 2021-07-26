@@ -90,6 +90,13 @@
         select count(id) from
         <include refid="table"/>
         where deleted_at is null
+        AND book_name like concat('%',#{bookName},'%')
+        <if test='publisherId!=null'>
+        AND publisher_id = #{publisherId}
+        </if>
+        <if test='bookTypeId!=null'>
+        AND book_type_id = #{bookTypeId}
+        </if>
     </select>
 
 </mapper>

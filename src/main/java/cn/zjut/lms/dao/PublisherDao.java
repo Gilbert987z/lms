@@ -44,4 +44,6 @@ public interface PublisherDao {
 
 
     int selectCount(); //个数计数，分页使用
+
+    int countPublisher(String publisher);  //查重
 }

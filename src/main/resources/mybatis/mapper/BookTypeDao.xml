@@ -71,4 +71,10 @@
         where deleted_at is null
     </select>
 
+    <!--用户名查重-->
+    <select id="countBookType" parameterType="cn.zjut.lms.model.BookType" resultType="_int">
+        select count(id) from
+        <include refid="table"/>
+        where deleted_at is null AND book_type=#{bookType}
+    </select>
 </mapper>

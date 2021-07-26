@@ -17,9 +17,19 @@ public interface BookDao {
 //            "        left join book_type as type on type.id = book.book_type_id\n" +
 //            "        left join publisher as publish on publish.id = book.publisher_id\n" +
 //            "        where book.deleted_at is null")
-    @Select("SELECT * FROM book WHERE deleted_at is null")
+    @Select({"<script>",
+            "SELECT * FROM book ",
+            "WHERE deleted_at is null AND book_name like concat('%',#{bookName},'%')",
+            "<if test='publisherId!=null'>",
+            "AND publisher_id = #{publisherId}",
+            "</if>",
+            "<if test='bookTypeId!=null'>",
+            "AND book_type_id = #{bookTypeId}",
+            "</if>",
+            "</script>"
+    })
     @Results({
-            @Result(id=true,column = "id", property = "id"),
+            @Result(id = true, column = "id", property = "id"),
             @Result(column = "book_name", property = "bookName"),
             @Result(column = "author", property = "author"),
 //            @Result(column = "publisher_id", property = "publisherId"),
@@ -31,7 +41,7 @@ public interface BookDao {
             @Result(column = "book_type_id", property = "bookType", javaType = BookType.class, one = @One(select = "cn.zjut.lms.dao.BookTypeDao.getById", fetchType = FetchType.LAZY)),
             @Result(column = "publisher_id", property = "publisher", javaType = Publisher.class, one = @One(select = "cn.zjut.lms.dao.PublisherDao.getById", fetchType = FetchType.LAZY))}
     )
-    List<Book> list();
+    List<Book> list(String bookName, Integer publisherId, Integer bookTypeId);
 
     Book getById(int id);
 
@@ -42,5 +52,5 @@ public interface BookDao {
 
     int add(Book book);
 
-    int selectCount(); //个数计数，分页使用
+    int selectCount(String bookName, Integer publisherId, Integer bookTypeId); //个数计数，分页使用
 }

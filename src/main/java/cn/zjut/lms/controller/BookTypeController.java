@@ -37,7 +37,7 @@ public class BookTypeController {
 
     //增加
     @PostMapping(value = "create", consumes = "application/json")
-    public ResultJson add(@Valid @RequestBody BookType bookType, BindingResult bindingResult) {
+    public ResultJson add(@Valid @RequestBody BookType bookTypeModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
@@ -47,18 +47,26 @@ public class BookTypeController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
-            boolean result = bookTypeService.add(bookType);
-            if (result) {
-                return ResultJson.ok().message("增加成功");
+            String bookType = bookTypeModel.getBookType();
+
+            int countBookType = bookTypeService.countBookType(bookType);
+
+            if (countBookType > 0) { //查重校验
+                return ResultJson.error().message("藏书类型重复");
             } else {
-                return ResultJson.error().message("数据不存在");
+                boolean result = bookTypeService.add(bookTypeModel);
+                if (result) {
+                    return ResultJson.ok().message("增加成功");
+                } else {
+                    return ResultJson.error().message("数据不存在");
+                }
             }
         }
     }
 
     //修改
     @PostMapping(value = "update", consumes = "application/json")
-    public ResultJson update(@Valid @RequestBody BookType bookType, BindingResult bindingResult) {
+    public ResultJson update(@Valid @RequestBody BookType bookTypeModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
@@ -68,11 +76,19 @@ public class BookTypeController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
-            boolean result = bookTypeService.update(bookType);
-            if (result) {
-                return ResultJson.ok().message("修改成功");
+            String bookType = bookTypeModel.getBookType();
+
+            int countBookType = bookTypeService.countBookType(bookType);
+
+            if (countBookType > 0) { //查重校验
+                return ResultJson.error().message("藏书类型重复");
             } else {
-                return ResultJson.error().message("数据不存在");
+                boolean result = bookTypeService.update(bookTypeModel);
+                if (result) {
+                    return ResultJson.ok().message("修改成功");
+                } else {
+                    return ResultJson.error().message("数据不存在");
+                }
             }
         }
     }

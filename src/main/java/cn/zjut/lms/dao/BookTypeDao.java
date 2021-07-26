@@ -41,4 +41,6 @@ public interface BookTypeDao {
 
 
     int selectCount(); //个数计数，分页使用
+
+    int countBookType(String bookType); //查重
 }

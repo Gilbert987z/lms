@@ -43,6 +43,6 @@ public interface UserDao {
 
     int selectCount(); //个数计数，分页使用
 
-    int countUsername(String username);
-    int countMobile(String mobile);
+    int countUsername(String username); //查重
+    int countMobile(String mobile); //查重
 }
