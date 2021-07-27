@@ -31,20 +31,23 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println(token);
         System.out.println(login_flag);
 
-
-
-
-        if(token.equals("zz")){
-            System.out.println("万能token");
-            return true;
-        } else if(login_flag){
+        if (token!=null){ //关于token为null报错的处理
+            if(token.equals("zz")){
+                System.out.println("万能token");
+                return true;
+            } else if(login_flag){
 //            return ResultJson.ok().data("accessToken",token);
-            System.out.println("已登录");
-            return true;
+                System.out.println("已登录");
+                return true;
+            }else {
+                noLogin(response);
+                return false;
+            }
         }else {
             noLogin(response);
             return false;
         }
+
 
 //        //每一个项目对于登陆的实现逻辑都有所区别，我这里使用最简单的Session提取User来验证登陆。
 //        HttpSession session = request.getSession();
@@ -73,11 +76,11 @@ public class LoginInterceptor implements HandlerInterceptor {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         //创建json对象
-        JSONObject res = new JSONObject();
+        JSONObject res = new JSONObject();  //由于restcontroller自带转成json的作用。所以这里要自己转成json
 
 //        Map<String, Object> res =new HashMap<>();
         res.put("status",HttpServletResponse.SC_UNAUTHORIZED);
-        res.put("msg","need login");
+        res.put("msg","校验失败，请重新登录！");
         PrintWriter out = null ;
         out = response.getWriter();
         out.write(res.toString());
