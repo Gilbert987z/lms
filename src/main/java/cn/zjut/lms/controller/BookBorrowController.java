@@ -1,9 +1,7 @@
 package cn.zjut.lms.controller;
 
-import cn.zjut.lms.model.Book;
 import cn.zjut.lms.model.BookBorrow;
 import cn.zjut.lms.service.BookBorrowService;
-import cn.zjut.lms.service.BookService;
 import cn.zjut.lms.util.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
