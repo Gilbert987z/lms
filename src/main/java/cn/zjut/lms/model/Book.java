@@ -41,7 +41,10 @@ public class Book {
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date deletedAt;
 
+
+    private String bookType;
+    private String publisher;
     //关联
-    private BookType bookType;
-    private Publisher publisher;
+//    private BookType bookType;
+//    private Publisher publisher;
 }

@@ -32,7 +32,7 @@ public class BookBorrowService {
         int totalPages = totalSize % size == 0 ? totalSize / size : (totalSize / size + 1);
 
         // 当前页面显示的内容
-        resultMap.put("bookList", bookList);
+        resultMap.put("list", bookList);
         // 当前页码
         resultMap.put("currentPage", page);
         //每页条数

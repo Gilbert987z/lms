@@ -27,7 +27,7 @@ public class BookController {
                                 @RequestParam(value = "publisherId",required = false ) Integer publisherId,
                                 @RequestParam(value = "bookTypeId",required = false) Integer bookTypeId) {
         Map<String, Object> data = bookService.list(page, size, bookName,publisherId,bookTypeId);
-        return ResultJson.ok().data("items", data);
+        return ResultJson.ok().data(data);
     }
 
     //查询所有数据

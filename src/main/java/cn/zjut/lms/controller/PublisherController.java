@@ -18,13 +18,18 @@ import java.util.Map;
 public class PublisherController {
     @Autowired
     PublisherService publisherService;
-
+    //查询所有数据
+    @GetMapping("")
+    public ResultJson list() {
+        Map<String, Object> data = publisherService.list();
+        return ResultJson.ok().data(data);
+    }
     //查询所有数据
     @GetMapping("list")
-    public ResultJson selectAll(@RequestParam(value = "page", defaultValue = "1") int page,
+    public ResultJson listByPage(@RequestParam(value = "page", defaultValue = "1") int page,
                                 @RequestParam(value = "size", defaultValue = "10") int size) {
-        Map<String, Object> data = publisherService.list(page, size);
-        return ResultJson.ok().data("items", data);
+        Map<String, Object> data = publisherService.listByPage(page, size);
+        return ResultJson.ok().data(data);
     }
 
     //查询所有数据

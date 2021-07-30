@@ -8,8 +8,17 @@
     <sql id="table">book_type</sql>
 
     <!-- id属性填写Dao文件里的函数名称 xxType是参数或是结果的类型根据情况填写 -->
+
     <!-- 查询所有   -->
     <select id="list" resultType="cn.zjut.lms.model.BookType">
+        SELECT
+        id,book_type
+        FROM
+        <include refid="table"/>
+        where deleted_at is null
+    </select>
+    <!-- 查询所有   -->
+    <select id="listByPage" resultType="cn.zjut.lms.model.BookType">
         SELECT
         *
         FROM

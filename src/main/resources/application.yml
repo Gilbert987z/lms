@@ -10,6 +10,9 @@ spring:
 #  main:
 #    allow-bean-definition-overriding:true   # 允许重复服务
 
+# 允许预检请求
+#  mvc:
+#    dispatch-options-request: true
 
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
@@ -23,6 +26,7 @@ pagehelper:
   reasonable: false
   params: count=countSql
   supportMethodsArguments: true
+
 
 
 

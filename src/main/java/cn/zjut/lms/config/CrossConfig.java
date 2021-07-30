@@ -1,9 +1,10 @@
 package cn.zjut.lms.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+
 /*
 跨域配置
  */
@@ -11,11 +12,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CrossConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOriginPatterns("*")  //解决办法：跨域配置报错，将.allowedOrigins替换成.allowedOriginPatterns即可。
-                .allowedMethods("GET","HEAD","POST","PUT","DELETE","OPTIONS")
-                .allowCredentials(true)
-                .maxAge(3600)
+        //解决Vue与SpringBoot通信跨域问题
+        registry.addMapping("/**")  //设置允许跨域的路径
+                .allowedOriginPatterns("*")          //设置允许跨域请求的域名
+                .allowedMethods("GET","HEAD","POST","PUT","DELETE","OPTIONS")   //设置允许的方法
+                .allowCredentials(true)       //这里：是否允许证书 不再默认开启
+                .maxAge(3600)                 //跨域允许时间
                 .allowedHeaders("*");
     }
 }
+

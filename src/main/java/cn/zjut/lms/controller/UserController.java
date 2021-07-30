@@ -26,7 +26,7 @@ public class UserController {
     public ResultJson selectAll(@RequestParam(value = "page", defaultValue = "1") int page,
                                 @RequestParam(value = "size", defaultValue = "10") int size) {
         Map<String, Object> data = userService.list(page, size);
-        return ResultJson.ok().data("items", data);
+        return ResultJson.ok().data(data);
     }
 
     //查询所有数据

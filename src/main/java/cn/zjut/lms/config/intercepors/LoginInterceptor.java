@@ -1,9 +1,11 @@
 package cn.zjut.lms.config.intercepors;
 
-import cn.zjut.lms.model.User;
+
 import cn.zjut.lms.util.JwtUtil;
 import cn.zjut.lms.util.ResultJson;
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,7 +18,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.zjut.lms.util.ResultJson;
 
 /**
  * 登录拦截器
@@ -26,27 +27,48 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     //这个方法是在访问接口之前执行的，我们只需要在这里写验证登陆状态的业务逻辑，就可以在用户调用指定接口之前验证登陆状态了
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Max-Age", "86400");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+
+        // 如果是OPTIONS则结束请求
+        if (HttpMethod.OPTIONS.toString().equals(request.getMethod())) {
+            response.setStatus(HttpStatus.NO_CONTENT.value());
+            return false;
+        }
+
+//        return true;
+
+
+
+
+
         String token = request.getHeader("token");
         boolean login_flag = JwtUtil.checkToken(token);
-        System.out.println(token);
-        System.out.println(login_flag);
+        System.out.println("token:"+token);
+        System.out.println("检查token，login_flag："+login_flag);
 
-        if (token!=null){ //关于token为null报错的处理
-            if(token.equals("zz")){
-                System.out.println("万能token");
-                return true;
-            } else if(login_flag){
-//            return ResultJson.ok().data("accessToken",token);
-                System.out.println("已登录");
-                return true;
-            }else {
-                noLogin(response);
-                return false;
-            }
-        }else {
+        if (token==null){
             noLogin(response);
             return false;
         }
+
+        if(token.equals("zz")){
+            System.out.println("万能token");
+            return true;
+        }
+        if(login_flag){
+//            return ResultJson.ok().data("accessToken",token);
+            System.out.println("已登录");
+            return true;
+        }
+
+        noLogin(response);
+        return false;
+
+
 
 
 //        //每一个项目对于登陆的实现逻辑都有所区别，我这里使用最简单的Session提取User来验证登陆。
@@ -64,6 +86,17 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
+//        String Origin = request.getHeader("Origin");
+//        response.setHeader("Access-Control-Allow-Origin", Origin);
+//        response.setHeader("Access-Control-Allow-Credentials", "true");
+//        response.setHeader("Access-Control-Allow-Headers", "Authorization,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type");
+//        response.setHeader("Access-Control-Allow-Methods", "OPTIONS,GET,POST,DELETE,PUT");
+//        if(request.getMethod().equals("OPTIONS")) {
+//            response.setStatus(200);
+//            return false;
+//        }
+//        return true;
+
     }
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
@@ -76,16 +109,20 @@ public class LoginInterceptor implements HandlerInterceptor {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         //创建json对象
-        JSONObject res = new JSONObject();  //由于restcontroller自带转成json的作用。所以这里要自己转成json
+//        JSONObject res = new JSONObject();  //由于restcontroller自带转成json的作用。所以这里要自己转成json
+        //todo 可以尝试把ResultJson运用上去
+//        ResultJson resultJson = new ResultJson();
+        String data = JSONObject.toJSONString(ResultJson.error().code(HttpServletResponse.SC_UNAUTHORIZED).message("校验失败，请重新登录！"));  // 转换为json字符串
+//        System.out.println("personStr:"+data);
+        JSONObject res = JSONObject.parseObject(data);  // 转换为json对象
 
 //        Map<String, Object> res =new HashMap<>();
-        res.put("status",HttpServletResponse.SC_UNAUTHORIZED);
-        res.put("msg","校验失败，请重新登录！");
+//        res.put("status",HttpServletResponse.SC_UNAUTHORIZED);
+//        res.put("msg","校验失败，请重新登录！");
         PrintWriter out = null ;
         out = response.getWriter();
         out.write(res.toString());
         out.flush();
         out.close();
     }
-
 }

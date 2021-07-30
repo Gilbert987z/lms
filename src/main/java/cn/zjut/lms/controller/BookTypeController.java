@@ -20,12 +20,19 @@ public class BookTypeController {
     @Autowired
     BookTypeService bookTypeService;
 
+
     //查询所有数据
+    @GetMapping("")
+    public ResultJson list() {
+        Map<String, Object> data = bookTypeService.list();
+        return ResultJson.ok().data(data);
+    }
+    //分页查询
     @GetMapping("list")
     public ResultJson selectAll(@RequestParam(value = "page", defaultValue = "1") int page,
                                 @RequestParam(value = "size", defaultValue = "10") int size) {
-        Map<String, Object> data = bookTypeService.list(page, size);
-        return ResultJson.ok().data("items", data);
+        Map<String, Object> data = bookTypeService.listByPage(page, size);
+        return ResultJson.ok().data(data);
     }
 
     //查询所有数据

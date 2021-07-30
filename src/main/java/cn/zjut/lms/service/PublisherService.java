@@ -21,16 +21,24 @@ public class PublisherService {
         Service层介于controller和dao之间作为服务层进行一些逻辑处理，
         这里逻辑太简单所以知识单纯调用dao所以不做注释
      */
-    public Map<String, Object> list(int page, int size) {
+    public Map<String, Object> list() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Publisher> publisherList = publisherDao.list();
+
+        // 当前页面显示的内容
+
+        resultMap.put("list", publisherList);
+
+        return resultMap;
+    }
+
+    public Map<String, Object> listByPage(int page, int size) {
         Map<String, Object> resultMap = new HashMap<>();
         // 使用PageHelper插件，实现分页逻辑。
         PageHelper.startPage(page, size);
 
-        List<Publisher> publisherList = publisherDao.list();
-
-        List<Publisher> userList = publisherDao.list();
-
-
+        List<Publisher> publisherList = publisherDao.listByPage();
 
         // 查询总计数据行数，计算总计页码
         int totalSize = publisherDao.selectCount();
@@ -38,9 +46,8 @@ public class PublisherService {
 
         // 当前页面显示的内容
 
-        resultMap.put("publisherList", publisherList);
+        resultMap.put("list", publisherList);
 
-        resultMap.put("userList", userList);
 
         // 当前页码
         resultMap.put("currentPage", page);

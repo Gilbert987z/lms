@@ -15,6 +15,8 @@ public interface BookTypeDao {
      */
     List<BookType> list();
 
+    List<BookType> listByPage();
+
     /*
     根据ID查询
     {id} 要查询人员的 id

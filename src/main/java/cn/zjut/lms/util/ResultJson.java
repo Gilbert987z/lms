@@ -2,6 +2,7 @@ package cn.zjut.lms.util;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,13 +21,14 @@ public class ResultJson {
     @ApiModelProperty(value = "返回数据")
     private Map<String, Object> data = new HashMap<String, Object>();
 
-    private ResultJson() {
+    public ResultJson() {
     }
 
     public static ResultJson ok() {
         ResultJson r = new ResultJson();
         r.setSuccess(true);
-        r.setCode(ResultCode.SUCCESS);
+//        r.setCode(ResultCode.SUCCESS);
+        r.setCode(HttpServletResponse.SC_OK);
         r.setMessage("成功");
         return r;
     }

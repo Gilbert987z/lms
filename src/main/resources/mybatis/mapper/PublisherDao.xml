@@ -11,6 +11,14 @@
     <!-- 查询所有   -->
     <select id="list" resultType="cn.zjut.lms.model.Publisher">
         SELECT
+        id,publisher
+        FROM
+        <include refid="table"/>
+        where deleted_at is null
+    </select>
+    <!-- 查询所有   -->
+    <select id="listByPage" resultType="cn.zjut.lms.model.Publisher">
+        SELECT
         *
         FROM
         <include refid="table"/>

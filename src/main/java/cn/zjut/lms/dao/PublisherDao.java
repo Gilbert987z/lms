@@ -16,6 +16,7 @@ public interface PublisherDao {
     return List<User>
      */
     List<Publisher> list();
+    List<Publisher> listByPage();
 
     /*
     根据ID查询
