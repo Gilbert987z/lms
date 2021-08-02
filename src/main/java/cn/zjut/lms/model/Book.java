@@ -18,6 +18,7 @@ public class Book {
     private int id;
 
     private String bookName;
+    private String images; // 封面图片
 
     private String author;
 
