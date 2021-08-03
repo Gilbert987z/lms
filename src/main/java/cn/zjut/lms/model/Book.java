@@ -32,6 +32,8 @@ public class Book {
 
     private double price;
 
+    private String desc;//备注
+
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt;
 
