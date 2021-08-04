@@ -9,37 +9,36 @@
 
     <!-- id属性填写Dao文件里的函数名称 xxType是参数或是结果的类型根据情况填写 -->
     <!-- 查询所有   -->
-<!--    <select id="list" resultMap="resultMap_book_bookType_publisher">
-        SELECT
-        book.*,type.book_type,publish.publisher
-        FROM
-        <include refid="table"/> as book
-        left join book_type as type on type.id = book.book_type_id
-        left join publisher as publish on publish.id = book.publisher_id
-        where book.deleted_at is null
-    </select>
-    <resultMap id="resultMap_book_bookType_publisher" type="cn.zjut.lms.model.Book">
-        <id column="id" property="id"/>
-        <result column="book_name" property="bookName"/>
-        <result column="author" property="author"/>
-        <result column="publisher_id" property="publisherId"/>
-        <result column="book_type_id" property="bookTypeId"/>
-        <result column="inventory" property="inventory"/>
-        <result column="total" property="total"/>
-        <result column="price" property="price"/>
-        <result column="created_at" property="createdAt"/>
-        <result column="updated_at" property="updatedAt"/>
-
-        <association property="bookType" javaType="cn.zjut.lms.model.BookType">
+    <!--    <select id="list" resultMap="resultMap_book_bookType_publisher">
+            SELECT
+            book.*,type.book_type,publish.publisher
+            FROM
+            <include refid="table"/> as book
+            left join book_type as type on type.id = book.book_type_id
+            left join publisher as publish on publish.id = book.publisher_id
+            where book.deleted_at is null
+        </select>
+        <resultMap id="resultMap_book_bookType_publisher" type="cn.zjut.lms.model.Book">
             <id column="id" property="id"/>
-            <result column="book_type" property="bookType"/>
-        </association>
-        <association property="publisher" javaType="cn.zjut.lms.model.Publisher">
-            <id column="id" property="id"/>
-            <result column="publisher" property="publisher"/>
-        </association>
-    </resultMap>-->
+            <result column="book_name" property="bookName"/>
+            <result column="author" property="author"/>
+            <result column="publisher_id" property="publisherId"/>
+            <result column="book_type_id" property="bookTypeId"/>
+            <result column="inventory" property="inventory"/>
+            <result column="total" property="total"/>
+            <result column="price" property="price"/>
+            <result column="created_at" property="createdAt"/>
+            <result column="updated_at" property="updatedAt"/>
 
+            <association property="bookType" javaType="cn.zjut.lms.model.BookType">
+                <id column="id" property="id"/>
+                <result column="book_type" property="bookType"/>
+            </association>
+            <association property="publisher" javaType="cn.zjut.lms.model.Publisher">
+                <id column="id" property="id"/>
+                <result column="publisher" property="publisher"/>
+            </association>
+        </resultMap>-->
 
 
     <!-- 根据id查询 -->
@@ -66,7 +65,8 @@
         UPDATE
         <include refid="table"/>
         SET
-        book_name = #{bookName},images=#{images},author = #{author},publisher_id = #{publisherId},book_type_id = #{bookTypeId},
+        book_name = #{bookName},images=#{images},author = #{author},publisher_id = #{publisherId},book_type_id =
+        #{bookTypeId},
         inventory = #{inventory},total = #{total},price = #{price}, updated_at= #{updatedAt}
         WHERE
         id = #{id}
@@ -82,8 +82,15 @@
         id = #{id}
     </update>
 
-
-
+    <!-- 修改库存 -->
+    <update id="updateInventory" parameterType="cn.zjut.lms.model.Book">
+        UPDATE
+        <include refid="table"/>
+        SET
+        inventory = #{inventory},updated_at = #{updatedAt},
+        WHERE
+        id =#{id}
+    </update>
 
     <!-- _int 是简单类型int整数。  int 是包装类型Integer整数 都是MyBatis内置类型。 -->
     <select id="selectCount" parameterType="cn.zjut.lms.model.Book" resultType="_int">
@@ -92,11 +99,12 @@
         where deleted_at is null
         AND book_name like concat('%',#{bookName},'%')
         <if test='publisherId!=null'>
-        AND publisher_id = #{publisherId}
+            AND publisher_id = #{publisherId}
         </if>
         <if test='bookTypeId!=null'>
-        AND book_type_id = #{bookTypeId}
+            AND book_type_id = #{bookTypeId}
         </if>
     </select>
+
 
 </mapper>

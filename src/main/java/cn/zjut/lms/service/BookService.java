@@ -77,6 +77,21 @@ public class BookService {
         return true;
     }
 
+    //修改库存
+    public boolean updateInventory(Book book) {
+        java.util.Date date=new java.util.Date();
+        java.sql.Date currentTime=new java.sql.Date(date.getTime());
+        book.setUpdatedAt(currentTime);
+
+        int rows = bookDao.update(book);
+        if (rows != 1) {
+            // 修改失败，回滚事务
+            throw new RuntimeException("修改库存失败");
+
+        }
+        return true;
+    }
+
     public boolean add(Book book) {
         java.util.Date date=new java.util.Date();
         java.sql.Date currentTime=new java.sql.Date(date.getTime());

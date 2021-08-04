@@ -13,6 +13,7 @@ public class BookBorrow {
 
     private int userId;
     private int bookId;
+    private int borrowBookNum; //借书数量
     private int borrowDays;
     private short status;  //1:借阅;2:归还;3:遗失;4:未及时归还
 

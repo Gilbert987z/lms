@@ -12,7 +12,17 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface BookBorrowDao {
+public interface BookBorrowDao {  //借书信息表
+    /*
+    id、用户id、图书id（借书证号）、图书数量、借书天数、状态（借阅/归还/遗失/续借/未及时归还）、创建时间字段、修改时间字段、删除时间字段
+
+    操作：查看图书详情、查看用户详情
+
+    统计图：图书总数、现存、借阅（借阅期间内的、续借、未及时归还）、遗失、
+
+    1:借阅;2:归还;3:遗失;4:未及时归还
+     */
+
 
     /*
     查询出借书列表
@@ -65,7 +75,7 @@ public interface BookBorrowDao {
     int statusUpdate(int status);
 
     /*
-    增加借书状信息
+    增加借书状信息   借阅书籍
      */
     int add(BookBorrow bookBorrow);
 

@@ -64,8 +64,9 @@ public interface BookDao {
 
     int update(Book book);
 
-
     int add(Book book);
+
+    int updateInventory(Book book);  //修改库存
 
     int selectCount(String bookName, Integer publisherId, Integer bookTypeId); //个数计数，分页使用
 }

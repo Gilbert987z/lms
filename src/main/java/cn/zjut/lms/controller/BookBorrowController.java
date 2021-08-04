@@ -1,7 +1,9 @@
 package cn.zjut.lms.controller;
 
+import cn.zjut.lms.model.Book;
 import cn.zjut.lms.model.BookBorrow;
 import cn.zjut.lms.service.BookBorrowService;
+import cn.zjut.lms.service.BookService;
 import cn.zjut.lms.util.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -18,6 +20,8 @@ import java.util.Map;
 public class BookBorrowController {
     @Autowired
     BookBorrowService bookBorrowService;
+    @Autowired
+    BookService bookService;
 
     //查询所有数据
     @GetMapping("list")
@@ -37,10 +41,10 @@ public class BookBorrowController {
         return ResultJson.ok().data("detail", bookBorrow);
     }
 
-    //增加
-    @PostMapping(value = "create", consumes = "application/json")
+    //借书
+    @PostMapping(value = "borrow", consumes = "application/json")
     public ResultJson add(@Valid @RequestBody BookBorrow bookBorrow, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) { //字段校验
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
             for (FieldError fieldError : bindingResult.getFieldErrors()) {
@@ -49,9 +53,20 @@ public class BookBorrowController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
-            boolean result = bookBorrowService.add(bookBorrow);
+            int bookId = bookBorrow.getBookId();
+            int bookCount = bookBorrow.getBorrowBookNum();//借书数量
+            Book book = bookService.getById(bookId);//获取到那条book数据
+            int inventory=book.getInventory();
+
+            if(bookCount>inventory){
+                return ResultJson.error().message("图书库存不足");
+            }
+            book.setInventory(inventory - bookCount);
+            bookService.updateInventory(book); //修改库存
+            boolean result = bookBorrowService.add(bookBorrow); //添加借书信息
+
             if (result) {
-                return ResultJson.ok().message("增加成功");
+                return ResultJson.ok().message("借阅书籍成功");
             } else {
                 return ResultJson.error().message("数据不存在");
             }
