@@ -27,9 +27,12 @@ pagehelper:
   params: count=countSql
   supportMethodsArguments: true
 
-
-
-
+logging:
+  level:
+    root: info #（key:包名）
+  file:
+#    path: log/
+    name: log/springDemo.log # 该属性用来配置日志文件名，如果该属性不配置，默认文件名为spring.log
 
 
 #  说明：
