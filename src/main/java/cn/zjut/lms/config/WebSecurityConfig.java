@@ -33,6 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class
                 )
                 .addFilterBefore(new JWTAuthenticationFilter(),
-                        UsernamePasswordAuthenticationFilter.class);　　　　　　　// 添加JWT权限认证拦截器，用于将每个接口拦截进行token验证，将token里的信息拿取用户并放入安全上下文
-    }　
+                        UsernamePasswordAuthenticationFilter.class);// 添加JWT权限认证拦截器，用于将每个接口拦截进行token验证，将token里的信息拿取用户并放入安全上下文
+    }
 }
