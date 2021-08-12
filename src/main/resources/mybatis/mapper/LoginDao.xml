@@ -47,4 +47,15 @@
         WHERE
         user_id = #{userId}
     </update>
+
+    <!-- 登出 -->
+    <update id="logout" parameterType="cn.zjut.lms.model.AccessToken">
+        UPDATE
+        <include refid="table"/>
+        SET
+        access_token = null,updated_at=#{updatedAt}
+        WHERE
+        access_token = #{accessToken}
+    </update>
+
 </mapper>

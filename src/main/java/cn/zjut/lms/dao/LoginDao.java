@@ -19,9 +19,12 @@ public interface LoginDao {
      */
     int update(AccessToken accessToken);
 
+    int logout(AccessToken accessToken);
+
     /*
     增加
     {p} 要新增的User实例
      */
     int add(AccessToken accessToken);
+
 }

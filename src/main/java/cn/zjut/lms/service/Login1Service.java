@@ -42,6 +42,14 @@ public class Login1Service {
         }
         return true;
     }
+    public boolean logout(AccessToken accessToken) {
+        int rows = loginDao.logout(accessToken);
+        if (rows != 1) {
+            // 新增失败，回滚事务
+            throw new RuntimeException("登出失败");
+        }
+        return true;
+    }
 
     public boolean add(AccessToken accessToken) {
         int rows = loginDao.add(accessToken);

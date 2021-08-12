@@ -27,6 +27,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     //这个方法是在访问接口之前执行的，我们只需要在这里写验证登陆状态的业务逻辑，就可以在用户调用指定接口之前验证登陆状态了
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("执行了拦截器");
+
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS");
@@ -39,14 +41,9 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-//        return true;
-
-
-
-
 
         String token = request.getHeader("token");
-        boolean login_flag = JwtUtil.checkToken(token);
+        boolean login_flag = JwtUtil.checkToken(token);  //校验token
         System.out.println("token:"+token);
         System.out.println("检查token，login_flag："+login_flag);
 
@@ -68,9 +65,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         noLogin(response);
         return false;
 
-
-
-
 //        //每一个项目对于登陆的实现逻辑都有所区别，我这里使用最简单的Session提取User来验证登陆。
 //        HttpSession session = request.getSession();
 //        //这里的User是登陆时放入session的
@@ -86,17 +80,6 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
-//        String Origin = request.getHeader("Origin");
-//        response.setHeader("Access-Control-Allow-Origin", Origin);
-//        response.setHeader("Access-Control-Allow-Credentials", "true");
-//        response.setHeader("Access-Control-Allow-Headers", "Authorization,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type");
-//        response.setHeader("Access-Control-Allow-Methods", "OPTIONS,GET,POST,DELETE,PUT");
-//        if(request.getMethod().equals("OPTIONS")) {
-//            response.setStatus(200);
-//            return false;
-//        }
-//        return true;
-
     }
 
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
