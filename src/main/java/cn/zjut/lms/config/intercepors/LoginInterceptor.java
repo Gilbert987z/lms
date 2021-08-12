@@ -13,10 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -44,19 +41,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         String token = request.getHeader("token");
         boolean login_flag = JwtUtil.checkToken(token);  //校验token
-        System.out.println("token:"+token);
-        System.out.println("检查token，login_flag："+login_flag);
+        System.out.println("token:" + token);
+        System.out.println("检查token，login_flag：" + login_flag);
 
-        if (token==null){
+        if (token == null) {
             noLogin(response);
             return false;
         }
 
-        if(token.equals("zz")){
+        if (token.equals("zz")) {
             System.out.println("万能token");
             return true;
         }
-        if(login_flag){
+        if (login_flag) {
 //            return ResultJson.ok().data("accessToken",token);
             System.out.println("已登录");
             return true;
@@ -87,7 +84,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     //没登录时返回错误信息
     //https://blog.csdn.net/weixin_42970433/article/details/101707234
-    public void noLogin(HttpServletResponse response) throws Exception{
+    public void noLogin(HttpServletResponse response) throws Exception {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
@@ -102,7 +99,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 //        Map<String, Object> res =new HashMap<>();
 //        res.put("status",HttpServletResponse.SC_UNAUTHORIZED);
 //        res.put("msg","校验失败，请重新登录！");
-        PrintWriter out = null ;
+        PrintWriter out = null;
         out = response.getWriter();
         out.write(res.toString());
         out.flush();
