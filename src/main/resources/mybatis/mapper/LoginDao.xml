@@ -9,7 +9,7 @@
 
     <!-- id属性填写Dao文件里的函数名称 xxType是参数或是结果的类型根据情况填写 -->
     <!-- 查询所有   -->
-    <select id="findByUsername" resultType="cn.zjut.lms.model.User">
+    <select id="findByUsername" resultType="cn.zjut.lms.model.SysUser">
         SELECT
         *
         FROM

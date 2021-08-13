@@ -1,17 +1,14 @@
 package cn.zjut.lms.controller;
 
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.model.SysUser;
 import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 //@Api(description = "商户平台应用接口")
@@ -32,13 +29,13 @@ public class UserController {
     //查询所有数据
     @GetMapping("detail")
     public ResultJson detail(@RequestParam(value = "id") int id) {
-        User user = userService.getById(id);
+        SysUser user = userService.getById(id);
         return ResultJson.ok().data("detail", user);
     }
 
     //增加
     @PostMapping(value = "create", consumes = "application/json")
-    public ResultJson add(@Valid @RequestBody User user, BindingResult bindingResult) {
+    public ResultJson add(@Valid @RequestBody SysUser user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) { //数据校验
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
@@ -71,7 +68,7 @@ public class UserController {
 
     //修改
     @PostMapping(value = "update", consumes = "application/json")
-    public ResultJson update(@Valid @RequestBody User user, BindingResult bindingResult) {
+    public ResultJson update(@Valid @RequestBody SysUser user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
@@ -104,7 +101,7 @@ public class UserController {
 
     //根据id删除
     @PostMapping(value = "delete", consumes = "application/json")
-    public ResultJson deleteById(@RequestBody User user) {
+    public ResultJson deleteById(@RequestBody SysUser user) {
 //        int id = user.getId();
         boolean result = userService.delete(user);
         if (result) {

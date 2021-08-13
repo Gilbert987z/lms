@@ -1,6 +1,6 @@
 package cn.zjut.lms.dao;
 
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.model.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -13,32 +13,32 @@ public interface UserDao {
     查所有
     return List<User>
      */
-    List<User> list();
+    List<SysUser> list();
 
     /*
     根据ID查询
     {id} 要查询人员的 id
      */
-    User getById(int id);
+    SysUser getById(int id);
 
     /*
     删除
     {id} 要删除人员的 id
      */
 //    int delete(int id);
-    int delete(User user);
+    int delete(SysUser user);
 
     /*
     更新
     {p} 要更新的User实例
      */
-    int update(User user);
+    int update(SysUser user);
 
     /*
     增加
     {p} 要新增的User实例
      */
-    int add(User user);
+    int add(SysUser user);
 
 
     int selectCount(); //个数计数，分页使用

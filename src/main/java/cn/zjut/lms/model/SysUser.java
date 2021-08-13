@@ -11,7 +11,7 @@ import java.util.Date;
 
 @JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
 @Data
-public class User {
+public class SysUser {
     /*
     {id} 自增主键
     {name} 人员姓名
@@ -40,6 +40,6 @@ public class User {
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date deletedAt;
 
-    public User() {
+    public SysUser() {
     }
 }

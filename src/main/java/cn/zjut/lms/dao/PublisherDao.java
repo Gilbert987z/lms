@@ -1,8 +1,6 @@
 package cn.zjut.lms.dao;
 
-import cn.zjut.lms.model.Book;
 import cn.zjut.lms.model.Publisher;
-import cn.zjut.lms.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 

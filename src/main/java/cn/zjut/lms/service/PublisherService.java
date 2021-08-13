@@ -1,9 +1,7 @@
 package cn.zjut.lms.service;
 
 import cn.zjut.lms.dao.PublisherDao;
-import cn.zjut.lms.dao.UserDao;
 import cn.zjut.lms.model.Publisher;
-import cn.zjut.lms.model.User;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

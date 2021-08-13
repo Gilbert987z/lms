@@ -1,7 +1,7 @@
 package cn.zjut.lms.service;
 
 import cn.zjut.lms.dao.UserDao;
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.model.SysUser;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class UserService {
         Map<String, Object> resultMap = new HashMap<>();
         // 使用PageHelper插件，实现分页逻辑。
         PageHelper.startPage(page, size);
-        List<User> userList = userDao.list();
+        List<SysUser> userList = userDao.list();
 
 
         // 查询总计数据行数，计算总计页码
@@ -45,11 +45,11 @@ public class UserService {
         return resultMap;
     }
 
-    public User getById(int id) {
+    public SysUser getById(int id) {
         return userDao.getById(id);
     }
 
-    public boolean delete(User user) {
+    public boolean delete(SysUser user) {
         java.util.Date date=new java.util.Date();
         java.sql.Date currentTime=new java.sql.Date(date.getTime());
         user.setUpdatedAt(currentTime);
@@ -64,7 +64,7 @@ public class UserService {
         return true;
     }
 
-    public boolean update(User user) {
+    public boolean update(SysUser user) {
         java.util.Date date=new java.util.Date();
         java.sql.Date currentTime=new java.sql.Date(date.getTime());
         user.setUpdatedAt(currentTime);
@@ -78,7 +78,7 @@ public class UserService {
         return true;
     }
 
-    public boolean add(User user) {
+    public boolean add(SysUser user) {
         java.util.Date date=new java.util.Date();
         java.sql.Date currentTime=new java.sql.Date(date.getTime());
         user.setCreatedAt(currentTime);

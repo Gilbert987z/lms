@@ -1,7 +1,7 @@
 package cn.zjut.lms.controller;
 
 import cn.zjut.lms.model.AccessToken;
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.model.SysUser;
 import cn.zjut.lms.service.Login1Service;
 //import cn.zjut.lms.service.LoginService;
 import cn.zjut.lms.service.UserService;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +41,7 @@ public class Login1Controller {
      * @return token登录凭证
      */
     @PostMapping("/login")
-    public ResultJson login(@Valid @RequestBody User loginDTO, HttpServletRequest request, BindingResult bindingResult) {
+    public ResultJson login(@Valid @RequestBody SysUser loginDTO, HttpServletRequest request, BindingResult bindingResult) {
         System.out.println("数据校验");
 
         //todo 需要修改，改成 message[报错1，报错2，报错3]
@@ -59,7 +58,7 @@ public class Login1Controller {
         String username = loginDTO.getUsername();
         String password = loginDTO.getPassword();
         //用户信息
-        User user = login1Service.findByUsername(username); //1.先用用户名查询用户信息
+        SysUser user = login1Service.findByUsername(username); //1.先用用户名查询用户信息
         //账号不存在、密码错误
         if (user == null) {
             return ResultJson.error().message("无此账号");
@@ -126,7 +125,7 @@ public class Login1Controller {
 
     //注册
     @PostMapping(value = "register", consumes = "application/json")
-    public ResultJson add(@Valid @RequestBody User user, BindingResult bindingResult) {
+    public ResultJson add(@Valid @RequestBody SysUser user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) { //数据校验
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 

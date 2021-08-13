@@ -1,7 +1,7 @@
 package cn.zjut.lms.dao;
 
 import cn.zjut.lms.model.AccessToken;
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.model.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface LoginDao {
 
-    User findByUsername(String username);
+    SysUser findByUsername(String username);
 
     AccessToken findByUserId(int userId);
 

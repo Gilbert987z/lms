@@ -5,11 +5,11 @@
 <mapper namespace="cn.zjut.lms.dao.UserDao">
     <!-- 填写数据库里实例Person对应的表的表名 -->
     <!-- 这里是作为一个变量使用 -->
-    <sql id="table">user</sql>
+    <sql id="table">SysUser</sql>
 
     <!-- id属性填写Dao文件里的函数名称 xxType是参数或是结果的类型根据情况填写 -->
     <!-- 查询所有   -->
-    <select id="list" resultType="cn.zjut.lms.model.User">
+    <select id="list" resultType="cn.zjut.lms.model.SysUser">
         SELECT
         *
         FROM
@@ -19,7 +19,7 @@
 
 
     <!-- 根据id查询 -->
-    <select id="getById" resultType="cn.zjut.lms.model.User">
+    <select id="getById" resultType="cn.zjut.lms.model.SysUser">
         SELECT
         *
         FROM
@@ -29,7 +29,7 @@
     </select>
 
     <!-- 增 -->
-    <insert id="add" parameterType="cn.zjut.lms.model.User">
+    <insert id="add" parameterType="cn.zjut.lms.model.SysUser">
         INSERT INTO
         <include refid="table"/>
         (username,password,mobile,created_at,updated_at)
@@ -38,7 +38,7 @@
     </insert>
 
     <!-- 改 -->
-    <update id="update" parameterType="cn.zjut.lms.model.User">
+    <update id="update" parameterType="cn.zjut.lms.model.SysUser">
         UPDATE
         <include refid="table"/>
         SET
@@ -49,7 +49,7 @@
     </update>
 
     <!-- 删 -->
-    <update id="delete" parameterType="cn.zjut.lms.model.User">
+    <update id="delete" parameterType="cn.zjut.lms.model.SysUser">
         UPDATE
         <include refid="table"/>
         SET
@@ -57,7 +57,7 @@
         WHERE
         id = #{id}
     </update>
-<!--    <delete id="delete" parameterType="cn.zjut.lms.model.User">-->
+<!--    <delete id="delete" parameterType="cn.zjut.lms.model.SysUser">-->
 <!--        DELETE FROM-->
 <!--        <include refid="table"/>-->
 <!--        WHERE-->
@@ -65,19 +65,19 @@
 <!--    </delete>-->
 
     <!-- _int 是简单类型int整数。  int 是包装类型Integer整数 都是MyBatis内置类型。 -->
-    <select id="selectCount" parameterType="cn.zjut.lms.model.User" resultType="_int">
+    <select id="selectCount" parameterType="cn.zjut.lms.model.SysUser" resultType="_int">
         select count(id) from
         <include refid="table"/>
         where deleted_at is null
     </select>
 
     <!--用户名查重-->
-    <select id="countUsername" parameterType="cn.zjut.lms.model.User" resultType="_int">
+    <select id="countUsername" parameterType="cn.zjut.lms.model.SysUser" resultType="_int">
         select count(id) from
         <include refid="table"/>
         where deleted_at is null AND username=#{username}
     </select>
-    <select id="countMobile" parameterType="cn.zjut.lms.model.User" resultType="_int">
+    <select id="countMobile" parameterType="cn.zjut.lms.model.SysUser" resultType="_int">
         select count(id) from
         <include refid="table"/>
         where deleted_at is null AND mobile=#{mobile}

@@ -2,12 +2,9 @@ package cn.zjut.lms.service;
 
 import cn.zjut.lms.dao.LoginDao;
 import cn.zjut.lms.model.AccessToken;
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.model.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Service
 public class Login1Service {
@@ -18,7 +15,7 @@ public class Login1Service {
     LoginDao loginDao;
 
 
-    public User findByUsername(String username) {
+    public SysUser findByUsername(String username) {
         return loginDao.findByUsername(username);
 
     }
