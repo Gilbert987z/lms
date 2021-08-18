@@ -1,8 +1,7 @@
-package cn.zjut.lms.controller;
+package cn.zjut.lms.controller.admin;
 
-
-import cn.zjut.lms.model.BookType;
-import cn.zjut.lms.service.BookTypeService;
+import cn.zjut.lms.model.SysRole;
+import cn.zjut.lms.service.SysRoleService;
 import cn.zjut.lms.util.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -15,37 +14,37 @@ import java.util.Map;
 
 //@Api(description = "商户平台应用接口")
 @RestController
-@RequestMapping("/booktype")
-public class BookTypeController {
+@RequestMapping("/admin/role")
+public class SysRoleController {
     @Autowired
-    BookTypeService bookTypeService;
-
+    SysRoleService sysRoleService;
 
     //查询所有数据
     @GetMapping("")
     public ResultJson list() {
-        Map<String, Object> data = bookTypeService.list();
+        Map<String, Object> data = sysRoleService.list();
         return ResultJson.ok().data(data);
     }
-    //分页查询
+
+    //查询所有数据
     @GetMapping("list")
-    public ResultJson selectAll(@RequestParam(value = "page", defaultValue = "1") int page,
-                                @RequestParam(value = "size", defaultValue = "10") int size) {
-        Map<String, Object> data = bookTypeService.listByPage(page, size);
+    public ResultJson listByPage(@RequestParam(value = "page", defaultValue = "1") int page,
+                                 @RequestParam(value = "size", defaultValue = "10") int size) {
+        Map<String, Object> data = sysRoleService.listByPage(page, size);
         return ResultJson.ok().data(data);
     }
 
     //查询所有数据
     @GetMapping("detail")
     public ResultJson detail(@RequestParam(value = "id") int id) {
-        BookType bookType = bookTypeService.getById(id);
-        return ResultJson.ok().data("detail", bookType);
+        SysRole role = sysRoleService.getById(id);
+        return ResultJson.ok().data("detail", role);
     }
 
     //增加
     @PostMapping(value = "create", consumes = "application/json")
-    public ResultJson add(@Valid @RequestBody BookType bookTypeModel, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+    public ResultJson add(@Valid @RequestBody SysRole role, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) { //数据校验
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
             for (FieldError fieldError : bindingResult.getFieldErrors()) {
@@ -53,15 +52,15 @@ public class BookTypeController {
             }
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
-        } else {
-            String bookType = bookTypeModel.getBookType();
+        } else { //数据校验成功
+            String roleName = role.getRoleName();
 
-            int countBookType = bookTypeService.countBookType(bookType);
+            int countNumber = sysRoleService.countNumber(roleName);
 
-            if (countBookType > 0) { //查重校验
-                return ResultJson.error().message("藏书类型重复");
+            if (countNumber > 0) { //查重校验
+                return ResultJson.error().message("角色名已被占用");
             } else {
-                boolean result = bookTypeService.add(bookTypeModel);
+                boolean result = sysRoleService.add(role);
                 if (result) {
                     return ResultJson.ok().message("增加成功");
                 } else {
@@ -73,7 +72,7 @@ public class BookTypeController {
 
     //修改
     @PostMapping(value = "update", consumes = "application/json")
-    public ResultJson update(@Valid @RequestBody BookType bookTypeModel, BindingResult bindingResult) {
+    public ResultJson update(@Valid @RequestBody SysRole role, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
@@ -83,14 +82,14 @@ public class BookTypeController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
-            String bookType = bookTypeModel.getBookType();
+            String roleName = role.getRoleName();
 
-            int countBookType = bookTypeService.countBookType(bookType);
+            int countNumber = sysRoleService.countNumber(roleName);
 
-            if (countBookType > 0) { //查重校验
-                return ResultJson.error().message("藏书类型重复");
-            } else {
-                boolean result = bookTypeService.update(bookTypeModel);
+            if (countNumber > 0) { //查重校验
+                return ResultJson.error().message("角色名已被占用");
+            }  else {
+                boolean result = sysRoleService.update(role);
                 if (result) {
                     return ResultJson.ok().message("修改成功");
                 } else {
@@ -102,9 +101,9 @@ public class BookTypeController {
 
     //根据id删除
     @PostMapping(value = "delete", consumes = "application/json")
-    public ResultJson deleteById(@RequestBody BookType bookType) {
-//        int id = bookType.getId();
-        boolean result = bookTypeService.delete(bookType);
+    public ResultJson deleteById(@RequestBody SysRole role) {
+//        int id = user.getId();
+        boolean result = sysRoleService.delete(role);
         if (result) {
             return ResultJson.ok().message("删除成功");
         } else {

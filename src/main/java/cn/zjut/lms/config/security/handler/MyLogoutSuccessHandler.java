@@ -1,6 +1,6 @@
 package cn.zjut.lms.config.security.handler;
 
-import com.galen.security.pojo.RespBean;
+import cn.zjut.lms.util.ResultJson;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
@@ -19,8 +19,8 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setContentType("application/json;charset=utf-8");
-        RespBean respBean = RespBean.ok("注销成功!");
-        new com.galen.security.interceptor.handler.GalenWebMvcWrite().writeToWeb(response, respBean);
+        ResultJson respBean = ResultJson.ok().message("注销成功!");
+//        new com.galen.security.interceptor.handler.GalenWebMvcWrite().writeToWeb(response, respBean);
         System.out.println("注销成功!");
     }
 }

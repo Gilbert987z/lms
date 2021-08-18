@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 这里填写对应的Dao文件所在的路径 -->
+<mapper namespace="cn.zjut.lms.dao.SysPermissionDao">
+    <!-- 填写数据库里实例Person对应的表的表名 -->
+    <!-- 这里是作为一个变量使用 -->
+    <sql id="table">sys_permission</sql>
+
+    <!-- id属性填写Dao文件里的函数名称 xxType是参数或是结果的类型根据情况填写 -->
+
+    <!-- 查询所有   -->
+    <select id="list" resultType="cn.zjut.lms.model.SysPermission">
+        SELECT
+        id,url,permission_name
+        FROM
+        <include refid="table"/>
+        where deleted_at is null
+    </select>
+    <!-- 查询所有   -->
+    <select id="listByPage" resultType="cn.zjut.lms.model.SysPermission">
+        SELECT
+        *
+        FROM
+        <include refid="table"/>
+        where deleted_at is null
+    </select>
+
+
+    <!-- 根据id查询 -->
+    <select id="getById" resultType="cn.zjut.lms.model.SysPermission">
+        SELECT
+        *
+        FROM
+        <include refid="table"/>
+        WHERE
+        id = #{id}
+    </select>
+
+
+    <!-- _int 是简单类型int整数。  int 是包装类型Integer整数 都是MyBatis内置类型。 -->
+    <select id="selectCount" parameterType="cn.zjut.lms.model.SysPermission" resultType="_int">
+        select count(id) from
+        <include refid="table"/>
+        where deleted_at is null
+    </select>
+
+</mapper>

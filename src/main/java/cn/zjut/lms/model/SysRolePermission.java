@@ -1,10 +1,14 @@
 package cn.zjut.lms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import java.util.Date;
 
-public class SysRolePermssion {
+@JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
+@Data
+public class SysRolePermission {
     private int id;
     private int roleId;
     private int permissionId;

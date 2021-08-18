@@ -1,6 +1,8 @@
 package cn.zjut.lms.config.security;
 
 
+import cn.zjut.lms.model.SysPermission;
+import cn.zjut.lms.model.SysRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +44,8 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
     public Collection<ConfigAttribute> getAttributes(Object o) {
         String requestUrl = ((FilterInvocation) o).getRequestUrl();
         //去数据库查询资源
-        List<SecuritySysPermission> permissionList = userSecurityMapper.getAllPermission();
-        for (SecuritySysPermission permission : permissionList) {
+        List<SysPermission> permissionList = userSecurityMapper.getAllPermission();  //查询该用户的permission
+        for (SysPermission permission : permissionList) {
             if (antPathMatcher.match(permission.getUrl(), requestUrl)
                     && permission.getRoles().size() > 0) {
                 List<SysRole> roles = permission.getRoles();

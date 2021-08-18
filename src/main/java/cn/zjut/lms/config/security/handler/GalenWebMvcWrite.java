@@ -1,7 +1,7 @@
 package cn.zjut.lms.config.security.handler;
 
+import cn.zjut.lms.util.ResultJson;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galen.security.pojo.RespBean;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class GalenWebMvcWrite {
      * @Param: [response, respBean]
      * @return: void
      **/
-    public void writeToWeb(HttpServletResponse response, RespBean respBean) throws IOException {
+    public void writeToWeb(HttpServletResponse response, ResultJson respBean) throws IOException {
         ObjectMapper om = new ObjectMapper();
         PrintWriter out = response.getWriter();
         out.write(om.writeValueAsString(respBean));

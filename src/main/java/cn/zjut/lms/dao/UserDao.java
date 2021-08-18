@@ -1,7 +1,11 @@
 package cn.zjut.lms.dao;
 
+import cn.zjut.lms.model.SysPermission;
+import cn.zjut.lms.model.SysRole;
 import cn.zjut.lms.model.SysUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -44,5 +48,24 @@ public interface UserDao {
     int selectCount(); //个数计数，分页使用
 
     int countUsername(String username); //查重
+
     int countMobile(String mobile); //查重
+
+
+    //brac权限
+    List<SysPermission> getUserPermissionPath(int userId); //获取用户权限
+
+    List<SysRole> getUserRole(int userId); //获取用户的角色
+
+    /**
+     * 查询用户的权限
+     * @param userName
+     * @return
+     */
+    @Select(" select permission.* from sys_user user"
+            + " inner join sys_user_role user_role on user.id = user_role.user_id "
+            + " inner join sys_role_permission role_permission on user_role.role_id = role_permission.role_id "
+            + " inner join sys_permission permission on role_permission.permission_id = permission.id"
+            + " where user.username = #{userName};")
+    List<SysPermission> findPermissionByUsername(@Param("userName") String userName);
 }

@@ -2,13 +2,15 @@ package cn.zjut.lms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import java.util.Date;
 
 @JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
-public class SysPermssion {
+@Data
+public class SysPermission {
     private int id;
-    private String path;//路径
+    private String url;//路径
     private String permissionName;
     private String desc;//备注
 

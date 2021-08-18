@@ -1,7 +1,7 @@
 package cn.zjut.lms.config.security.handler;
 
+import cn.zjut.lms.util.ResultJson;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galen.security.pojo.RespBean;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -23,7 +23,7 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
         resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
         resp.setContentType("application/json;charset=UTF-8");
         PrintWriter out = resp.getWriter();
-        RespBean error = RespBean.error("权限不足，请联系管理员!");
+        ResultJson error = ResultJson.error().message("权限不足，请联系管理员!");
         out.write(new ObjectMapper().writeValueAsString(error));
         out.flush();
         out.close();
