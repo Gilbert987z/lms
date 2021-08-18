@@ -1,4 +1,4 @@
-package cn.zjut.lms.controller;
+package cn.zjut.lms.controller.admin;
 
 import cn.zjut.lms.model.Book;
 import cn.zjut.lms.service.BookService;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 //@Api(description = "商户平台应用接口")
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/admin/book")
 public class BookController {
     @Autowired
     BookService bookService;

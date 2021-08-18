@@ -1,4 +1,4 @@
-package cn.zjut.lms.controller;
+package cn.zjut.lms.controller.admin;
 
 import cn.zjut.lms.model.Publisher;
 import cn.zjut.lms.service.PublisherService;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 //@Api(description = "商户平台应用接口")
 @RestController
-@RequestMapping("/publisher")
+@RequestMapping("/admin/publisher")
 public class PublisherController {
     @Autowired
     PublisherService publisherService;

@@ -1,4 +1,4 @@
-package cn.zjut.lms.controller;
+package cn.zjut.lms.controller.admin;
 
 import cn.zjut.lms.model.SysUser;
 import cn.zjut.lms.service.UserService;
@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
 //@Api(description = "商户平台应用接口")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
     @Autowired
     UserService userService;
