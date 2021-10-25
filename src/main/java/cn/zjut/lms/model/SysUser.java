@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
@@ -19,17 +20,17 @@ public class SysUser {
      */
     private int id;
 
-    @NotNull(message = "姓名不能为空") //必须要传值
-    @NotBlank(message = "姓名不能为空1") //字符串不能为空
-//    @Length(min = 3, max = 10)
+
+    @NotBlank(message = "姓名不能为空") //字符串不能为空
+    @Size(min = 3, max = 10,message="用户名需{min}-{max}字")
     private String username;
 
-    @NotNull(message = "密码不能为空") //必须要传值
-    @NotBlank(message = "密码不能为空1") //字符串不能为空
+    @NotBlank(message = "密码不能为空") //字符串不能为空
     private String password;
 
-//    @NotNull(message = "mobile不能为空")
+    @NotBlank(message = "mobile不能为空")
     private String mobile;
+
     private String images; //图片
     private String desc;//备注
 

@@ -1,12 +1,15 @@
 package cn.zjut.lms.util;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
 @Data
+@JsonIgnoreProperties(value = { "handler" })
 public class ResultJson {
 
     @ApiModelProperty(value = "是否成功")
@@ -18,8 +21,13 @@ public class ResultJson {
     @ApiModelProperty(value = "返回消息")
     private String message;
 
-    @ApiModelProperty(value = "返回数据")
-    private Map<String, Object> data = new HashMap<String, Object>();
+//    @ApiModelProperty(value = "返回数据")
+    private Map<String, Object> data = new HashMap<String, Object>();  //datas下只能支持键值对
+
+//    private Object data = new Object();  //data下只能支持object
+
+
+
 
     public ResultJson() {
     }
@@ -74,14 +82,36 @@ public class ResultJson {
         return this;
     }
 
-    public ResultJson data(String key, Object value) {
-        this.data.put(key, value);
-        return this;
-    }
-
-    public ResultJson data(Map<String, Object> map) {
+    public ResultJson data(String key, Object value) { //支持key和value转换成map传入
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put(key, value);
+//        this.data.put(key, value);
         this.setData(map);
         return this;
     }
 
+    public ResultJson data(Map<String, Object> map) {  //支持map传入
+        this.setData(map);
+        return this;
+    }
+
+
+//    public ResultJson data(Object object) {  //支持object传入
+//        this.setData(object);
+//        return this;
+//    }
+//    public ResultJson data(Object object) {  //支持object传入
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        Field[] fields = object.getClass().getDeclaredFields();
+//        for (Field field : fields) {
+//            field.setAccessible(true);
+//            try {
+//                map.put(field.getName(), field.get(object));
+//            } catch (IllegalAccessException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        this.setData(map);
+//        return this;
+//    }
 }

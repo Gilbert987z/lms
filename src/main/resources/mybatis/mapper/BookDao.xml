@@ -44,20 +44,21 @@
     <!-- 根据id查询 -->
     <select id="getById" resultType="cn.zjut.lms.model.Book">
         SELECT
-        *
+        book.*,type.book_type,publish.publisher
         FROM
-        <include refid="table"/>
-        WHERE
-        id = #{id}
+        <include refid="table"/> as book
+        LEFT JOIN book_type as type ON type.id = book.book_type_id
+        LEFT JOIN publisher as publish ON publish.id = book.publisher_id
+        WHERE book.id = #{id}
     </select>
 
     <!-- 增 -->
     <insert id="add" parameterType="cn.zjut.lms.model.Book">
         INSERT INTO
         <include refid="table"/>
-        (book_name,images,author,publisher_id,book_type_id,inventory,total,price,created_at,updated_at)
+        (book_name,image,author,publisher_id,book_type_id,inventory,total,price,`desc`,created_at,updated_at)
         VALUES
-        (#{bookName},#{images},#{author},#{publisherId},#{bookTypeId},#{inventory},#{total},#{price},#{createdAt},#{updatedAt})
+        (#{bookName},#{image},#{author},#{publisherId},#{bookTypeId},#{inventory},#{total},#{price},#{desc},#{createdAt},#{updatedAt})
     </insert>
 
     <!-- 改 -->
@@ -65,9 +66,9 @@
         UPDATE
         <include refid="table"/>
         SET
-        book_name = #{bookName},images=#{images},author = #{author},publisher_id = #{publisherId},book_type_id =
+        book_name = #{bookName},image=#{image},author = #{author},publisher_id = #{publisherId},book_type_id =
         #{bookTypeId},
-        inventory = #{inventory},total = #{total},price = #{price}, updated_at= #{updatedAt}
+        inventory = #{inventory},total = #{total},price = #{price},`desc`=#{desc}, updated_at= #{updatedAt}
         WHERE
         id = #{id}
     </update>

@@ -3,12 +3,14 @@ package cn.zjut.lms.controller.admin;
 import cn.zjut.lms.model.Book;
 import cn.zjut.lms.service.BookService;
 import cn.zjut.lms.util.ResultJson;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,11 +32,12 @@ public class BookController {
         return ResultJson.ok().data(data);
     }
 
-    //查询所有数据
+    //查询单个数据
     @GetMapping("detail")
     public ResultJson detail(@RequestParam(value = "id") int id) {
         Book book = bookService.getById(id);
-        return ResultJson.ok().data("detail", book);
+//        return ResultJson.ok().data(book);
+        return ResultJson.ok().data("detail",book);
     }
 
     //增加
@@ -51,8 +54,10 @@ public class BookController {
         } else {
             boolean result = bookService.add(book);
             if (result) {
+                System.out.println(ResultJson.ok().message("增加成功"));
                 return ResultJson.ok().message("增加成功");
             } else {
+//                System.out.println();
                 return ResultJson.error().message("数据不存在");
             }
         }
@@ -90,5 +95,4 @@ public class BookController {
             return ResultJson.error().message("数据不存在");
         }
     }
-
 }
