@@ -44,22 +44,22 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("token:" + token);
         System.out.println("检查token，login_flag：" + login_flag);
 
-        if (token == null) {
-            noLogin(response);
+        if (token == null) { //token为空
+            noLogin(response); //没登录时返回错误信息
             return false;
         }
 
-        if (token.equals("zz")) {
+        if (token.equals("zz")) { //万能验证码
             System.out.println("万能token");
             return true;
         }
-        if (login_flag) {
+        if (login_flag) { //token验证成功
 //            return ResultJson.ok().data("accessToken",token);
             System.out.println("已登录");
             return true;
         }
 
-        noLogin(response);
+        noLogin(response); //没登录时返回错误信息
         return false;
 
 //        //每一个项目对于登陆的实现逻辑都有所区别，我这里使用最简单的Session提取User来验证登陆。
