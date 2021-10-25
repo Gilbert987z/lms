@@ -41,7 +41,7 @@ public class LoginController {
         System.out.println("数据校验");
 
         //todo 需要修改，改成 message[报错1，报错2，报错3]
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) { //获取校验失败情况下的反馈信息
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
             for (FieldError fieldError : bindingResult.getFieldErrors()) {
@@ -51,7 +51,7 @@ public class LoginController {
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         }
 
-        String username = loginDTO.getUsername();
+        String username = loginDTO.getUsername(); //用户输入的用户名
         String password = loginDTO.getPassword();
         //用户信息
         SysUser user = loginService.findByUsername(username); //1.先用用户名查询用户信息
@@ -90,7 +90,6 @@ public class LoginController {
                     accessToken.setCreatedAt(currentTime); //写入创建时间
                     loginService.add(accessToken); //添加数据
                 }
-
 
                 return ResultJson.ok().data("accessToken", token);
             }

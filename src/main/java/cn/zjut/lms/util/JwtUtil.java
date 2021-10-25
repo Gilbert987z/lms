@@ -28,6 +28,11 @@ public class JwtUtil {
         return token;
     }
 
+    /**
+     * //校验token
+     * @param token
+     * @return
+     */
     public static boolean checkToken(String token){
         if(token == null){
             return false;
