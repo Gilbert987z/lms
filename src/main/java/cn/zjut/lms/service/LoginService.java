@@ -2,7 +2,7 @@ package cn.zjut.lms.service;
 
 import cn.zjut.lms.dao.LoginDao;
 import cn.zjut.lms.model.AccessToken;
-import cn.zjut.lms.model.SysUser;
+import cn.zjut.lms.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class LoginService {
     LoginDao loginDao;
 
 
-    public SysUser findByUsername(String username) {
+    public User findByUsername(String username) {
         return loginDao.findByUsername(username);
 
     }
@@ -34,7 +34,7 @@ public class LoginService {
         int rows = loginDao.update(accessToken);
         if (rows != 1) {
             // 新增失败，回滚事务
-            throw new RuntimeException("新增联系方式失败");
+            throw new RuntimeException("更新token失败");
 
         }
         return true;
@@ -52,7 +52,7 @@ public class LoginService {
         int rows = loginDao.add(accessToken);
         if (rows != 1) {
             // 新增失败，回滚事务
-            throw new RuntimeException("新增联系方式失败");
+            throw new RuntimeException("新增token失败");
 
         }
         return true;

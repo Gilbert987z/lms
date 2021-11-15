@@ -6,11 +6,11 @@
     <!-- 填写数据库里实例Person对应的表的表名 -->
     <!-- 这里是作为一个变量使用 -->
     <sql id="table">access_token</sql>
-    <sql id="user">sys_user</sql>
+    <sql id="user">User</sql>
 
     <!-- id属性填写Dao文件里的函数名称 xxType是参数或是结果的类型根据情况填写 -->
     <!-- 查询所有   -->
-    <select id="findByUsername" resultType="cn.zjut.lms.model.SysUser">
+    <select id="findByUsername" resultType="cn.zjut.lms.model.User">
         SELECT
         *
         FROM

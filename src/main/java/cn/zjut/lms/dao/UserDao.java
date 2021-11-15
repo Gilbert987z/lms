@@ -2,7 +2,7 @@ package cn.zjut.lms.dao;
 
 import cn.zjut.lms.model.SysPermission;
 import cn.zjut.lms.model.SysRole;
-import cn.zjut.lms.model.SysUser;
+import cn.zjut.lms.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -17,32 +17,32 @@ public interface UserDao {
     查所有
     return List<User>
      */
-    List<SysUser> list();
+    List<User> list();
 
     /*
     根据ID查询
     {id} 要查询人员的 id
      */
-    SysUser getById(int id);
+    User getById(int id);
 
     /*
     删除
     {id} 要删除人员的 id
      */
 //    int delete(int id);
-    int delete(SysUser user);
+    int delete(User user);
 
     /*
     更新
     {p} 要更新的User实例
      */
-    int update(SysUser user);
+    int update(User user);
 
     /*
     增加
     {p} 要新增的User实例
      */
-    int add(SysUser user);
+    int add(User user);
 
 
     int selectCount(); //个数计数，分页使用
