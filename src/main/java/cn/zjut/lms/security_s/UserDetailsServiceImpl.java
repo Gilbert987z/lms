@@ -3,6 +3,7 @@ package cn.zjut.lms.security_s;
 
 import cn.zjut.lms.dao.LoginDao;
 import cn.zjut.lms.model.User;
+import cn.zjut.lms.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,7 +21,7 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    LoginDao logindao;
+    LoginService loginService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -30,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //username参数,是在登陆时,用户传递的表单数据username
         System.out.println("用户名："+username);
-        User user =logindao.findByUsername(username);
+        User user =loginService.findByUsername(username);
 
         //todo  校验密码，密码加密
 

@@ -1,8 +1,13 @@
 package cn.zjut.lms.util;
 
+import cn.zjut.lms.model.User;
 import io.jsonwebtoken.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class JwtUtil {
@@ -10,7 +15,10 @@ public class JwtUtil {
     private static final long EXPIRE_TIME = 1000*60*30; //半小时过期
     private static final String TOKEN_SECRET = "admin";
 
-    public static String createToken(String username){
+    /**
+     * 根据负责生成JWT的token    generate
+     */
+    public static String generateToken(String username){
         JwtBuilder jwtBuilder = Jwts.builder();
         String token = jwtBuilder
                 //header
@@ -18,12 +26,12 @@ public class JwtUtil {
                 .setHeaderParam("alg", "HS256")
                 //payload
                 .claim("username", username)
-//                .claim("role", "admin")
-                .setSubject("lms")
-                .setExpiration(new Date(System.currentTimeMillis()+EXPIRE_TIME))
-                .setId(UUID.randomUUID().toString())
+                //.claim("role", "admin")
+                .setSubject("lms") //主题
+                .setExpiration(new Date(System.currentTimeMillis()+EXPIRE_TIME)) //过期时间
+                .setId(UUID.randomUUID().toString()) //jwt 编号
                 //signature
-                .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET)
+                .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET) //密钥
                 .compact();
         return token;
     }
@@ -44,4 +52,100 @@ public class JwtUtil {
         }
         return true;
     }
+
+
+
+
+    /**
+     * 从令牌中获取用户名
+     * @param token 令牌
+     * @return 用户名
+     */
+    public static String getUsernameFromToken(String token) {
+        String username = null;
+        try {
+            Claims claims = getClaimsFromToken(token);
+            //todo
+            username = claims.getSubject();
+        } catch (Exception e) {
+            System.out.println("e = " + e.getMessage());
+        }
+        return username;
+    }
+
+    /**
+     * 判断令牌是否过期
+     *
+     * @param token 令牌
+     * @return 是否过期
+     */
+    public static Boolean isTokenExpired(String token) throws  Exception{
+        try {
+            Claims claims = getClaimsFromToken(token);
+            Date expiration = claims.getExpiration();
+            return expiration.before(new Date());
+        } catch (Exception e) {
+            throw new Exception("签名过期");
+        }
+    }
+
+    /**
+     * 刷新令牌
+     *
+     * @param token 原令牌
+     * @return 新令牌
+     */
+    public static String refreshToken(String token) {
+        String refreshedToken;
+        try {
+            Claims claims = getClaimsFromToken(token);
+            claims.put(Claims.ISSUED_AT, new Date());
+            refreshedToken = generateToken(claims);
+        } catch (Exception e) {
+            refreshedToken = null;
+        }
+        return refreshedToken;
+    }
+
+    /**
+     * 验证令牌
+     *
+     * @param token       令牌
+     * @param userDetails 用户
+     * @return 是否有效
+     */
+    public static Boolean validateToken(String token, UserDetails userDetails) throws Exception {
+        User user = (User) userDetails;
+        String username = getUsernameFromToken(token);
+        return (username.equals(user.getUsername()) && !isTokenExpired(token));
+    }
+
+    /**
+     * 从数据声明生成令牌
+     *
+     * @param claims 数据声明
+     * @return 令牌
+     */
+    private static String generateToken(Map<String, Object> claims) {
+        Date expirationDate = new Date(System.currentTimeMillis()+ EXPIRE_TIME);
+        HashMap<String, Object> map = new HashMap<>(1);map.put("typ",Header.JWT_TYPE);
+        return Jwts.builder().setHeader(map).setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, TOKEN_SECRET).compact();
+    }
+
+    /**
+     * 从令牌中获取数据声明
+     *
+     * @param token 令牌
+     * @return 数据声明
+     */
+    private static Claims getClaimsFromToken(String token) throws Exception {
+        Claims claims = null;
+        try {
+            claims = Jwts.parser().setSigningKey(TOKEN_SECRET).parseClaimsJws(token).getBody();
+        } catch (Exception e) {
+            new Throwable(e);
+        }
+        return claims;
+    }
+
 }

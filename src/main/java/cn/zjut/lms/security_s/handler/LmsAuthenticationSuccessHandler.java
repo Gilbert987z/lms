@@ -71,7 +71,7 @@ public class LmsAuthenticationSuccessHandler implements AuthenticationSuccessHan
 //        }
 
         //生成jwt
-        String token=jwtUtil.createToken(authentication.getName());
+        String token=jwtUtil.generateToken(authentication.getName());
         ResultJson result = ResultJson.ok().data("token",token).message("登录成功");
         response.setContentType("application/json;charset=UTF-8"); // 响应类型
         response.getWriter().write(JSON.toJSONString(result));

@@ -1,177 +1,485 @@
-2021-11-15 11:15:54.046  INFO 15020 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 15020 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 11:15:55.457  INFO 15020 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 11:15:58.445  INFO 15020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 11:15:58.454  INFO 15020 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 11:15:58.455  INFO 15020 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 11:15:58.523  INFO 15020 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 11:15:58.524  INFO 15020 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1549 ms
-2021-11-15 11:16:02.261  INFO 15020 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e0a864d, org.springframework.security.web.context.SecurityContextPersistenceFilter@176f7f3b, org.springframework.security.web.header.HeaderWriterFilter@5a3a1bf9, org.springframework.web.filter.CorsFilter@440e3ce6, org.springframework.security.web.authentication.logout.LogoutFilter@1c8f6a90, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7e0bc8a3, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6fa0450e, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3e67f5f2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58740366, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72e295cc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@fd53053, org.springframework.security.web.session.SessionManagementFilter@4af45442, org.springframework.security.web.access.ExceptionTranslationFilter@5de6cf3a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@429f7919]
-2021-11-15 11:16:02.314  INFO 15020 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
-2021-11-15 11:16:02.326  INFO 15020 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 9.232 seconds (JVM running for 10.338)
-2021-11-15 11:18:04.917  INFO 15020 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-15 11:18:04.918  INFO 15020 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-15 11:18:04.921  INFO 15020 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2021-11-15 11:18:05.064  INFO 15020 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-11-15 11:18:05.497  INFO 15020 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-11-15 11:18:05.551  WARN 15020 --- [http-nio-8088-exec-1] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Encoded password does not look like BCrypt
-2021-11-15 11:18:05.557  INFO 15020 --- [http-nio-8088-exec-1] z.l.s.h.FuryAuthenticationFailureHandler : 登录验证失败
-2021-11-15 11:19:45.076  WARN 15020 --- [http-nio-8088-exec-3] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Encoded password does not look like BCrypt
-2021-11-15 11:19:45.077  INFO 15020 --- [http-nio-8088-exec-3] z.l.s.h.FuryAuthenticationFailureHandler : 登录验证失败
-2021-11-15 11:35:12.450  INFO 6768 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 6768 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 11:35:12.456  INFO 6768 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 11:35:13.560  INFO 6768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 11:35:13.575  INFO 6768 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 11:35:13.576  INFO 6768 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 11:35:13.635  INFO 6768 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 11:35:13.635  INFO 6768 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1128 ms
-2021-11-15 11:35:14.403  INFO 6768 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61bfc9bf, org.springframework.security.web.context.SecurityContextPersistenceFilter@4cb2918c, org.springframework.security.web.header.HeaderWriterFilter@33425811, org.springframework.web.filter.CorsFilter@2c7106d9, org.springframework.security.web.authentication.logout.LogoutFilter@5793b87, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2373ad99, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2e869098, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@329bad59, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@c2584d3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f70a21b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@862f408, org.springframework.security.web.session.SessionManagementFilter@e4e1ef5, org.springframework.security.web.access.ExceptionTranslationFilter@2bc426f0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@26bbe604]
-2021-11-15 11:35:14.452  INFO 6768 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
-2021-11-15 11:35:14.461  INFO 6768 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.493 seconds (JVM running for 3.134)
-2021-11-15 11:35:32.370  INFO 6768 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-15 11:35:32.372  INFO 6768 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-15 11:35:32.375  INFO 6768 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-11-15 11:35:32.503  INFO 6768 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-11-15 11:35:32.798  INFO 6768 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-11-15 11:35:32.829  WARN 6768 --- [http-nio-8088-exec-1] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Encoded password does not look like BCrypt
-2021-11-15 11:35:32.833  INFO 6768 --- [http-nio-8088-exec-1] z.l.s.h.FuryAuthenticationFailureHandler : 登录验证失败
-2021-11-15 11:59:42.202  INFO 10992 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 10992 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 11:59:42.205  INFO 10992 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 11:59:43.112  INFO 10992 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 11:59:43.126  INFO 10992 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 11:59:43.127  INFO 10992 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 11:59:43.196  INFO 10992 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 11:59:43.196  INFO 10992 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 952 ms
-2021-11-15 11:59:43.855  INFO 10992 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@707b1a44, org.springframework.security.web.context.SecurityContextPersistenceFilter@4bd51d3e, org.springframework.security.web.header.HeaderWriterFilter@30ca0779, org.springframework.web.filter.CorsFilter@7132a9dc, org.springframework.security.web.authentication.logout.LogoutFilter@4b0f2299, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@70730db, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1f53481b, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@57435801, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b74b35, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@714f3da4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2da66a44, org.springframework.security.web.session.SessionManagementFilter@47be0f9b, org.springframework.security.web.access.ExceptionTranslationFilter@1d805aa1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4375b013]
-2021-11-15 11:59:43.894  INFO 10992 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
-2021-11-15 11:59:43.902  INFO 10992 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.056 seconds (JVM running for 2.583)
-2021-11-15 12:00:09.939  INFO 10992 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-15 12:00:09.940  INFO 10992 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-15 12:00:09.942  INFO 10992 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-11-15 12:00:10.072  INFO 10992 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-11-15 12:00:10.370  INFO 10992 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-11-15 12:00:10.574  INFO 10992 --- [http-nio-8088-exec-1] z.l.s.h.FuryAuthenticationSuccessHandler : 登录验证成功
-2021-11-15 13:11:39.128  INFO 15712 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 15712 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 13:11:39.131  INFO 15712 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 13:11:40.079  INFO 15712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 13:11:40.086  INFO 15712 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 13:11:40.087  INFO 15712 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 13:11:40.153  INFO 15712 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 13:11:40.153  INFO 15712 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 954 ms
-2021-11-15 13:11:40.805  INFO 15712 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@640ab13c, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d805aa1, org.springframework.security.web.header.HeaderWriterFilter@4cc36c19, org.springframework.web.filter.CorsFilter@1e0a864d, org.springframework.security.web.authentication.logout.LogoutFilter@617389a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1937eaff, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@c2584d3, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@440e3ce6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30ca0779, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4cb2918c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e67f5f2, org.springframework.security.web.session.SessionManagementFilter@2100d047, org.springframework.security.web.access.ExceptionTranslationFilter@94e51e8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@446626a7]
-2021-11-15 13:11:40.845  INFO 15712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
-2021-11-15 13:11:40.853  INFO 15712 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.108 seconds (JVM running for 2.604)
-2021-11-15 13:12:20.542  INFO 15712 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-15 13:12:20.543  INFO 15712 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-15 13:12:20.544  INFO 15712 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-11-15 13:12:20.674  INFO 15712 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-11-15 13:12:20.969  INFO 15712 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-11-15 13:12:21.176  INFO 15712 --- [http-nio-8088-exec-1] z.l.s.h.FuryAuthenticationSuccessHandler : 登录验证成功
-2021-11-15 15:22:25.139  INFO 8496 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 8496 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 15:22:25.144  INFO 8496 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 15:22:26.265  INFO 8496 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 15:22:26.281  INFO 8496 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 15:22:26.282  INFO 8496 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 15:22:26.356  INFO 8496 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 15:22:26.356  INFO 8496 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1115 ms
-2021-11-15 15:22:27.082  INFO 8496 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7132a9dc, org.springframework.security.web.context.SecurityContextPersistenceFilter@e4e1ef5, org.springframework.security.web.header.HeaderWriterFilter@2bc426f0, org.springframework.web.filter.CorsFilter@57435801, org.springframework.security.web.authentication.logout.LogoutFilter@33063f5b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5793b87, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6f70a21b, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2da66a44, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4cb2918c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2fcd7d3f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@527fc8e, org.springframework.security.web.session.SessionManagementFilter@33425811, org.springframework.security.web.access.ExceptionTranslationFilter@58740366, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1cf0cacc]
-2021-11-15 15:22:27.131  INFO 8496 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
-2021-11-15 15:22:27.138  INFO 8496 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.685 seconds (JVM running for 3.464)
-2021-11-15 15:22:43.140  INFO 8496 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-15 15:22:43.141  INFO 8496 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-15 15:22:43.142  INFO 8496 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-11-15 15:22:43.270  INFO 8496 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-11-15 15:22:44.562  INFO 8496 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-11-15 15:22:44.680  INFO 8496 --- [http-nio-8088-exec-1] .z.l.s.h.LmsAuthenticationFailureHandler : 登录验证失败
-2021-11-15 18:00:10.630  INFO 14012 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 14012 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 18:00:10.635  INFO 14012 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 18:00:13.458  INFO 14012 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 18:00:13.466  INFO 14012 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 18:00:13.467  INFO 14012 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 18:00:13.528  INFO 14012 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 18:00:13.529  INFO 14012 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2823 ms
-2021-11-15 18:00:14.057  WARN 14012 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userDetailsService': Unsatisfied dependency expressed through field 'passwordEncoder'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig': Unsatisfied dependency expressed through field 'lmsAuthenticationSuccessHandler'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'lmsAuthenticationSuccessHandler': Unsatisfied dependency expressed through field 'jwtUtil'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.zjut.lms.util.JwtUtil' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-2021-11-15 18:00:14.061  INFO 14012 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2021-11-15 18:00:14.069  INFO 14012 --- [main] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2021-11-15 18:00:14.088 ERROR 14012 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Field jwtUtil in cn.zjut.lms.security_s.handler.LmsAuthenticationSuccessHandler required a bean of type 'cn.zjut.lms.util.JwtUtil' that could not be found.
-
-The injection point has the following annotations:
-	- @org.springframework.beans.factory.annotation.Autowired(required=true)
-
-
-Action:
-
-Consider defining a bean of type 'cn.zjut.lms.util.JwtUtil' in your configuration.
-
-2021-11-15 18:01:36.121  INFO 14124 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 14124 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 18:01:36.129  INFO 14124 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 18:01:37.138  INFO 14124 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 18:01:37.159  INFO 14124 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 18:01:37.160  INFO 14124 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 18:01:37.230  INFO 14124 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 18:01:37.230  INFO 14124 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1047 ms
-2021-11-15 18:01:37.632  WARN 14124 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userDetailsService': Unsatisfied dependency expressed through field 'passwordEncoder'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig': Unsatisfied dependency expressed through field 'lmsAuthenticationSuccessHandler'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'lmsAuthenticationSuccessHandler': Unsatisfied dependency expressed through field 'jwtUtil'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'cn.zjut.lms.util.JwtUtil' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-2021-11-15 18:01:37.635  INFO 14124 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2021-11-15 18:01:37.644  INFO 14124 --- [main] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2021-11-15 18:01:37.660 ERROR 14124 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Field jwtUtil in cn.zjut.lms.security_s.handler.LmsAuthenticationSuccessHandler required a bean of type 'cn.zjut.lms.util.JwtUtil' that could not be found.
-
-The injection point has the following annotations:
-	- @org.springframework.beans.factory.annotation.Autowired(required=true)
-
-
-Action:
-
-Consider defining a bean of type 'cn.zjut.lms.util.JwtUtil' in your configuration.
-
-2021-11-15 18:54:34.244  INFO 3096 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 3096 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 18:54:34.256  INFO 3096 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 18:54:35.345  INFO 3096 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 18:54:35.367  INFO 3096 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 18:54:35.368  INFO 3096 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 18:54:35.438  INFO 3096 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 18:54:35.438  INFO 3096 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1105 ms
-2021-11-15 18:54:36.157  INFO 3096 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@57435801, org.springframework.security.web.context.SecurityContextPersistenceFilter@6d11ceef, org.springframework.security.web.header.HeaderWriterFilter@4bd51d3e, org.springframework.web.filter.CorsFilter@2da66a44, org.springframework.security.web.authentication.logout.LogoutFilter@15405bd6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@12704e15, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6ae62c7e, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@527fc8e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72e295cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@27e7c77f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61bfc9bf, org.springframework.security.web.session.SessionManagementFilter@4b74b35, org.springframework.security.web.access.ExceptionTranslationFilter@47be0f9b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4f5b08d]
-2021-11-15 18:54:36.199  INFO 3096 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
-2021-11-15 18:54:36.206  INFO 3096 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.572 seconds (JVM running for 3.339)
-2021-11-15 18:54:44.188  INFO 3096 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-15 18:54:44.189  INFO 3096 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-15 18:54:44.191  INFO 3096 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-11-15 18:54:44.320  INFO 3096 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-11-15 18:54:44.630  INFO 3096 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-11-15 18:54:44.844  INFO 3096 --- [http-nio-8088-exec-1] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
-2021-11-15 18:55:22.619  INFO 18276 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 18276 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
-2021-11-15 18:55:22.623  INFO 18276 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
-2021-11-15 18:55:23.802  INFO 18276 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
-2021-11-15 18:55:24.613  INFO 18276 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-11-15 18:55:24.614  INFO 18276 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-11-15 18:55:24.671  INFO 18276 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-11-15 18:55:24.671  INFO 18276 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1997 ms
-2021-11-15 18:55:25.403  INFO 18276 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@33ecbd6c, org.springframework.security.web.context.SecurityContextPersistenceFilter@1caa9eb6, org.springframework.security.web.header.HeaderWriterFilter@6fa0450e, org.springframework.web.filter.CorsFilter@5c723f2d, org.springframework.security.web.authentication.logout.LogoutFilter@33634f04, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6192a5d5, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1937eaff, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@432f521f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2fcd7d3f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3050ac2f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d7a9786, org.springframework.security.web.session.SessionManagementFilter@51ec2856, org.springframework.security.web.access.ExceptionTranslationFilter@72e295cc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@53abfc07]
-2021-11-15 18:55:25.450  INFO 18276 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
-2021-11-15 18:55:25.466  INFO 18276 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 3.267 seconds (JVM running for 3.836)
-2021-11-15 18:55:44.581  INFO 18276 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-11-15 18:55:44.582  INFO 18276 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-11-15 18:55:44.584  INFO 18276 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-11-15 18:55:44.727  INFO 18276 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-11-15 18:55:45.042  INFO 18276 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-11-15 18:55:45.265  INFO 18276 --- [http-nio-8088-exec-1] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
-2021-11-15 18:59:31.780  INFO 18276 --- [http-nio-8088-exec-7] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
+2021-11-18 10:48:50.930  INFO 15184 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 15184 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
+2021-11-18 10:48:53.371  INFO 15184 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
+2021-11-18 10:48:56.978  INFO 15184 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2021-11-18 10:48:56.985  INFO 15184 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-18 10:48:56.986  INFO 15184 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-11-18 10:48:57.044  INFO 15184 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-18 10:48:57.044  INFO 15184 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1197 ms
+2021-11-18 10:48:57.804  INFO 15184 --- [main] c.zjut.lms.security_s.WebSecurityConfig  : WebSecurityConfig
+2021-11-18 10:48:57.836  INFO 15184 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8d8f754, org.springframework.security.web.context.SecurityContextPersistenceFilter@4b0f2299, org.springframework.security.web.header.HeaderWriterFilter@3050ac2f, org.springframework.web.filter.CorsFilter@d613308, org.springframework.security.web.authentication.logout.LogoutFilter@7a360554, cn.zjut.lms.security_s.filter.TokenAuthenticationFilter@43a51d00, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@67064bdc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15405bd6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4993febc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25673087, org.springframework.security.web.session.SessionManagementFilter@1937eaff, org.springframework.security.web.access.ExceptionTranslationFilter@617389a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1e0a864d]
+2021-11-18 10:48:57.877  INFO 15184 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2021-11-18 10:48:57.885  INFO 15184 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 7.36 seconds (JVM running for 7.922)
+2021-11-18 10:49:03.740  INFO 15184 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-18 10:49:03.740  INFO 15184 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-18 10:49:03.742  INFO 15184 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-18 10:49:03.768  INFO 15184 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:49:03.769  INFO 15184 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->null
+2021-11-18 10:49:03.875  INFO 15184 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-18 10:49:04.168  INFO 15184 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-18 10:49:04.373  INFO 15184 --- [http-nio-8088-exec-1] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
+2021-11-18 10:49:04.571  INFO 15184 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:49:04.572  INFO 15184 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDU1NDQsImp0aSI6ImEzZGY3MTcyLWZkMjctNGMyOS1hMDMzLTcwNjA4MTY1NTMxNCJ9.0oc6UTo0xRyqjWz0UJerysgzLyGVd35JOZd5sLGoSpU
+2021-11-18 10:49:04.575  INFO 15184 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDU1NDQsImp0aSI6ImEzZGY3MTcyLWZkMjctNGMyOS1hMDMzLTcwNjA4MTY1NTMxNCJ9.0oc6UTo0xRyqjWz0UJerysgzLyGVd35JOZd5sLGoSpU
+2021-11-18 10:49:04.587  INFO 15184 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:49:04.588  INFO 15184 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDU1NDQsImp0aSI6ImEzZGY3MTcyLWZkMjctNGMyOS1hMDMzLTcwNjA4MTY1NTMxNCJ9.0oc6UTo0xRyqjWz0UJerysgzLyGVd35JOZd5sLGoSpU
+2021-11-18 10:49:04.588  INFO 15184 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDU1NDQsImp0aSI6ImEzZGY3MTcyLWZkMjctNGMyOS1hMDMzLTcwNjA4MTY1NTMxNCJ9.0oc6UTo0xRyqjWz0UJerysgzLyGVd35JOZd5sLGoSpU
+2021-11-18 10:49:04.591  INFO 15184 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:49:04.592  INFO 15184 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDU1NDQsImp0aSI6ImEzZGY3MTcyLWZkMjctNGMyOS1hMDMzLTcwNjA4MTY1NTMxNCJ9.0oc6UTo0xRyqjWz0UJerysgzLyGVd35JOZd5sLGoSpU
+2021-11-18 10:49:04.592  INFO 15184 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDU1NDQsImp0aSI6ImEzZGY3MTcyLWZkMjctNGMyOS1hMDMzLTcwNjA4MTY1NTMxNCJ9.0oc6UTo0xRyqjWz0UJerysgzLyGVd35JOZd5sLGoSpU
+2021-11-18 10:49:04.626  INFO 15184 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:49:04.626  INFO 15184 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:49:04.626  INFO 15184 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:49:04.635  INFO 15184 --- [http-nio-8088-exec-6] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:49:04.635  INFO 15184 --- [http-nio-8088-exec-7] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:49:04.635  INFO 15184 --- [http-nio-8088-exec-3] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:49:14.691  INFO 15184 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:49:14.692  INFO 15184 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDU1NDQsImp0aSI6ImEzZGY3MTcyLWZkMjctNGMyOS1hMDMzLTcwNjA4MTY1NTMxNCJ9.0oc6UTo0xRyqjWz0UJerysgzLyGVd35JOZd5sLGoSpU
+2021-11-18 10:49:14.692  INFO 15184 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDU1NDQsImp0aSI6ImEzZGY3MTcyLWZkMjctNGMyOS1hMDMzLTcwNjA4MTY1NTMxNCJ9.0oc6UTo0xRyqjWz0UJerysgzLyGVd35JOZd5sLGoSpU
+2021-11-18 10:49:14.694  INFO 15184 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:49:14.694  INFO 15184 --- [http-nio-8088-exec-8] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:57:44.869  INFO 5692 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 5692 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
+2021-11-18 10:57:44.872  INFO 5692 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
+2021-11-18 10:57:46.009  INFO 5692 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2021-11-18 10:57:46.018  INFO 5692 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-18 10:57:46.019  INFO 5692 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-11-18 10:57:46.080  INFO 5692 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-18 10:57:46.080  INFO 5692 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1169 ms
+2021-11-18 10:57:46.856  INFO 5692 --- [main] c.zjut.lms.security_s.WebSecurityConfig  : WebSecurityConfig
+2021-11-18 10:57:46.888  INFO 5692 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7bab5898, org.springframework.security.web.context.SecurityContextPersistenceFilter@37c36608, org.springframework.security.web.header.HeaderWriterFilter@27e7c77f, org.springframework.web.filter.CorsFilter@366d8b97, org.springframework.security.web.authentication.logout.LogoutFilter@7601bc96, cn.zjut.lms.security_s.filter.TokenAuthenticationFilter@39008c9f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4cbc2e3b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@617389a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@352ed70d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@feb98ef, org.springframework.security.web.session.SessionManagementFilter@6ae62c7e, org.springframework.security.web.access.ExceptionTranslationFilter@1f53481b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4b039c6d]
+2021-11-18 10:57:46.932  INFO 5692 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2021-11-18 10:57:46.940  INFO 5692 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.434 seconds (JVM running for 2.943)
+2021-11-18 10:58:00.460  INFO 5692 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-18 10:58:00.461  INFO 5692 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-18 10:58:00.462  INFO 5692 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-18 10:58:00.487  INFO 5692 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:58:00.487  INFO 5692 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->null
+2021-11-18 10:58:00.591  INFO 5692 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-18 10:58:00.902  INFO 5692 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-18 10:58:01.120  INFO 5692 --- [http-nio-8088-exec-1] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
+2021-11-18 10:58:01.293  INFO 5692 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:58:01.294  INFO 5692 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYwODEsImp0aSI6IjU5MmIzZDVmLTQ0YzAtNDVhMy05ZmE2LTlkNWE3NDUwN2JhMiJ9.aPUP0mv3XvyLwECL1dth7X5X7y4FO9DSkfJeXJoVClw
+2021-11-18 10:58:01.294  INFO 5692 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYwODEsImp0aSI6IjU5MmIzZDVmLTQ0YzAtNDVhMy05ZmE2LTlkNWE3NDUwN2JhMiJ9.aPUP0mv3XvyLwECL1dth7X5X7y4FO9DSkfJeXJoVClw
+2021-11-18 10:58:01.294  INFO 5692 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:58:01.295  INFO 5692 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYwODEsImp0aSI6IjU5MmIzZDVmLTQ0YzAtNDVhMy05ZmE2LTlkNWE3NDUwN2JhMiJ9.aPUP0mv3XvyLwECL1dth7X5X7y4FO9DSkfJeXJoVClw
+2021-11-18 10:58:01.298  INFO 5692 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYwODEsImp0aSI6IjU5MmIzZDVmLTQ0YzAtNDVhMy05ZmE2LTlkNWE3NDUwN2JhMiJ9.aPUP0mv3XvyLwECL1dth7X5X7y4FO9DSkfJeXJoVClw
+2021-11-18 10:58:01.295  INFO 5692 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:58:01.299  INFO 5692 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYwODEsImp0aSI6IjU5MmIzZDVmLTQ0YzAtNDVhMy05ZmE2LTlkNWE3NDUwN2JhMiJ9.aPUP0mv3XvyLwECL1dth7X5X7y4FO9DSkfJeXJoVClw
+2021-11-18 10:58:01.299  INFO 5692 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYwODEsImp0aSI6IjU5MmIzZDVmLTQ0YzAtNDVhMy05ZmE2LTlkNWE3NDUwN2JhMiJ9.aPUP0mv3XvyLwECL1dth7X5X7y4FO9DSkfJeXJoVClw
+2021-11-18 10:58:01.331  INFO 5692 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:58:01.331  INFO 5692 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:58:01.331  INFO 5692 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:58:01.342  INFO 5692 --- [http-nio-8088-exec-4] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:58:01.342  INFO 5692 --- [http-nio-8088-exec-2] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:58:01.342  INFO 5692 --- [http-nio-8088-exec-3] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:59:28.561  INFO 13752 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 13752 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
+2021-11-18 10:59:28.563  INFO 13752 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
+2021-11-18 10:59:30.000  INFO 13752 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2021-11-18 10:59:30.016  INFO 13752 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-18 10:59:30.017  INFO 13752 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-11-18 10:59:30.081  INFO 13752 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-18 10:59:30.082  INFO 13752 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1452 ms
+2021-11-18 10:59:31.115  INFO 13752 --- [main] c.zjut.lms.security_s.WebSecurityConfig  : WebSecurityConfig
+2021-11-18 10:59:31.157  INFO 13752 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e0ec41f, org.springframework.security.web.context.SecurityContextPersistenceFilter@1937eaff, org.springframework.security.web.header.HeaderWriterFilter@617389a, org.springframework.web.filter.CorsFilter@f4a3a8d, org.springframework.security.web.authentication.logout.LogoutFilter@765ffb14, cn.zjut.lms.security_s.filter.TokenAuthenticationFilter@173f73e7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4bc33720, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b0f2299, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2373ad99, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8d8f754, org.springframework.security.web.session.SessionManagementFilter@3050ac2f, org.springframework.security.web.access.ExceptionTranslationFilter@37c36608, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@71c17a57]
+2021-11-18 10:59:31.212  INFO 13752 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2021-11-18 10:59:31.221  INFO 13752 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 3.033 seconds (JVM running for 3.555)
+2021-11-18 10:59:37.275  INFO 13752 --- [http-nio-8088-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-18 10:59:37.276  INFO 13752 --- [http-nio-8088-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-18 10:59:37.277  INFO 13752 --- [http-nio-8088-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-18 10:59:37.304  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:59:37.304  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->null
+2021-11-18 10:59:37.411  INFO 13752 --- [http-nio-8088-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-18 10:59:37.715  INFO 13752 --- [http-nio-8088-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-18 10:59:37.919  INFO 13752 --- [http-nio-8088-exec-4] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
+2021-11-18 10:59:38.094  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:59:38.094  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 10:59:38.094  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 10:59:38.094  INFO 13752 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:59:38.095  INFO 13752 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 10:59:38.095  INFO 13752 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 10:59:38.100  INFO 13752 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 10:59:38.101  INFO 13752 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 10:59:38.101  INFO 13752 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 10:59:38.153  INFO 13752 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:59:38.153  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:59:38.153  INFO 13752 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 10:59:38.166  INFO 13752 --- [http-nio-8088-exec-10] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:59:38.166  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 10:59:38.166  INFO 13752 --- [http-nio-8088-exec-5] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:01:00.304  INFO 13752 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:01:00.304  INFO 13752 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:01:00.305  INFO 13752 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:01:00.306  INFO 13752 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:00.306  INFO 13752 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:00.306  INFO 13752 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:00.306  INFO 13752 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:00.306  INFO 13752 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:00.307  INFO 13752 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:00.308  INFO 13752 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:01:00.308  INFO 13752 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:01:00.308  INFO 13752 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:01:00.309  INFO 13752 --- [http-nio-8088-exec-9] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:01:00.309  INFO 13752 --- [http-nio-8088-exec-7] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:01:00.309  INFO 13752 --- [http-nio-8088-exec-8] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:01:06.842  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:01:06.843  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:01:06.843  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:06.843  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:06.843  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:06.843  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:06.844  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:01:06.844  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:01:06.846  INFO 13752 --- [http-nio-8088-exec-6] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:01:06.847  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:01:06.850  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:01:06.851  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:06.851  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDYxNzcsImp0aSI6ImIxZWJiZGQyLTE4YjgtNDJhYy04MzI1LWM3NWMwNzNmMmQ1OCJ9.E2z12u_7qmaCW0gpTMZZH-xrcRg2-_OnOu4eveyWYWk
+2021-11-18 11:01:06.852  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:01:06.853  INFO 13752 --- [http-nio-8088-exec-4] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:26:12.610  INFO 21296 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 21296 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
+2021-11-18 11:26:12.614  INFO 21296 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
+2021-11-18 11:26:13.801  INFO 21296 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2021-11-18 11:26:13.811  INFO 21296 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-18 11:26:13.812  INFO 21296 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-11-18 11:26:13.872  INFO 21296 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-18 11:26:13.873  INFO 21296 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1215 ms
+2021-11-18 11:26:14.667  INFO 21296 --- [main] c.zjut.lms.security_s.WebSecurityConfig  : WebSecurityConfig
+2021-11-18 11:26:14.702  INFO 21296 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61bfc9bf, org.springframework.security.web.context.SecurityContextPersistenceFilter@51ec2856, org.springframework.security.web.header.HeaderWriterFilter@72e295cc, org.springframework.web.filter.CorsFilter@2c7106d9, org.springframework.security.web.authentication.logout.LogoutFilter@352ed70d, cn.zjut.lms.security_s.filter.TokenAuthenticationFilter@3874b815, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@512575e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1caa9eb6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@617389a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@329bad59, org.springframework.security.web.session.SessionManagementFilter@6fa0450e, org.springframework.security.web.access.ExceptionTranslationFilter@6d11ceef, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@26bbe604]
+2021-11-18 11:26:14.745  INFO 21296 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2021-11-18 11:26:14.752  INFO 21296 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.579 seconds (JVM running for 3.477)
+2021-11-18 11:26:32.594  INFO 21296 --- [http-nio-8088-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-18 11:26:32.595  INFO 21296 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-18 11:26:32.596  INFO 21296 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-18 11:26:32.625  INFO 21296 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:26:32.626  INFO 21296 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->null
+2021-11-18 11:26:32.626  INFO 21296 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:26:32.750  INFO 21296 --- [http-nio-8088-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-18 11:26:33.107  INFO 21296 --- [http-nio-8088-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-18 11:26:33.324  INFO 21296 --- [http-nio-8088-exec-2] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
+2021-11-18 11:26:33.489  INFO 21296 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:26:33.490  INFO 21296 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDc3OTMsImp0aSI6IjY0NjZjNjg5LWFlYzAtNDk3OS04MDRiLWVjYjU1ZmEwMDgzZCJ9.rU-gIZWdGooaqqi-pC9f-fIAhfnafgvQV5MhLSsPWwA
+2021-11-18 11:26:33.491  INFO 21296 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDc3OTMsImp0aSI6IjY0NjZjNjg5LWFlYzAtNDk3OS04MDRiLWVjYjU1ZmEwMDgzZCJ9.rU-gIZWdGooaqqi-pC9f-fIAhfnafgvQV5MhLSsPWwA
+2021-11-18 11:26:33.508  INFO 21296 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:26:33.510  INFO 21296 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDc3OTMsImp0aSI6IjY0NjZjNjg5LWFlYzAtNDk3OS04MDRiLWVjYjU1ZmEwMDgzZCJ9.rU-gIZWdGooaqqi-pC9f-fIAhfnafgvQV5MhLSsPWwA
+2021-11-18 11:26:33.511  INFO 21296 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDc3OTMsImp0aSI6IjY0NjZjNjg5LWFlYzAtNDk3OS04MDRiLWVjYjU1ZmEwMDgzZCJ9.rU-gIZWdGooaqqi-pC9f-fIAhfnafgvQV5MhLSsPWwA
+2021-11-18 11:26:33.515  INFO 21296 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:26:33.516  INFO 21296 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDc3OTMsImp0aSI6IjY0NjZjNjg5LWFlYzAtNDk3OS04MDRiLWVjYjU1ZmEwMDgzZCJ9.rU-gIZWdGooaqqi-pC9f-fIAhfnafgvQV5MhLSsPWwA
+2021-11-18 11:26:33.516  INFO 21296 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDc3OTMsImp0aSI6IjY0NjZjNjg5LWFlYzAtNDk3OS04MDRiLWVjYjU1ZmEwMDgzZCJ9.rU-gIZWdGooaqqi-pC9f-fIAhfnafgvQV5MhLSsPWwA
+2021-11-18 11:26:33.565  INFO 21296 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:26:33.565  INFO 21296 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:26:33.565  INFO 21296 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:26:33.565  INFO 21296 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:26:33.565  INFO 21296 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:26:33.613  INFO 21296 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:26:33.626  INFO 21296 --- [http-nio-8088-exec-1] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:26:33.626  INFO 21296 --- [http-nio-8088-exec-3] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:26:33.626  INFO 21296 --- [http-nio-8088-exec-4] c.z.l.s.handler.UnauthorizedEntryPoint   : 未授权统一处理
+2021-11-18 11:31:13.290  INFO 12988 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 12988 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
+2021-11-18 11:31:13.294  INFO 12988 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
+2021-11-18 11:31:14.545  INFO 12988 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2021-11-18 11:31:14.555  INFO 12988 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-18 11:31:14.555  INFO 12988 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-11-18 11:31:14.619  INFO 12988 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-18 11:31:14.619  INFO 12988 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1280 ms
+2021-11-18 11:31:15.381  INFO 12988 --- [main] c.zjut.lms.security_s.WebSecurityConfig  : WebSecurityConfig
+2021-11-18 11:31:15.414  INFO 12988 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@feb98ef, org.springframework.security.web.context.SecurityContextPersistenceFilter@617389a, org.springframework.security.web.header.HeaderWriterFilter@6ae62c7e, org.springframework.web.filter.CorsFilter@7654f833, org.springframework.security.web.authentication.logout.LogoutFilter@6192a5d5, cn.zjut.lms.security_s.filter.TokenAuthenticationFilter@3402b4c9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@765ffb14, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3050ac2f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5793b87, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@571a01f9, org.springframework.security.web.session.SessionManagementFilter@37c36608, org.springframework.security.web.access.ExceptionTranslationFilter@27e7c77f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@507d64aa]
+2021-11-18 11:31:15.456  INFO 12988 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2021-11-18 11:31:15.464  INFO 12988 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.608 seconds (JVM running for 3.144)
+2021-11-18 11:31:28.931  INFO 12988 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-18 11:31:28.932  INFO 12988 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-18 11:31:28.933  INFO 12988 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-18 11:31:28.962  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:31:28.962  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->null
+2021-11-18 11:31:28.963  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:31:29.074  INFO 12988 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-18 11:31:29.404  INFO 12988 --- [http-nio-8088-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-18 11:31:29.611  INFO 12988 --- [http-nio-8088-exec-1] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
+2021-11-18 11:31:29.782  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:31:29.782  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:31:29.782  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:31:29.783  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.784  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.784  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.785  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.785  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.785  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.826  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:31:29.826  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:31:29.826  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:31:29.833  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:31:29.834  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:31:29.834  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:31:29.840  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:31:29.840  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:31:29.840  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:31:29.841  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.841  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.841  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.841  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.841  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.841  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:31:29.842  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:31:29.842  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:31:29.842  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:31:29.845  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:31:29.845  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:31:29.845  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:18.071  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:18.073  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.073  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.075  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:18.075  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:18.076  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.076  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:18.079  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.079  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.079  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.081  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:18.081  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:18.081  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:18.081  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:18.082  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.082  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.082  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:18.083  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:18.083  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.083  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.083  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:18.083  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:18.084  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:18.084  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:18.084  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.084  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:18.084  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:18.085  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:18.086  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:18.091  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:23.723  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:23.724  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.724  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.723  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:23.725  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:23.725  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.725  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.725  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.725  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:23.725  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.727  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:23.729  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:23.730  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:23.731  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:23.732  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:23.732  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.732  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:23.733  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.733  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.733  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.733  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:23.734  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:23.734  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.734  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:23.734  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:23.734  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:23.735  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:23.736  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:23.736  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:23.736  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:25.770  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:25.771  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.772  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.772  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:25.772  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.772  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.773  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:25.774  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:25.776  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:25.776  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:25.777  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:25.777  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:25.777  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.777  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.777  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.777  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.778  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:25.779  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:25.781  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:25.784  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:25.784  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:25.784  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.784  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.785  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:25.787  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:25.788  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:25.788  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.788  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:25.789  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:25.791  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:27.786  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:27.787  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.787  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:27.787  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.787  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.788  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.788  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:27.788  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.788  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.789  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:27.793  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:27.793  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:27.793  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:27.794  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:27.794  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.794  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.795  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:27.796  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:27.796  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:27.798  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:27.796  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:27.797  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.829  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.830  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:27.830  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.830  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:27.830  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:27.831  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:27.833  INFO 12988 --- [http-nio-8088-exec-9] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:27.833  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:29.489  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:29.490  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.490  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.489  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:29.491  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.492  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:29.492  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.497  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:29.498  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:29.498  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.498  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:29.498  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.499  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:29.499  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.499  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.500  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:29.500  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:29.501  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:29.501  INFO 12988 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:29.501  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:29.501  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:29.501  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.501  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:29.502  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.502  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.502  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:29.503  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:29.503  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:29.504  INFO 12988 --- [http-nio-8088-exec-7] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:29.504  INFO 12988 --- [http-nio-8088-exec-3] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:31.003  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:31.003  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:31.003  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:31.004  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.004  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.004  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.004  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.004  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.004  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.005  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:31.006  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:31.009  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:31.009  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:31.009  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:31.009  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.009  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.009  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:31.010  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:31.010  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.010  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.010  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:31.011  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:31.012  INFO 12988 --- [http-nio-8088-exec-5] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:31.012  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:31.012  INFO 12988 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:31.013  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:31.014  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.014  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:31.015  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:31.018  INFO 12988 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:32.082  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:32.083  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:32.084  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.085  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.085  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.085  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.088  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:32.088  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:32.088  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:32.088  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.092  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.092  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:32.092  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:32.093  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:32.093  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:32.093  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.093  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.093  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.093  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.093  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:32.094  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:32.094  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:32.096  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:32.096  INFO 12988 --- [http-nio-8088-exec-10] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:32.096  INFO 12988 --- [http-nio-8088-exec-8] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:33:32.096  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:33:32.097  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.097  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgwODksImp0aSI6ImRiYjM2ZmQ0LTliNTAtNDJiMi04ZmQ0LTM4Y2JkNTA3MTg4NSJ9.GjDKVyrFCSxCSZeIOvT4iYN9IbxOKzMm3tgPdpx3iXg
+2021-11-18 11:33:32.099  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:33:32.101  INFO 12988 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:34:27.259  INFO 19608 --- [main] cn.zjut.lms.LmsApplication               : Starting LmsApplication using Java 1.8.0_152 on PC-20200229ZFHH with PID 19608 (G:\workplace\practice\java\lms\target\classes started by Administrator in G:\workplace\practice\java\lms)
+2021-11-18 11:34:27.263  INFO 19608 --- [main] cn.zjut.lms.LmsApplication               : No active profile set, falling back to default profiles: default
+2021-11-18 11:34:28.540  INFO 19608 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2021-11-18 11:34:28.567  INFO 19608 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-18 11:34:28.568  INFO 19608 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-11-18 11:34:28.634  INFO 19608 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-18 11:34:28.634  INFO 19608 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1310 ms
+2021-11-18 11:34:29.499  INFO 19608 --- [main] c.zjut.lms.security_s.WebSecurityConfig  : WebSecurityConfig
+2021-11-18 11:34:29.533  INFO 19608 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7bab5898, org.springframework.security.web.context.SecurityContextPersistenceFilter@37c36608, org.springframework.security.web.header.HeaderWriterFilter@27e7c77f, org.springframework.web.filter.CorsFilter@366d8b97, org.springframework.security.web.authentication.logout.LogoutFilter@7601bc96, cn.zjut.lms.security_s.filter.TokenAuthenticationFilter@162b3d47, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4cbc2e3b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@617389a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@352ed70d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@feb98ef, org.springframework.security.web.session.SessionManagementFilter@6ae62c7e, org.springframework.security.web.access.ExceptionTranslationFilter@1f53481b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4b039c6d]
+2021-11-18 11:34:29.579  INFO 19608 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2021-11-18 11:34:29.589  INFO 19608 --- [main] cn.zjut.lms.LmsApplication               : Started LmsApplication in 2.797 seconds (JVM running for 3.456)
+2021-11-18 11:34:38.926  INFO 19608 --- [http-nio-8088-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-18 11:34:38.927  INFO 19608 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-18 11:34:38.928  INFO 19608 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-11-18 11:34:38.965  INFO 19608 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:34:38.965  INFO 19608 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : token-->null
+2021-11-18 11:34:38.966  INFO 19608 --- [http-nio-8088-exec-2] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:34:39.070  INFO 19608 --- [http-nio-8088-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-18 11:34:39.386  INFO 19608 --- [http-nio-8088-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-18 11:34:39.599  INFO 19608 --- [http-nio-8088-exec-2] .z.l.s.h.LmsAuthenticationSuccessHandler : 登录验证成功
+2021-11-18 11:34:39.769  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:34:39.770  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.771  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:34:39.771  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.771  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.773  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.777  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:34:39.777  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.780  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.816  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:34:39.816  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:34:39.816  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:34:39.819  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:34:39.819  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:34:39.819  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:34:39.832  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:34:39.832  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:34:39.832  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : TokenAuthenticationFilter
+2021-11-18 11:34:39.833  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.833  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.833  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.833  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.833  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.834  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : token-->eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Imxpc2kiLCJzdWIiOiJsbXMiLCJleHAiOjE2MzcyMDgyNzksImp0aSI6ImE2MjU4MTMwLWJiM2EtNGU2Zi1iZGUwLWYyMjIyZjZkYWQ2MCJ9.aDA2VUs5tGtzCg8CPtyFDuJ9Uj1RowEWiKWM3UUl-6E
+2021-11-18 11:34:39.834  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:34:39.834  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:34:39.835  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : lms
+2021-11-18 11:34:39.836  INFO 19608 --- [http-nio-8088-exec-6] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:34:39.836  INFO 19608 --- [http-nio-8088-exec-1] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行
+2021-11-18 11:34:39.837  INFO 19608 --- [http-nio-8088-exec-4] c.z.l.s.f.TokenAuthenticationFilter      : tokenFilter放行

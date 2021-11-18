@@ -65,7 +65,7 @@ public class LoginController {
 
                 int userId = user.getId();//获取到userId
                 //生成token，并保存到数据库
-                String token = JwtUtil.createToken(username);
+                String token = JwtUtil.generateToken(username);
                 //获取IP地址
                 String ipAddress = IpUtil.getIpAddr(request);
                 //登录时间
