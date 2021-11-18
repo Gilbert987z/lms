@@ -19,8 +19,8 @@ import java.io.IOException;
  * @create 2018-05-27 21:55
  * @desc
  **/
-@Component
 @Slf4j
+@Component
 public class LmsAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
 //    @Autowired

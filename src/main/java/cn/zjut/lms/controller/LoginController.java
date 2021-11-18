@@ -99,7 +99,18 @@ public class LoginController {
 
     }
 
-    //注册
+    @GetMapping(value = "info")
+    public ResultJson info(String token){
+        User user =
+        return ResultJson.ok().data(user);
+    }
+
+    /**
+     * 注册
+     * @param user
+     * @param bindingResult
+     * @return
+     */
     @PostMapping(value = "register", consumes = "application/json")
     public ResultJson add(@Valid @RequestBody User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) { //数据校验
@@ -125,7 +136,7 @@ public class LoginController {
         } else {
             boolean result = userService.add(user);
             if (result) {
-                return ResultJson.ok().message("增加成功");
+                return ResultJson.ok().message("注册成功");
             } else {
                 return ResultJson.error().message("数据不存在");
             }

@@ -84,6 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() //http.authorizeRequests()主要是对 url 进行控制
                 .antMatchers("/login") // 登录请求路径不进行过滤  antMatcher()用于匹配 URL规则
                 .permitAll()//表示所匹配的 URL 任何人都允许访问
+                .antMatchers("/register").permitAll()
                 .anyRequest()//表示匹配所有的请求
                 .authenticated() //表示所匹配的 URL 都需要被认证才能访问。
 

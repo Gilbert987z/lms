@@ -45,6 +45,8 @@ public class Book {
     @Min(value = 0, message = "价格不能小于0")
     private double price;
 
+    private Integer userId;  //管理员的ID
+
     @Size(max=500,message="备注最多{max}字")
     private String desc;//备注
 

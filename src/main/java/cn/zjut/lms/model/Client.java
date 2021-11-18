@@ -11,13 +11,9 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
 
-/**
- * 管理员表
- * 因为当初没创admin，就用user了，普通用户用client
- */
 @JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
 @Data
-public class User  implements UserDetails {
+public class Client implements UserDetails {
     /*
     {id} 自增主键
     {name} 人员姓名
