@@ -1,4 +1,4 @@
-package cn.zjut.lms.security_s.handler;
+package cn.zjut.lms.config.security.handler;
 
 import cn.zjut.lms.util.ResultJson;
 import com.alibaba.fastjson.JSON;

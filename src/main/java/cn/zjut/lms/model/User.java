@@ -19,7 +19,7 @@ public class User  implements UserDetails {
     {name} 人员姓名
     {mobile} 人员电话
      */
-    private int id;
+    private Integer id;
 
 
     @NotBlank(message = "姓名不能为空") //字符串不能为空

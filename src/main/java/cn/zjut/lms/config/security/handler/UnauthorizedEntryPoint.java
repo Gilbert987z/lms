@@ -1,9 +1,8 @@
-package cn.zjut.lms.security_s.handler;
+package cn.zjut.lms.config.security.handler;
 
 import cn.zjut.lms.util.ResultJson;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.ResponseUtil;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -30,8 +29,7 @@ public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {
         ResultJson result = ResultJson.error().message("未授权统一处理");
 
 
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8"); //返回乱码问题 https://blog.csdn.net/u014424628/article/details/50589966
+        response.setContentType("text/json;charset=utf-8"); //返回乱码问题 https://blog.csdn.net/u014424628/article/details/50589966
         response.getWriter().write(JSON.toJSONString(result));
     }
 }

@@ -1,7 +1,7 @@
-package cn.zjut.lms.security_s;
+package cn.zjut.lms.config.security;
 
-import cn.zjut.lms.security_s.filter.TokenAuthenticationFilter;
-import cn.zjut.lms.security_s.handler.*;
+import cn.zjut.lms.config.security.filter.TokenAuthenticationFilter;
+import cn.zjut.lms.config.security.handler.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

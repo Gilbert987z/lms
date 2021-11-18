@@ -1,10 +1,8 @@
-package cn.zjut.lms.security_s.handler;
+package cn.zjut.lms.config.security.handler;
 
 import cn.zjut.lms.util.ResultJson;
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -33,6 +31,7 @@ public class LmsAuthenticationFailureHandler implements AuthenticationFailureHan
         log.info("登录验证失败");
 
         ResultJson result = ResultJson.error().message("登录验证失败");
+
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write( JSON.toJSONString(result));
     }
