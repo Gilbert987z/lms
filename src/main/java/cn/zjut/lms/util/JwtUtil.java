@@ -2,8 +2,11 @@ package cn.zjut.lms.util;
 
 import cn.zjut.lms.model.User;
 import io.jsonwebtoken.*;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
@@ -12,11 +15,18 @@ import java.util.Map;
 import java.util.UUID;
 
 @Slf4j
+//@Data
+//@Component
+//@ConfigurationProperties(prefix = "jwt")
 public class JwtUtil {
 
     private static final long EXPIRE_TIME = 1000 * 60 * 30; //半小时过期
-    private static final String TOKEN_SECRET = "admin";
+    private static final String SECRET = "admin";
     private static final String SUBJECT = "LMS";
+
+//    private long EXPIRE_TIME; //半小时过期
+//    private String SECRET;
+//    private String SUBJECT;
 
     /**
      * 根据负责生成JWT的token    generate
@@ -41,7 +51,7 @@ public class JwtUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_TIME)) //过期时间
                 .setId(UUID.randomUUID().toString()) //jwt 编号
                 //signature
-                .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET) //密钥
+                .signWith(SignatureAlgorithm.HS256, SECRET) //密钥
                 .compact();
         return token;
     }
@@ -57,7 +67,7 @@ public class JwtUtil {
             return false;
         }
         try {
-            Jws<Claims> claimsJws = Jwts.parser().setSigningKey(TOKEN_SECRET).parseClaimsJws(token); //解码操作
+            Jws<Claims> claimsJws = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token); //解码操作
         } catch (Exception e) {
             return false;
         }
@@ -143,7 +153,7 @@ public class JwtUtil {
         Date expirationDate = new Date(System.currentTimeMillis() + EXPIRE_TIME);
         HashMap<String, Object> map = new HashMap<>(1);
         map.put("typ", Header.JWT_TYPE);
-        return Jwts.builder().setHeader(map).setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, TOKEN_SECRET).compact();
+        return Jwts.builder().setHeader(map).setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, SECRET).compact();
     }
 
     /**
@@ -155,7 +165,7 @@ public class JwtUtil {
     private static Claims getClaimsFromToken(String token) throws Exception {
         Claims claims = null;
         try {
-            claims = Jwts.parser().setSigningKey(TOKEN_SECRET).parseClaimsJws(token).getBody();
+            claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
         } catch (Exception e) {
             new Throwable(e);
         }

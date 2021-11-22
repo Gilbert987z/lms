@@ -7,7 +7,10 @@ import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.IpUtil;
 import cn.zjut.lms.util.JwtUtil;
 import cn.zjut.lms.util.ResultJson;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +32,8 @@ public class LoginController {
     private LoginService loginService;
     @Autowired
     private UserService userService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     /**
      * 登录
@@ -99,11 +104,11 @@ public class LoginController {
 
     }
 
-    @GetMapping(value = "info")
-    public ResultJson info(String token){
-        User user =
-        return ResultJson.ok().data(user);
-    }
+//    @GetMapping(value = "/info")
+//    public ResultJson info(String token){
+//        User user =
+//        return ResultJson.ok().data(user);
+//    }
 
     /**
      * 注册
@@ -134,6 +139,13 @@ public class LoginController {
         } else if (countMobile > 0) {
             return ResultJson.error().message("电话号码已被占用");
         } else {
+            //密码加密
+            String password = passwordEncoder.encode(user.getPassword());
+            user.setPassword(password);
+
+            //todo 默认头像
+//            user.setAvatar(Const.DEFULT_AVATAR);
+
             boolean result = userService.add(user);
             if (result) {
                 return ResultJson.ok().message("注册成功");
