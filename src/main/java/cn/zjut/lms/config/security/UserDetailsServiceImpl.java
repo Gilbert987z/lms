@@ -41,7 +41,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // //todo  校验密码，密码加密    密码竟然进行校验了，好神奇？？？？？？
         org.springframework.security.core.userdetails.User userDetail = new org.springframework.security.core.userdetails.User(
-                user.getUsername(), user.getPassword(), true, true, true, true,
+                user.getUsername(), passwordEncoder.encode(user.getPassword()), true, true, true, true,
                 authList);
         return userDetail;
     }
