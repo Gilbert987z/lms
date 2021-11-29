@@ -20,7 +20,8 @@ import java.util.UUID;
 //@ConfigurationProperties(prefix = "jwt")
 public class JwtUtil {
 
-    private static final long EXPIRE_TIME = 1000 * 60 * 30; //半小时过期
+//    public static final long EXPIRE_TIME = 1000 * 60 * 30; //半小时过期
+    public static final long EXPIRE_TIME = 1000 * 60; //半小时过期
     private static final String SECRET = "admin";
     private static final String SUBJECT = "LMS";
 

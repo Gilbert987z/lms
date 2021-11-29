@@ -5,10 +5,13 @@ import cn.zjut.lms.model.User;
 import cn.zjut.lms.service.LoginService;
 import cn.zjut.lms.util.IpUtil;
 import cn.zjut.lms.util.JwtUtil;
+import cn.zjut.lms.util.RedisUtil;
 import cn.zjut.lms.util.ResultJson;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -31,6 +34,8 @@ public class LmsAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
 //    @Autowired
 //    private ObjectMapper objectMapper; // Json转化工具
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Autowired
     LoginService loginService;
@@ -71,6 +76,9 @@ public class LmsAuthenticationSuccessHandler implements AuthenticationSuccessHan
             accessToken.setCreatedAt(currentTime); //写入创建时间
             loginService.add(accessToken); //添加数据
         }
+        //生成一个token对象,保存在redis中
+//        redisTemplate.opsForHash().put("token","user",accessToken);
+        redisUtil.set(RedisUtil.USER_TOKEN+userId,accessToken,JwtUtil.EXPIRE_TIME);//毫秒
 
 
         ResultJson result = ResultJson.ok().data("token",token).message("登录成功");

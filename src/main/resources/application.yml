@@ -11,6 +11,19 @@ spring:
     password: 123456
 #  main:
 #    allow-bean-definition-overriding:true   # 允许重复服务
+  #redis
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    database: 0
+    timeout: 3000  #连接超时
+#    jedis:
+#      pool:
+#        min-idle: 1  #连接池中的最小空闲连接
+#        max-idle: 10 #连接池中的最大空闲连接
+#        max-wait: 3 #连接池中的最大阻塞等待时间
+#        max-active: 8 #连接池中的最大连接数
 
 # 允许预检请求
 #  mvc:
@@ -61,6 +74,6 @@ logging:
 
 
 
-#test git
+
 
 
