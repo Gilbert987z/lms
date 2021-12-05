@@ -21,4 +21,17 @@ class LmsApplicationTests {
         stringRedisTemplate.opsForList().leftPush("mylist","2");
     }
 
+    @Test
+    void test(){
+        String a = "sdf";
+        Integer b = 1;
+        System.out.println(a.getClass().toString());
+        System.out.println(b.getClass().toString());
+    }
+
+    @Test
+    void tesEqual(){
+        String username = null;
+        System.out.println(username.equals("erqw"));
+    }
 }

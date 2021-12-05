@@ -7,13 +7,13 @@ import java.util.Date;
 
 @Data
 public class AccessToken {
-    private int id;
-    private int userId; //关联的userId
+    private Integer id;
+    private Integer userId; //关联的userId
     public String accessToken; //为后续访问系统的token, 在redis里也有一个备份。
     private String loginIp; //IP地址
 
     private Date loginTime; //登录时间
-    private int expireTime; //过期时间
+    private Integer expireTime; //过期时间
     private boolean validation; //校验是否通过
 
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")

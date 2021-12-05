@@ -30,12 +30,10 @@ public class RedisUtil {
      * @return
      */
     public boolean expire(String key, long time) {
-        log.error("为什么没有运行到这里？？");
         try {
             if (time > 0) {
-                log.error("为什么没有变呢？？");
 //                redisTemplate.expire(key, time, TimeUnit.MILLISECONDS);
-                System.out.println("设置过期时间"+redisTemplate.expire(key, time, TimeUnit.MILLISECONDS));
+                log.info("设置过期时间"+redisTemplate.expire(key, time, TimeUnit.MILLISECONDS));
             }
             return true;
         } catch (Exception e) {
@@ -77,9 +75,12 @@ public class RedisUtil {
      */
     @SuppressWarnings("unchecked")
     public void del(String... key) {
+        System.out.println(key);
         if (key != null && key.length > 0) {
             if (key.length == 1) {
-                redisTemplate.delete(key[0]);
+                System.out.println(key[0]);
+
+                System.out.println(redisTemplate.delete(key[0]));
             } else {
                 redisTemplate.delete(CollectionUtils.arrayToList(key));
             }

@@ -1,5 +1,6 @@
 package cn.zjut.lms.config.security.handler;
 
+import cn.zjut.lms.util.ResultCode;
 import cn.zjut.lms.util.ResultJson;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +26,8 @@ public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        log.info("未授权统一处理");
-        ResultJson result = ResultJson.error().message("未授权统一处理");
+        log.info("用户无权访问，需重新登录");
+        ResultJson result = ResultJson.error().code(ResultCode.Unauthorized).message("用户无权访问，需重新登录");
 
 
         response.setContentType("text/json;charset=utf-8"); //返回乱码问题 https://blog.csdn.net/u014424628/article/details/50589966

@@ -20,8 +20,9 @@ import java.util.UUID;
 //@ConfigurationProperties(prefix = "jwt")
 public class JwtUtil {
 
-//    public static final long EXPIRE_TIME = 1000 * 60 * 30; //半小时过期
-    public static final long EXPIRE_TIME = 1000 * 60; //半小时过期
+    //    public static final long EXPIRE_TIME = 1000 * 60 * 30; //半小时过期
+    public static final long EXPIRE_TIME = 1000 * 10000; //半小时过期
+//    public static final long REFRESH_EXPIRE_TIME = 1000 * 30; // refresh_token的过期时间需比access_token的过期时间长。
     private static final String SECRET = "admin";
     private static final String SUBJECT = "LMS";
 
@@ -87,14 +88,54 @@ public class JwtUtil {
         try {
             Claims claims = getClaimsFromToken(token);
 
-//            System.out.println(claims.get("username"));
             username = claims.get("username").toString();
+//            String subject = claims.getSubject();
+//            username = claims.getSubject();
+        } catch (Exception e) {
+//            System.out.println("e = " + e.getMessage());
+            log.info("无法从token中取出username");
+        }
+        return username;
+    }
+
+    /**
+     * 从令牌中获取用户ID
+     *
+     * @param token 令牌
+     * @return 用户名
+     */
+    public static String getUserIdFromToken(String token) {
+        String userId = null;
+        try {
+            Claims claims = getClaimsFromToken(token);
+
+            userId = claims.get("userId").toString();
+//            String subject = claims.getSubject();
+//            username = claims.getSubject();
+        } catch (Exception e) {
+            log.info("无法从token中取出userId");
+        }
+        return userId;
+    }
+
+    /**
+     * 从令牌中获取数据
+     *
+     * @param token 令牌
+     * @return 用户名
+     */
+    public static String getClaimsFromToken(String token, String key) {
+        String claimsData = null;
+        try {
+            Claims claims = getClaimsFromToken(token);
+
+            claimsData = claims.get(key).toString();
 //            String subject = claims.getSubject();
 //            username = claims.getSubject();
         } catch (Exception e) {
             System.out.println("e = " + e.getMessage());
         }
-        return username;
+        return claimsData;
     }
 
     /**
@@ -103,13 +144,16 @@ public class JwtUtil {
      * @param token 令牌
      * @return 是否过期
      */
-    public static Boolean isTokenExpired(String token) throws Exception {
+    public static Boolean isTokenExpired(String token){
         try {
             Claims claims = getClaimsFromToken(token);
-            Date expiration = claims.getExpiration();
-            return expiration.before(new Date());
+            Date expiration = claims.getExpiration();   // 类似这种样子的：Fri Dec 03 11:07:29 CST 2021
+            log.info("过期时间" + expiration);
+            return expiration.before(new Date()); //过期 true；不过期 false   怎么莫名奇妙会报错？传不了true的值
         } catch (Exception e) {
-            throw new Exception("签名过期");
+            log.info("签名过期");
+            return true;
+//            throw new Exception("签名过期");
         }
     }
 
@@ -138,11 +182,12 @@ public class JwtUtil {
      * @param userDetails 用户
      * @return 是否有效
      */
-    public static Boolean validateToken(String token, UserDetails userDetails) throws Exception {
+    public static Boolean validateToken(String token, UserDetails userDetails){
         User user = (User) userDetails;
         String username = getUsernameFromToken(token);
-        return (username.equals(user.getUsername()) && !isTokenExpired(token));
+        return (username.equals(user.getUsername()) && !isTokenExpired(token)); //校验username，不过期
     }
+
 
     /**
      * 从数据声明生成令牌
@@ -166,9 +211,10 @@ public class JwtUtil {
     private static Claims getClaimsFromToken(String token) throws Exception {
         Claims claims = null;
         try {
-            claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
+            claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody(); //利用密钥取出claims  如果时间过期就无法获得数据
         } catch (Exception e) {
-            new Throwable(e);
+//            new Throwable(e);
+            log.info("无法取出claims");
         }
         return claims;
     }

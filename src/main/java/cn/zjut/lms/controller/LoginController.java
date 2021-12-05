@@ -6,7 +6,9 @@ import cn.zjut.lms.service.LoginService;
 import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.IpUtil;
 import cn.zjut.lms.util.JwtUtil;
+import cn.zjut.lms.util.RedisUtil;
 import cn.zjut.lms.util.ResultJson;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +26,7 @@ import java.util.Map;
 /**
  * 登录校验
  */
+@Slf4j
 @RestController
 @RequestMapping("/")
 public class LoginController {
@@ -170,6 +173,8 @@ public class LoginController {
      */
     @GetMapping("/logout")
     public ResultJson logout(@RequestHeader("token") String token) {
+        log.info("登出");
+
         //从request中取出token
 //        String token = TokenUtil.getRequestToken(request);
 
@@ -184,6 +189,12 @@ public class LoginController {
         accessToken.setUpdatedAt(currentTime);
 
         loginService.logout(accessToken);
+
+        RedisUtil redisUtil = new RedisUtil();
+        Integer userId =  accessToken.getUserId();
+        redisUtil.del(RedisUtil.USER_TOKEN+userId);  //登出删除缓存
+
+
         return ResultJson.ok().message("登出成功");
     }
 
