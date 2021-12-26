@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.lang.reflect.Field;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +43,7 @@ public class BookController {
 
     //增加
     @PostMapping(value = "create", consumes = "application/json")
-    public ResultJson add(@Valid @RequestBody Book book, BindingResult bindingResult) {
+    public ResultJson add(@Valid @RequestBody Book book, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             Map<String, Object> fieldErrorsMap = new HashMap<>();
 
@@ -52,7 +53,7 @@ public class BookController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
-            boolean result = bookService.add(book);
+            boolean result = bookService.add(book,Integer.parseInt(principal.getName()));
             if (result) {
                 System.out.println(ResultJson.ok().message("增加成功"));
                 return ResultJson.ok().message("增加成功");

@@ -11,7 +11,8 @@ public interface LoginDao {
 
     User findByUsername(String username);
 
-    AccessToken findByUserId(int userId);
+    AccessToken tokenfindByUserId(int userId);
+    User findByUserId(Integer userId);
 
     /*
     更新

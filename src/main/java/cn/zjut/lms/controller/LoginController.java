@@ -8,9 +8,14 @@ import cn.zjut.lms.util.IpUtil;
 import cn.zjut.lms.util.JwtUtil;
 import cn.zjut.lms.util.RedisUtil;
 import cn.zjut.lms.util.ResultJson;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
@@ -19,8 +24,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
+
 
 
 /**
@@ -88,7 +95,7 @@ public class LoginController {
                 accessToken.setLoginTime(currentTime); //写入登录时间
 
 
-                AccessToken accessToken_get = loginService.findByUserId(userId);
+                AccessToken accessToken_get = loginService.tokenFindByUserId(userId);
                 System.out.println(accessToken_get);
                 try {   //空指针的判断，accessToken_get可能为null
                     int accessToken_id = accessToken_get.getId();
@@ -115,6 +122,7 @@ public class LoginController {
 
     /**
      * 注册
+     *
      * @param user
      * @param bindingResult
      * @return
@@ -191,12 +199,37 @@ public class LoginController {
         loginService.logout(accessToken);
 
         RedisUtil redisUtil = new RedisUtil();
-        Integer userId =  accessToken.getUserId();
-        redisUtil.del(RedisUtil.USER_TOKEN+userId);  //登出删除缓存
+        Integer userId = accessToken.getUserId();
+        redisUtil.del(RedisUtil.USER_TOKEN + userId);  //登出删除缓存
 
 
         return ResultJson.ok().message("登出成功");
     }
 
+    /**
+     * 获取用户信息接口
+     *
+     * @param principal
+     * @return
+     */
+    @GetMapping("/info")
+    public ResultJson userInfo(Principal principal){
+//        System.out.println(Integer.parseInt(principal.getName()));
+
+//        User user = loginService.findByUsername(principal.getName());
+        User user = loginService.findByUserId(Integer.parseInt(principal.getName()));
+//        System.out.println(user);
+
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("id", user.getId());
+//        map.put("username", user.getUsername());
+//        map.put("mobile", user.getMobile());
+//        map.put("image", user.getImages());
+//        map.put("desc", user.getDesc());
+//        map.put("createdAt", user.getCreatedAt());
+
+        return ResultJson.ok().data("detail", user);
+
+    }
 
 }

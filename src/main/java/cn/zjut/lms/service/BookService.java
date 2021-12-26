@@ -3,9 +3,11 @@ package cn.zjut.lms.service;
 import cn.zjut.lms.dao.BookDao;
 import cn.zjut.lms.model.Book;
 import com.github.pagehelper.PageHelper;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,9 +94,11 @@ public class BookService {
         return true;
     }
 
-    public boolean add(Book book) {
+    public boolean add(Book book, int userId) {
         java.util.Date date=new java.util.Date();
         java.sql.Date currentTime=new java.sql.Date(date.getTime());
+
+        book.setUserId(userId);//设置userId
         book.setCreatedAt(currentTime);
         book.setUpdatedAt(currentTime);
 

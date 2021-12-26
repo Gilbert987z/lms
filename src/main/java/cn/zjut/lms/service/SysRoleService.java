@@ -61,6 +61,19 @@ public class SysRoleService {
         return sysRoleDao.getById(id);
     }
 
+    /**
+     * 根据userId查询出所有role角色
+     * @param userId
+     * @return
+     */
+    public List<SysRole> listRolesByUserId(Long userId) {
+
+        List<SysRole> sysRoles = this.list(new QueryWrapper<SysRole>()
+                .inSql("id", "select role_id from sys_user_role where user_id = " + userId));
+
+        return sysRoles;
+    }
+
     public boolean delete(SysRole SysRole) {
         java.util.Date date=new java.util.Date();
         java.sql.Date currentTime=new java.sql.Date(date.getTime());

@@ -10,8 +10,8 @@ import java.util.Date;
 @Data
 public class SysPermission {
     private int id;
-    private String url;//路径
-    private String permissionName;
+    private String path;//路径
+    private String name;//例子sys.user.info
     private String desc;//备注
 
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")

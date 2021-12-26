@@ -88,7 +88,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             //将用户信息存入 authentication，方便后续校验
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
-                            authUser.getUsername(),
+                            authUser.getId(),//authUser.getUsername(),
                             null,
                             authUser.getAuthorities()
                     );

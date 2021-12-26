@@ -15,9 +15,10 @@ import java.util.Date;
  * 管理员表
  * 因为当初没创admin，就用user了，普通用户用client
  */
-@JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
+@JsonIgnoreProperties(value = {"accountNonExpired", "accountNonLocked", "authorities",
+        "credentialsNonExpired", "enabled", "password", "updatedAt", "deletedAt", "handler"})
 @Data
-public class User  implements UserDetails {
+public class User implements UserDetails {
     /*
     {id} 自增主键
     {name} 人员姓名
@@ -27,7 +28,7 @@ public class User  implements UserDetails {
 
 
     @NotBlank(message = "姓名不能为空") //字符串不能为空
-    @Size(min = 3, max = 10,message="用户名需{min}-{max}字")
+    @Size(min = 3, max = 10, message = "用户名需{min}-{max}字")
     private String username;
 
     @NotBlank(message = "密码不能为空") //字符串不能为空
@@ -39,16 +40,15 @@ public class User  implements UserDetails {
     private String images; //图片
     private String desc;//备注
 
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt;
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date deletedAt;
 
 //    public User() {
 //    }
-
 
 
     @Override

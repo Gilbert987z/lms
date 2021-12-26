@@ -3,6 +3,7 @@ package cn.zjut.lms.service;
 import cn.zjut.lms.dao.LoginDao;
 import cn.zjut.lms.model.AccessToken;
 import cn.zjut.lms.model.User;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,13 @@ public class LoginService {
         return loginDao.findByUsername(username);
 
     }
-    public AccessToken findByUserId(int userId) {
+
+    public User findByUserId(Integer userId) {
+        return loginDao.findByUserId(userId);
+    }
+    public AccessToken tokenFindByUserId(Integer userId) {
         try { //数据为空的判断
-            return loginDao.findByUserId(userId);
+            return loginDao.tokenfindByUserId(userId);
         }catch (Exception e) {
             System.out.println("无数据");
 

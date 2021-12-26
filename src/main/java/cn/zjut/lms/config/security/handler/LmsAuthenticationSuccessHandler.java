@@ -65,7 +65,7 @@ public class LmsAuthenticationSuccessHandler implements AuthenticationSuccessHan
         accessToken.setLoginTime(currentTime); //写入登录时间
 
 
-        AccessToken accessToken_get = loginService.findByUserId(userId);
+        AccessToken accessToken_get = loginService.tokenFindByUserId(userId);
         System.out.println(accessToken_get);
         try {   //空指针的判断，accessToken_get可能为null
             int accessToken_id = accessToken_get.getId();

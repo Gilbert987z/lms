@@ -56,9 +56,9 @@
     <insert id="add" parameterType="cn.zjut.lms.model.Book">
         INSERT INTO
         <include refid="table"/>
-        (book_name,image,author,publisher_id,book_type_id,inventory,total,price,`desc`,created_at,updated_at)
+        (book_name,image,author,publisher_id,book_type_id,inventory,total,price,user_id,`desc`,created_at,updated_at)
         VALUES
-        (#{bookName},#{image},#{author},#{publisherId},#{bookTypeId},#{inventory},#{total},#{price},#{desc},#{createdAt},#{updatedAt})
+        (#{bookName},#{image},#{author},#{publisherId},#{bookTypeId},#{inventory},#{total},#{price},#{userId},#{desc},#{createdAt},#{updatedAt})
     </insert>
 
     <!-- 改 -->

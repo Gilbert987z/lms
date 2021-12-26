@@ -18,9 +18,17 @@
         WHERE
         username = #{username}
     </select>
-
     <!-- 查询所有   -->
-    <select id="findByUserId" resultType="cn.zjut.lms.model.AccessToken">
+    <select id="findByUserId" resultType="cn.zjut.lms.model.User">
+        SELECT
+        *
+        FROM
+        <include refid="user"/>
+        WHERE
+        id = #{userId}
+    </select>
+    <!-- 查询所有   -->
+    <select id="tokenFindByUserId" resultType="cn.zjut.lms.model.AccessToken">
         SELECT
         *
         FROM
