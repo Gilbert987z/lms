@@ -15,6 +15,14 @@ public interface SysRoleDao {
     List<SysRole> list();
     List<SysRole> listByPage();
 
+
+    /**
+     * 根据userId查出角色
+     * @param userId
+     * @return
+     */
+    List<SysRole> getRolesByUserId(int userId);
+
     /*
     根据ID查询
     {id} 要查询人员的 id

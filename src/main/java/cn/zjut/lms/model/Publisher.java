@@ -6,7 +6,9 @@ import lombok.Data;
 import java.util.Date;
 import java.util.List;
 
-
+/*
+出版社
+ */
 @JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
 @Data
 public class Publisher {

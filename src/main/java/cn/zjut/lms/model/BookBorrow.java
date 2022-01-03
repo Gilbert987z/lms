@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 借书记录
+ */
 @Data
 public class BookBorrow {
 

@@ -26,7 +26,15 @@
         where deleted_at is null
     </select>
 
-
+    <!-- 根据userid查询用户的角色 -->
+    <select id="getRolesByUserId" resultType="cn.zjut.lms.model.SysRole">
+        SELECT
+        *
+        FROM
+        <include refid="table"/>
+        WHERE
+        id = #{id}
+    </select>
     <!-- 根据id查询 -->
     <select id="getById" resultType="cn.zjut.lms.model.SysRole">
         SELECT

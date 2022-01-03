@@ -6,6 +6,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 角色和权限关联
+ */
 @JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
 @Data
 public class SysRolePermission {

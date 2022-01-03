@@ -66,13 +66,13 @@ public class SysRoleService {
      * @param userId
      * @return
      */
-    public List<SysRole> listRolesByUserId(Long userId) {
-
-        List<SysRole> sysRoles = this.list(new QueryWrapper<SysRole>()
-                .inSql("id", "select role_id from sys_user_role where user_id = " + userId));
-
-        return sysRoles;
-    }
+//    public List<SysRole> listRolesByUserId(Long userId) {
+//
+//        List<SysRole> sysRoles = this.list(new QueryWrapper<SysRole>()
+//                .inSql("id", "select role_id from sys_user_role where user_id = " + userId));
+//
+//        return sysRoles;
+//    }
 
     public boolean delete(SysRole SysRole) {
         java.util.Date date=new java.util.Date();

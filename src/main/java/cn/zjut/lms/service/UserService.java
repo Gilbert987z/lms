@@ -115,38 +115,38 @@ public class UserService {
     }
 
 
-    //权限
-    public String getUserAuthorityInfo(int userId) {
-        User user = userDao.getById(userId);
-
-        String authority = "";
-
-        if (redisUtil.hasKey("GrantedAuthority:" + user.getUsername())) {
-            authority = (String) redisUtil.get("GrantedAuthority:" + user.getUsername());
-
-        } else {
-            // 获取角色编码
-            List<SysRole> roles = sysRoleService.list(new QueryWrapper<SysRole>()
-                    .inSql("id", "select role_id from sys_user_role where user_id = " + userId));
-
-            if (roles.size() > 0) {
-                String roleCodes = roles.stream().map(r -> "ROLE_" + r.getCode()).collect(Collectors.joining(","));
-                authority = roleCodes.concat(",");
-            }
-
-            // 获取菜单操作编码
-            List<Long> menuIds = userDao.getNavMenuIds(userId);
-            if (menuIds.size() > 0) {
-
-                List<Permission> menus = sysPermissionService.listByIds(menuIds);
-                String menuPerms = menus.stream().map(m -> m.getPerms()).collect(Collectors.joining(","));
-
-                authority = authority.concat(menuPerms);
-            }
-
-            redisUtil.set("GrantedAuthority:" + user.getUsername(), authority, 60 * 60);
-        }
-
-        return authority;
-    }
+//    //权限
+//    public String getUserAuthorityInfo(int userId) {
+//        User user = userDao.getById(userId);
+//
+//        String authority = "";
+//
+//        if (redisUtil.hasKey("GrantedAuthority:" + user.getUsername())) {
+//            authority = (String) redisUtil.get("GrantedAuthority:" + user.getUsername());
+//
+//        } else {
+//            // 获取角色编码
+//            List<SysRole> roles = sysRoleService.list(new QueryWrapper<SysRole>()
+//                    .inSql("id", "select role_id from sys_user_role where user_id = " + userId));
+//
+//            if (roles.size() > 0) {
+//                String roleCodes = roles.stream().map(r -> "ROLE_" + r.getCode()).collect(Collectors.joining(","));
+//                authority = roleCodes.concat(",");
+//            }
+//
+//            // 获取菜单操作编码
+//            List<Long> menuIds = userDao.getNavMenuIds(userId);
+//            if (menuIds.size() > 0) {
+//
+//                List<Permission> menus = sysPermissionService.listByIds(menuIds);
+//                String menuPerms = menus.stream().map(m -> m.getPerms()).collect(Collectors.joining(","));
+//
+//                authority = authority.concat(menuPerms);
+//            }
+//
+//            redisUtil.set("GrantedAuthority:" + user.getUsername(), authority, 60 * 60);
+//        }
+//
+//        return authority;
+//    }
 }

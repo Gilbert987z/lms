@@ -5,6 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.util.Date;
+
+/**
+ * 用户和角色关联
+ */
 @JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
 @Data
 public class SysUserRole {

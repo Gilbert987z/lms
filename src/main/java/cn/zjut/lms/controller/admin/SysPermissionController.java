@@ -32,20 +32,26 @@ public class SysPermissionController {
     /**
      * 获取当前用户的菜单栏以及权限
      */
-    @GetMapping("/nav")
-    public ResultJson nav(Principal principal) {
-        String username = principal.getName();
-        User user = loginService.findByUsername(username);
-        // ROLE_Admin,sys:user:save
-        String[] authoritys = StringUtils.tokenizeToStringArray(
-                userService.getUserAuthorityInfo(user.getId())
-                , ",");
-        Map<String, Object> map = new HashMap<>();
-        map.put("nav", sysPermissionService.getcurrentUserNav());
-        map.put("authoritys", authoritys);
-
-        return ResultJson.ok().data(map);
-    }
+//    @GetMapping("/permission")
+//    public ResultJson getPermission(Principal principal) {
+//        int userId = Integer.parseInt(principal.getName());
+//        User user = loginService.findByUserId(userId);
+//        // ROLE_Admin,sys:user:save
+//        String[] authoritys = StringUtils.tokenizeToStringArray(
+//                userService.getUserAuthorityInfo(user.getId())
+//                , ",");
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("nav", sysPermissionService.getcurrentUserNav());
+//        map.put("authoritys", authoritys);
+//
+////        [{
+////            created_at=2020-05-14 13:16:18
+////            updated_at=2020-05-14 13:16:18
+////            id=128
+////            name=staff.staff.list
+////        }]
+//        return ResultJson.ok().data(map);
+//    }
     //查询所有数据
     @GetMapping("")
     public ResultJson list() {
