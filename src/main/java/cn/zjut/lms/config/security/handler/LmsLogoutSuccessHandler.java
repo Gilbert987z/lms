@@ -1,8 +1,5 @@
 package cn.zjut.lms.config.security.handler;
 
-import cn.zjut.lms.model.AccessToken;
-import cn.zjut.lms.model.User;
-import cn.zjut.lms.service.LoginService;
 import cn.zjut.lms.util.JwtUtil;
 import cn.zjut.lms.util.RedisUtil;
 import cn.zjut.lms.util.ResultJson;
@@ -28,35 +25,15 @@ import java.io.IOException;
 public class LmsLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Autowired
-    LoginService loginService;
-
-    @Autowired
     RedisUtil redisUtil;
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         log.info("登出成功处理逻辑");
 
+        String token = httpServletRequest.getHeader(JwtUtil.HEADER_TOKEN);  //获取到token了
 
-        String token = httpServletRequest.getHeader("token");  //获取到token了
-        log.info("token的值："+token);
-
-        AccessToken accessToken = new AccessToken();
-
-        //修改时间
-        java.util.Date date = new java.util.Date();
-        java.sql.Date currentTime = new java.sql.Date(date.getTime());
-
-        accessToken.setAccessToken(token);
-        accessToken.setUpdatedAt(currentTime);
-
-        loginService.logout(accessToken);
-
-
-        String userId = JwtUtil.getClaimsFromToken(token,"userId");  //从token获取userId
-        String redis_token = RedisUtil.USER_TOKEN + userId;
-        log.info(redis_token.getClass().toString());
-        log.info(RedisUtil.USER_TOKEN + userId);
+        String userId = JwtUtil.getClaimsFromToken(token, "userId");  //从token获取userId
 
         redisUtil.del(RedisUtil.USER_TOKEN + userId);  //登出删除缓存
 

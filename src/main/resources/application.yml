@@ -1,7 +1,7 @@
 #debug: true
 
 server:
-  port: 8088
+  port: 8088 #端口号
 
 spring:
   datasource:
@@ -16,7 +16,7 @@ spring:
     host: 127.0.0.1
     password:
     port: 6379
-    database: 0
+    database: 0 #0库
     timeout: 3000  #连接超时
 #    jedis:
 #      pool:
@@ -29,10 +29,13 @@ spring:
 #  mvc:
 #    dispatch-options-request: true
 
-mybatis:
-  mapper-locations: classpath:mybatis/mapper/*.xml
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true  #java代码实体类驼峰式命名，数据库表字段以“_”分割，查询语句映射出问题解决
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #显示执行的sql语句
+
 
 #jwt
 jwt:

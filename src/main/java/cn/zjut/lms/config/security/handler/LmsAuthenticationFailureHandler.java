@@ -23,9 +23,6 @@ import java.io.IOException;
 @Component
 public class LmsAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
-//    @Autowired
-//    private ObjectMapper objectMapper;
-
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         log.info("登录验证失败");

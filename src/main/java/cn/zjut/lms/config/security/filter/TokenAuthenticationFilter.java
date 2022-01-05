@@ -2,7 +2,7 @@ package cn.zjut.lms.config.security.filter;
 
 
 import cn.zjut.lms.model.User;
-import cn.zjut.lms.service.LoginService;
+import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.JwtUtil;
 import cn.zjut.lms.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * token校验
  * @ClassName: TokenAuthenticationFilter
  * @Description: TokenAuthenticationFilter
  * @Author oyc
@@ -33,12 +34,8 @@ import java.util.List;
 @Slf4j
 @Component
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
-    //    public final String HEADER = "Authorization";
-    public final String HEADER_TOKEN = "token";
-
-
     @Autowired
-    LoginService loginService;
+    UserService userService;
 
     @Autowired
     RedisUtil redisUtil;
@@ -52,13 +49,42 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         log.info("TokenAuthenticationFilter");
 
-        String token = request.getHeader(HEADER_TOKEN);  //获取header的token值
+        String token = request.getHeader(JwtUtil.HEADER_TOKEN);  //获取header的token值
         log.info("token-->" + token);
 
         //token没有值，直接退出filter
         if (ObjectUtils.isEmpty(token)) {
             log.info("token没有值");
             log.info("tokenFilter放行");
+
+            //*************************
+            //测试用的userId的数据
+            //************************
+            try{
+                if(!request.getHeader("userId").isEmpty()){
+
+                    User user =userService.getById(request.getHeader("userId"));
+                    //将用户信息存入 authentication，方便后续校验
+                    UsernamePasswordAuthenticationToken authentication =
+                            new UsernamePasswordAuthenticationToken(
+                                    //authUser.getId(),
+                                    user.getUsername(),
+                                    null,
+                                    user.getAuthorities()
+                            );
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    // 将 authentication 存入 ThreadLocal，方便后续获取用户信息
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    //*************************
+                    //测试用的userId的数据
+                    //************************
+
+                }
+            }catch (Exception exception){
+                System.out.println(exception);
+            }
+
+
             filterChain.doFilter(request, response);
             return;
         }
@@ -73,7 +99,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        User authUser = loginService.findByUsername(username);
+        User authUser = userService.getByUsername(username);
         log.info("" + authUser);
 
         //检查token是否有效
@@ -88,7 +114,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             //将用户信息存入 authentication，方便后续校验
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
-                            authUser.getId(),//authUser.getUsername(),
+                            //authUser.getId(),
+                            authUser.getUsername(),
                             null,
                             authUser.getAuthorities()
                     );
@@ -100,7 +127,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         }
 
         //todo 没有和redis的token做交互，那退出登录，删token就毫无作用了
-        //todo  之后再做token刷新吧，需要和前端配合，目前前端代码不行，需继续努力
+        //todo 之后再做token刷新吧，需要和前端配合，目前前端代码不行，需继续努力
 //        //是否过期
 //        boolean check = true; //true 过期
 //        try {

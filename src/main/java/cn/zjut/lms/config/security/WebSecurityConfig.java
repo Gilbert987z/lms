@@ -16,11 +16,27 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * spring security配置文件
+ */
 @Slf4j
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    /**
+     * 向spring容器中创建一个Bean
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public TokenAuthenticationFilter jwtAuthenticationTokenFilter() {
+        return new TokenAuthenticationFilter();
+    }
+
     /**
      * 当匿名请求需要登录的接口时,拦截处理
      */
@@ -55,20 +71,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-
-    /**
-     * 向spring容器中创建一个Bean
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public TokenAuthenticationFilter jwtAuthenticationTokenFilter() {
-        return new TokenAuthenticationFilter();
-    }
-
     private static final String[] URL_WHITELIST = {
 
             "/login",
@@ -76,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/logout",
             "/captcha",
             "/favicon.ico",
-
+//        "/**" //全部路径都能通过
     };
 
     @Override
@@ -99,7 +101,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //配置安全访问规则
                 .and()
                 .authorizeRequests() //http.authorizeRequests()主要是对 url 进行控制
-                .antMatchers(URL_WHITELIST) // 登录请求路径不进行过滤  antMatcher()用于匹配 URL规则
+                .antMatchers(URL_WHITELIST) // 相关请求路径不进行过滤  antMatcher()用于匹配 URL规则
                 .permitAll()//表示所匹配的 URL 任何人都允许访问
                 .anyRequest()//表示匹配所有的请求
                 .authenticated() //表示所匹配的 URL 都需要被认证才能访问。

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
-/*
+/**
 验证码的配置
 也可以配置在yml里，后续可以写过去
  */

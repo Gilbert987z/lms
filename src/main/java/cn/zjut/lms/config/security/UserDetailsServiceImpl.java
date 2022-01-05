@@ -2,7 +2,7 @@ package cn.zjut.lms.config.security;
 
 
 import cn.zjut.lms.model.User;
-import cn.zjut.lms.service.LoginService;
+import cn.zjut.lms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +19,7 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    LoginService loginService;
+    UserService userService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -28,11 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //username参数,是在登陆时,用户传递的表单数据username
-        System.out.println("用户名：" + username);
-        User user = loginService.findByUsername(username);
+        User user = userService.getByUsername(username);
 
 
-        System.out.println("用户信息：" + user);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("用户未找到：'%s'", username));
         }

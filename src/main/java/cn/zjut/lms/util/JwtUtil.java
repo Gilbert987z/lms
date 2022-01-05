@@ -22,6 +22,7 @@ public class JwtUtil {
 
     //    public static final long EXPIRE_TIME = 1000 * 60 * 30; //半小时过期
     public static final long EXPIRE_TIME = 1000 * 10000; //半小时过期
+    public static final String HEADER_TOKEN = "Authorization";
 //    public static final long REFRESH_EXPIRE_TIME = 1000 * 30; // refresh_token的过期时间需比access_token的过期时间长。
     private static final String SECRET = "admin";
     private static final String SUBJECT = "LMS";

@@ -21,30 +21,44 @@ public class ResultJson {
     @ApiModelProperty(value = "返回消息")
     private String message;
 
-//    @ApiModelProperty(value = "返回数据")
-    private Map<String, Object> data = new HashMap<String, Object>();  //datas下只能支持键值对
-
-//    private Object data = new Object();  //data下只能支持object
-
+    private Object data;
 
 
 
     public ResultJson() {
     }
+    public ResultJson success(Boolean success) {
+        this.setSuccess(success);
+        return this;
+    }
+    public ResultJson message(String message) {
+        this.setMessage(message);
+        return this;
+    }
+
+    public ResultJson code(Integer code) {
+        this.setCode(code);
+        return this;
+    }
+    public ResultJson data(Object object) {  //支持object传入
+        this.setData(object);
+        return this;
+    }
 
     public static ResultJson ok() {
         ResultJson r = new ResultJson();
+        r.setCode(HttpServletResponse.SC_OK);
         r.setSuccess(true);
 //        r.setCode(ResultCode.SUCCESS);
-        r.setCode(HttpServletResponse.SC_OK);
         r.setMessage("成功");
         return r;
     }
 
     public static ResultJson error() {
         ResultJson r = new ResultJson();
-        r.setSuccess(false);
         r.setCode(ResultCode.ERROR);
+        r.setSuccess(false);
+
         r.setMessage("失败");
         return r;
     }
@@ -61,26 +75,15 @@ public class ResultJson {
     //验证错误
     public static ResultJson validation_error() {
         ResultJson r = new ResultJson();
-        r.setSuccess(false);
         r.setCode(ResultCode.VALIDATION_ERROR);
+        r.setSuccess(false);
         r.setMessage("validation_error");
         return r;
     }
 
-    public ResultJson success(Boolean success) {
-        this.setSuccess(success);
-        return this;
-    }
 
-    public ResultJson message(String message) {
-        this.setMessage(message);
-        return this;
-    }
 
-    public ResultJson code(Integer code) {
-        this.setCode(code);
-        return this;
-    }
+
 
     public ResultJson data(String key, Object value) { //支持key和value转换成map传入
         Map<String, Object> map = new HashMap<String, Object>();
@@ -96,22 +99,6 @@ public class ResultJson {
     }
 
 
-//    public ResultJson data(Object object) {  //支持object传入
-//        this.setData(object);
-//        return this;
-//    }
-//    public ResultJson data(Object object) {  //支持object传入
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        Field[] fields = object.getClass().getDeclaredFields();
-//        for (Field field : fields) {
-//            field.setAccessible(true);
-//            try {
-//                map.put(field.getName(), field.get(object));
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        this.setData(map);
-//        return this;
-//    }
+
+
 }

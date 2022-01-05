@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@SpringBootApplication(exclude = {
 //        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
 //})
-@MapperScan("cn.zjut.lms.dao")
 @SpringBootApplication()
 public class LmsApplication {
 

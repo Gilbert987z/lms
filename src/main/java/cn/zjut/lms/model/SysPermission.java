@@ -4,20 +4,19 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
+/**
+ * 权限
+ */
+@JsonIgnoreProperties(value = {"deletedAt","handler"})
 @Data
-public class SysPermission {
-    private int id;
+public class SysPermission extends BaseEntity{
+    private Long id;
     private String path;//路径
     private String name;//例子sys.user.info
-    private String desc;//备注
+    private String remark;//备注
 
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createdAt;
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updatedAt;
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date deletedAt;
+
 }
