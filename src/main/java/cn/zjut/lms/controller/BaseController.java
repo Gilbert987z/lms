@@ -1,45 +1,47 @@
-//package cn.zjut.lms.controller;
-//
-//import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-//import com.markerhub.service.*;
-//import com.markerhub.utils.RedisUtil;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.ServletRequestUtils;
-//
-//import javax.servlet.http.HttpServletRequest;
-//
-//public class BaseController {
-//
-//    @Autowired
-//    HttpServletRequest req;
-//
-//    @Autowired
-//    RedisUtil redisUtil;
-//
-//    @Autowired
-//    SysUserService sysUserService;
-//
-//    @Autowired
-//    SysRoleService sysRoleService;
-//
-//    @Autowired
-//    SysMenuService sysMenuService;
-//
-//    @Autowired
-//    SysUserRoleService sysUserRoleService;
-//
-//    @Autowired
-//    SysRoleMenuService sysRoleMenuService;
-//
-//    /**
-//     * 获取页面
-//     * @return
-//     */
-//    public Page getPage() {
-//        int current = ServletRequestUtils.getIntParameter(req, "cuurent", 1);
-//        int size = ServletRequestUtils.getIntParameter(req, "size", 10);
-//
-//        return new Page(current, size);
-//    }
-//
-//}
+package cn.zjut.lms.controller;
+
+
+import cn.zjut.lms.service.*;
+import cn.zjut.lms.util.RedisUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.ServletRequestUtils;
+
+import javax.servlet.http.HttpServletRequest;
+
+
+public class BaseController {
+
+	@Autowired
+	UserService userService;
+	@Autowired
+	SysRoleService sysRoleService;
+	@Autowired
+	SysPermissionService sysPermissionService;
+	@Autowired
+	SysUserRoleService sysUserRoleService;
+	@Autowired
+	SysRolePermissionService sysRolePermissionService;
+
+
+	//redis
+	@Autowired
+	RedisUtil redisUtil;
+	//密码加密
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+	@Autowired
+	HttpServletRequest req;
+	/**
+	 * 获取页面   从请求的参数的中获取数据
+	 * @return
+	 */
+	public Page getPage() {
+		int current = ServletRequestUtils.getIntParameter(req, "cuurent", 1);
+		int size = ServletRequestUtils.getIntParameter(req, "size", 10);
+
+		return new Page(current, size);
+	}
+}

@@ -1,24 +1,28 @@
 package cn.zjut.lms.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@JsonIgnoreProperties(value = {"updatedAt", "deletedAt", "handler"})
+/**
+ * 角色
+ */
+@JsonIgnoreProperties(value = {"deletedAt", "handler"})
 @Data
-public class SysRole {
-    private int id;
+public class SysRole extends BaseEntity {
+    private Long id;
 
-    private String roleName;
-    private String desc;//备注
+    private String name; //角色名称
+    private String remark;//备注
+    private Integer status;//状态 0禁止 1正常
 
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createdAt;
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updatedAt;
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date deletedAt;
-
+    //多对多
+    @TableField(exist = false)
+    private List<Long> permissionIds = new ArrayList<>();
 }

@@ -4,19 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-@JsonIgnoreProperties(value = {"updatedAt","deletedAt","handler"})
+
+/**
+ * 用户和角色关联
+ */
+@JsonIgnoreProperties(value = {"deletedAt","handler"})
 @Data
-public class SysUserRole {
-    private int id;
-    private int userId;
-    private int roleId;
-
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createdAt;
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updatedAt;
-    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date deletedAt;
-
+public class SysUserRole extends BaseEntity{
+    private Long userId;
+    private Long roleId;
 }
