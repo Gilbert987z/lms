@@ -18,6 +18,5 @@ public class BaseEntity implements Serializable {
 	private LocalDateTime createdAt;
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime updatedAt;
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime deletedAt;
+
 }

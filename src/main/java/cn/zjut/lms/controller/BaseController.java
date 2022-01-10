@@ -39,7 +39,8 @@ public class BaseController {
 	 * @return
 	 */
 	public Page getPage() {
-		int current = ServletRequestUtils.getIntParameter(req, "cuurent", 1);
+		//接受page和size的请求参数
+		int current = ServletRequestUtils.getIntParameter(req, "page", 1);
 		int size = ServletRequestUtils.getIntParameter(req, "size", 10);
 
 		return new Page(current, size);

@@ -34,7 +34,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/sys/user")
 public class UserController  extends BaseController {
 
     /**
@@ -78,6 +78,17 @@ public class UserController  extends BaseController {
         }
     }
     /**
+     * 获取用户信息接口
+     * @param principal
+     * @return
+     */
+    @GetMapping("/user/info")
+    public ResultJson userInfo(Principal principal){
+        User user = userService.getByUsername(principal.getName());
+        return ResultJson.ok().data(user);
+    }
+
+    /**
      * 获取用户的角色
      * @param principal
      * @return
@@ -101,17 +112,7 @@ public class UserController  extends BaseController {
         System.out.println(permissonIds);
         return ResultJson.ok().data(permissonIds);
     }
-    /**
-     * 获取用户信息接口
-     * @param principal
-     * @return
-     */
-    @GetMapping("/info")
-    public ResultJson userInfo(Principal principal){
-        User user = userService.getByUsername(principal.getName());
-        return ResultJson.ok().data(user);
 
-    }
     /**
      * 用户详情
      * @param id

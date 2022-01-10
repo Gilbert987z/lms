@@ -1,4 +1,5 @@
 package cn.zjut.lms.util;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Data
-@JsonIgnoreProperties(value = { "handler" })
+@JsonIgnoreProperties(value = {"handler"})
 public class ResultJson {
 
     @ApiModelProperty(value = "是否成功")
@@ -24,13 +25,14 @@ public class ResultJson {
     private Object data;
 
 
-
     public ResultJson() {
     }
+
     public ResultJson success(Boolean success) {
         this.setSuccess(success);
         return this;
     }
+
     public ResultJson message(String message) {
         this.setMessage(message);
         return this;
@@ -40,6 +42,7 @@ public class ResultJson {
         this.setCode(code);
         return this;
     }
+
     public ResultJson data(Object object) {  //支持object传入
         this.setData(object);
         return this;
@@ -47,9 +50,9 @@ public class ResultJson {
 
     public static ResultJson ok() {
         ResultJson r = new ResultJson();
-        r.setCode(HttpServletResponse.SC_OK);
+//        r.setCode(HttpServletResponse.SC_OK);
+        r.setCode(ResultCode.SUCCESS);
         r.setSuccess(true);
-//        r.setCode(ResultCode.SUCCESS);
         r.setMessage("成功");
         return r;
     }
@@ -82,9 +85,6 @@ public class ResultJson {
     }
 
 
-
-
-
     public ResultJson data(String key, Object value) { //支持key和value转换成map传入
         Map<String, Object> map = new HashMap<String, Object>();
         map.put(key, value);
@@ -97,8 +97,6 @@ public class ResultJson {
         this.setData(map);
         return this;
     }
-
-
 
 
 }
