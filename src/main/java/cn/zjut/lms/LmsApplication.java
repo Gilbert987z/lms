@@ -1,5 +1,6 @@
 package cn.zjut.lms;
 
+import com.github.jeffreyning.mybatisplus.conf.EnableMPP;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@SpringBootApplication(exclude = {
 //        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
 //})
+@EnableMPP
 @SpringBootApplication()
 public class LmsApplication {
 

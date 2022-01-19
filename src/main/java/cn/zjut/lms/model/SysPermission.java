@@ -17,6 +17,6 @@ public class SysPermission extends BaseEntity{
     private String path;//路径
     private String name;//例子sys.user.info
     private String remark;//备注
-
+    private Integer status;//状态 0禁止登录 1正常
 
 }

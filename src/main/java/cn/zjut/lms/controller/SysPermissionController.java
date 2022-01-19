@@ -1,39 +1,27 @@
 package cn.zjut.lms.controller;
 
 import cn.hutool.core.util.StrUtil;
-import cn.zjut.lms.common.Const;
-import cn.zjut.lms.mapper.SysRoleMapper;
+import cn.zjut.lms.model.SysPermission;
 import cn.zjut.lms.model.SysRole;
 import cn.zjut.lms.model.SysRolePermission;
 import cn.zjut.lms.model.SysUserRole;
-import cn.zjut.lms.model.User;
-import cn.zjut.lms.service.SysRoleService;
-import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.ResultJson;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("/sys/role")
-public class SysRoleController extends BaseController {
-//    @Autowired
-//    SysRoleMapper sysRoleMapper;
+@RequestMapping("/sys/permission")
+public class SysPermissionController extends BaseController {
 
     @GetMapping("info")
     public ResultJson info(@RequestParam(value = "id") Long id) {
@@ -53,17 +41,14 @@ public class SysRoleController extends BaseController {
      *
      * @return
      */
-    @PreAuthorize("hasAuthority('sys.role.list')")
     @GetMapping("list")
     public ResultJson list(@RequestParam(value = "name", defaultValue = "") String name) {
 
         //分页查询
-//        Page<SysRole> roles = sysRoleService.page(new Page<>(page, size), new QueryWrapper<SysRole>().isNull("deleted_at")
-//                .like(StrUtil.isNotBlank(name), "name", name));
-        Page<SysRole> roles = sysRoleService.page(getPage(), new QueryWrapper<SysRole>().isNull("deleted_at")
+        Page<SysPermission> permissions = sysPermissionService.page(getPage(), new QueryWrapper<SysPermission>().isNull("deleted_at")
                 .like(StrUtil.isNotBlank(name), "name", name).orderBy(true, true, "created_at")); //按时间正排
 
-        return ResultJson.ok().data(roles);
+        return ResultJson.ok().data(permissions);
     }
 
     /**
@@ -75,7 +60,6 @@ public class SysRoleController extends BaseController {
     @PostMapping("save")
     public ResultJson save(@Validated @RequestBody SysRole sysrole, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) { //数据校验
-//            return ResultJson.validation_error().data("fieldErrors", bindingResult.getFieldError().getDefaultMessage()); //输出错误信息
             return ResultJson.validation_error().data("fieldErrors", bindingResult.getFieldError().getDefaultMessage()); //输出错误信息
         }
 
@@ -89,9 +73,7 @@ public class SysRoleController extends BaseController {
         sysrole.setUpdatedAt(LocalDateTime.now());
 
         sysRoleService.save(sysrole);
-//        long id = sysRoleMapper.insert(sysrole); // 获取自增id
-//        System.out.println(id);
-//        SysRole insertRole =sysRoleMapper.selectById(id);
+
         return ResultJson.ok().data(sysrole);
     }
 

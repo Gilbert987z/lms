@@ -21,4 +21,7 @@ public interface UserMapper extends BaseMapper<User> {
             "LEFT JOIN sys_role_permission rp ON ur.role_id = rp.role_id " +
             "WHERE ur.user_id = #{userId}")
     List<Long> getPermissionIds(Long userId);
+
+
+//    int insert(User entity);
 }

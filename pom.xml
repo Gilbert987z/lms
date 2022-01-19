@@ -59,6 +59,12 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.4.3.4</version>
         </dependency>
+        <!--mybatis-plus 多个主键-->
+        <dependency>
+            <groupId>com.github.jeffreyning</groupId>
+            <artifactId>mybatisplus-plus</artifactId>
+            <version>1.2.0-RELEASE</version>
+        </dependency>
 
         <!--security-->
         <dependency>

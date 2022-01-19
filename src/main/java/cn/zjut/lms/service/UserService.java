@@ -13,4 +13,7 @@ public interface UserService extends IService<User> {
     List<SysRole> getRolesByUserId(long userId);
 
     List<Long> getPermissionIds(Long userId);
+
+    //获取用户权限
+    String getUserAuthorityInfo(Long userId);
 }

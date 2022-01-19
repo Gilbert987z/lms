@@ -2,8 +2,11 @@ package cn.zjut.lms.service.impl;
 
 
 import cn.zjut.lms.mapper.UserMapper;
+import cn.zjut.lms.model.SysPermission;
 import cn.zjut.lms.model.SysRole;
 import cn.zjut.lms.model.User;
+import cn.zjut.lms.service.SysPermissionService;
+import cn.zjut.lms.service.SysRoleService;
 import cn.zjut.lms.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -11,11 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-
+    @Autowired
+    SysRoleService sysRoleService;
+    @Autowired
+    SysPermissionService sysPermissionService;
     @Autowired
     UserMapper userMapper;
 
@@ -35,5 +42,48 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<Long> getPermissionIds(Long userId) {
         List<Long> permissionIds = userMapper.getPermissionIds(userId);
         return permissionIds;
+    }
+
+    /**
+     * 获取用户权限
+     * @param userId
+     * @return
+     */
+    @Override
+    public String getUserAuthorityInfo(Long userId) {
+
+        User user = userMapper.selectById(userId);
+
+        //  ROLE_admin,ROLE_normal,sys:user:list,....
+        String authority = "";
+
+        //如果redis中有该用户权限的数据
+//        if (redisUtil.hasKey("GrantedAuthority:" + sysUser.getUsername())) {
+//            authority = (String) redisUtil.get("GrantedAuthority:" + sysUser.getUsername());
+//
+//        } else {
+            // 获取角色编码
+            List<SysRole> roles = sysRoleService.list(new QueryWrapper<SysRole>()
+                    .inSql("id", "select role_id from sys_user_role where user_id = " + userId));
+
+            if (roles.size() > 0) {
+                String roleCodes = roles.stream().map(r -> "ROLE_" + r.getName()).collect(Collectors.joining(","));
+                authority = roleCodes.concat(",");
+            }
+
+            // 获取菜单操作编码
+            List<Long> permissionIds = userMapper.getPermissionIds(userId);
+            if (permissionIds.size() > 0) {
+
+                List<SysPermission> permissions = sysPermissionService.listByIds(permissionIds);
+                String permisssions = permissions.stream().map(p -> p.getName()).collect(Collectors.joining(","));
+
+                authority = authority.concat(permisssions);
+            }
+
+//            redisUtil.set("GrantedAuthority:" + sysUser.getUsername(), authority, 60 * 60);
+//        }
+
+        return authority;
     }
 }

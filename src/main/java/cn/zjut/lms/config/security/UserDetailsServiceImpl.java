@@ -5,6 +5,7 @@ import cn.zjut.lms.model.User;
 import cn.zjut.lms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,8 +16,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * 用户信息的服务方法
+ */
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
+
 
     @Autowired
     UserService userService;
@@ -24,7 +29,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    /**
+     * 按用户名加载用户
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //username参数,是在登陆时,用户传递的表单数据username
@@ -35,7 +45,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("用户未找到：'%s'", username));
         }
 
-        Collection<GrantedAuthority> authList = getAuthorities();
+        //获取用户的权限
+        Collection<GrantedAuthority> authList = getUserAuthorities(user.getId());
 
         // //todo  校验密码，密码加密    密码竟然进行校验了，好神奇？？？？？？
         org.springframework.security.core.userdetails.User userDetail = new org.springframework.security.core.userdetails.User(
@@ -53,11 +64,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @param
      * @return
      */
-    private Collection<GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
-//        authList.add(new SimpleGrantedAuthority("ROLE_USER"));
-//        authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        return authList;
+    public Collection<GrantedAuthority> getUserAuthorities(Long userId) {
+        // 角色(ROLE_admin)、菜单操作权限 sys:user:list
+        String authority = userService.getUserAuthorityInfo(userId);  // ROLE_admin,ROLE_normal,sys:user:list,....
+
+
+        System.out.println("1234324123412342121341234321"+AuthorityUtils.commaSeparatedStringToAuthorityList(authority));
+        // 通过内置的工具类，把权限字符串封装成GrantedAuthority列表
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(authority);
+
+//        List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
+////        authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+////        authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+//        return authList;
     }
 }
 

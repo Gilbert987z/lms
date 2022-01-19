@@ -1,6 +1,7 @@
 package cn.zjut.lms.config.security.filter;
 
 
+import cn.zjut.lms.config.security.UserDetailsServiceImpl;
 import cn.zjut.lms.model.User;
 import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.JwtUtil;
@@ -8,6 +9,7 @@ import cn.zjut.lms.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -39,6 +42,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     RedisUtil redisUtil;
+
+    @Autowired
+    UserDetailsServiceImpl userDetailsService;
 
     /**
      * @param request     rq
@@ -106,10 +112,12 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         if (JwtUtil.validateToken(token, authUser)) {//有效
             log.info("token有效");
 
-            //通过用户信息得到UserDetails
-            List<SimpleGrantedAuthority> list = new ArrayList<>();
-            list.add(new SimpleGrantedAuthority("root"));
+//            //通过用户信息得到UserDetails
+//            List<SimpleGrantedAuthority> list = new ArrayList<>();
+//            list.add(new SimpleGrantedAuthority("root"));
 
+            //从UserDetailsServiceImpl中的获取用户的权限方法中获取权限的数据
+            Collection<GrantedAuthority> grantedAuthorities = userDetailsService.getUserAuthorities(authUser.getId());
 
             //将用户信息存入 authentication，方便后续校验
             UsernamePasswordAuthenticationToken authentication =
@@ -117,7 +125,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                             //authUser.getId(),
                             authUser.getUsername(),
                             null,
-                            authUser.getAuthorities()
+                            grantedAuthorities
                     );
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             // 将 authentication 存入 ThreadLocal，方便后续获取用户信息
