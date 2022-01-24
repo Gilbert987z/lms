@@ -8,11 +8,13 @@ import cn.zjut.lms.util.JwtUtil;
 import cn.zjut.lms.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -35,8 +37,8 @@ import java.util.List;
  * @Version 1.0
  */
 @Slf4j
-@Component
-public class TokenAuthenticationFilter extends OncePerRequestFilter {
+//@Components
+public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
     @Autowired
     UserService userService;
 
@@ -45,6 +47,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+
+    public TokenAuthenticationFilter(AuthenticationManager authenticationManager) {
+        super(authenticationManager);
+    }
 
     /**
      * @param request     rq

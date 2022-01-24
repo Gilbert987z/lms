@@ -1,5 +1,6 @@
 package cn.zjut.lms.controller;
 
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.zjut.lms.common.Const;
 import cn.zjut.lms.common.dto.UserRoleDto;
@@ -22,6 +23,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -90,29 +92,52 @@ public class UserController  extends BaseController {
         return ResultJson.ok().data(user);
     }
 
-    /**
-     * 获取用户的角色
-     * @param principal
-     * @return
-     */
-    @GetMapping("/sys/user/roles")
-    public ResultJson userRoles(Principal principal){
-        User user = userService.getByUsername(principal.getName());
-        List<SysRole> roles = userService.getRolesByUserId(user.getId());
-        System.out.println(roles);
-        return ResultJson.ok().data(roles);
-    }
+//    /**
+//     * 获取用户的角色
+//     * @param principal
+//     * @return
+//     */
+//    @GetMapping("/sys/user/roles")
+//    public ResultJson userRoles(Principal principal){
+//        User user = userService.getByUsername(principal.getName());
+//        List<SysRole> roles = userService.getRolesByUserId(user.getId());
+//        System.out.println(roles);
+//        return ResultJson.ok().data(roles);
+//    }
+//    /**
+//     * 获取用户的权限
+//     * @param principal
+//     * @return
+//     */
+//    @GetMapping("/sys/user/permissions")
+//    public ResultJson userPermissions(Principal principal){
+//        User user = userService.getByUsername(principal.getName());
+//        List<Long> permissonIds = userService.getPermissionIds(user.getId());
+//        System.out.println(permissonIds);
+//        return ResultJson.ok().data(permissonIds);
+//    }
+
     /**
      * 获取用户的权限
      * @param principal
      * @return
      */
-    @GetMapping("/sys/user/permissions")
+    @GetMapping("/user/permissions")
     public ResultJson userPermissions(Principal principal){
         User user = userService.getByUsername(principal.getName());
-        List<Long> permissonIds = userService.getPermissionIds(user.getId());
-        System.out.println(permissonIds);
-        return ResultJson.ok().data(permissonIds);
+
+        // 获取权限信息
+        String authorityInfo = userService.getUserAuthorityInfo(user.getId());// ROLE_admin,ROLE_normal,sys:user:list,....
+        String[] authorityInfoArray = StringUtils.tokenizeToStringArray(authorityInfo, ",");
+
+        // 获取导航栏信息
+//        List<SysPermission> navs = sys.getCurrentUserNav();
+
+        return ResultJson.ok().data(MapUtil.builder()
+                .put("authoritys", authorityInfoArray)
+//                .put("nav", navs)
+                .map()
+        );
     }
 
     /**

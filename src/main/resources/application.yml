@@ -16,7 +16,7 @@ spring:
     host: 127.0.0.1
     password:
     port: 6379
-    database: 0 #0库
+    database: 1 #0库
     timeout: 3000  #连接超时
 #    jedis:
 #      pool:

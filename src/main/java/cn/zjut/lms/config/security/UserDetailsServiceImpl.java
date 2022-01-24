@@ -69,7 +69,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         String authority = userService.getUserAuthorityInfo(userId);  // ROLE_admin,ROLE_normal,sys:user:list,....
 
 
-        System.out.println("1234324123412342121341234321"+AuthorityUtils.commaSeparatedStringToAuthorityList(authority));
+        System.out.println(AuthorityUtils.commaSeparatedStringToAuthorityList(authority));
         // 通过内置的工具类，把权限字符串封装成GrantedAuthority列表
         return AuthorityUtils.commaSeparatedStringToAuthorityList(authority);
 

@@ -11,7 +11,9 @@ import java.net.UnknownHostException;
  * @Point: Keep a good mood
  **/
 
-
+/**
+ * 获取请求方的IP地址
+ */
 public class IpUtil {
     public static String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;

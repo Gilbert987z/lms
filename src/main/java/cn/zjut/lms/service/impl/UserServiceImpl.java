@@ -62,7 +62,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //            authority = (String) redisUtil.get("GrantedAuthority:" + sysUser.getUsername());
 //
 //        } else {
+
+        if(user.getIsAdmin()==1){//超级管理员
             // 获取角色编码
+            //获取所有角色
+            List<SysRole> roles = sysRoleService.list();
+
+            if (roles.size() > 0) {
+                String roleCodes = roles.stream().map(r -> "ROLE_" + r.getName()).collect(Collectors.joining(","));
+                authority = roleCodes.concat(",");
+            }
+
+            // 获取菜单操作编码
+            //获取所有权限
+            List<SysPermission> permissions = sysPermissionService.list();
+
+            if (permissions.size() > 0) {
+
+                String permisssions = permissions.stream().map(p -> p.getName()).collect(Collectors.joining(","));
+
+                authority = authority.concat(permisssions);
+            }
+        }else{ //不是超级管理员
+            // 获取角色编码
+            //获取用户所拥有的角色
             List<SysRole> roles = sysRoleService.list(new QueryWrapper<SysRole>()
                     .inSql("id", "select role_id from sys_user_role where user_id = " + userId));
 
@@ -72,6 +95,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             }
 
             // 获取菜单操作编码
+            //获取用户所拥有的权限
             List<Long> permissionIds = userMapper.getPermissionIds(userId);
             if (permissionIds.size() > 0) {
 
@@ -80,6 +104,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
                 authority = authority.concat(permisssions);
             }
+        }
+
 
 //            redisUtil.set("GrantedAuthority:" + sysUser.getUsername(), authority, 60 * 60);
 //        }

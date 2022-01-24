@@ -47,6 +47,7 @@ public class User extends BaseEntity implements UserDetails   {
 
     private String avatar; //图片
     private Integer status;//状态 0禁止登录 1正常
+    private Integer isAdmin;//是否是超级管理员：1是超级管理员
     private String remark;//备注
 
     //多对多

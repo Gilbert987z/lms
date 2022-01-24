@@ -1,5 +1,6 @@
 package cn.zjut.lms.config.security;
 
+import cn.zjut.lms.config.security.filter.CaptchaFilter;
 import cn.zjut.lms.config.security.filter.TokenAuthenticationFilter;
 import cn.zjut.lms.config.security.handler.*;
 import lombok.extern.slf4j.Slf4j;
@@ -32,10 +33,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 登录token的过滤
+     * @return
+     */
+//    @Bean
+//    public TokenAuthenticationFilter jwtAuthenticationTokenFilter() {
+//        return new TokenAuthenticationFilter();
+//    }
+
     @Bean
-    public TokenAuthenticationFilter jwtAuthenticationTokenFilter() {
-        return new TokenAuthenticationFilter();
+    TokenAuthenticationFilter jwtAuthenticationTokenFilter() throws Exception {
+        TokenAuthenticationFilter jwtAuthenticationTokenFilter = new TokenAuthenticationFilter(authenticationManager());
+        return jwtAuthenticationTokenFilter;
     }
+    /**
+     * 验证码的过滤
+     */
+    @Autowired
+    CaptchaFilter captchaFilter;
 
     /**
      * 当匿名请求需要登录的接口时,拦截处理
@@ -76,7 +92,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/login",
             "/register",
             "/logout",
-            "/captcha",
+            "/captcha", //验证码
             "/favicon.ico",
 //        "/**" //全部路径都能通过
     };
@@ -125,8 +141,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
+                // 配置自定义的过滤器
                 // 添加我们的JWT过滤器
                 .and()
-                .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilter(jwtAuthenticationTokenFilter())
+                .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
