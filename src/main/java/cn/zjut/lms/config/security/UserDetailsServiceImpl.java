@@ -1,8 +1,9 @@
 package cn.zjut.lms.config.security;
 
 
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.entity.User;
 import cn.zjut.lms.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -12,13 +13,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * 用户信息的服务方法
  */
+@Slf4j
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -37,6 +37,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("loadUserByUsername方法");
+
         //username参数,是在登陆时,用户传递的表单数据username
         User user = userService.getByUsername(username);
 
@@ -68,8 +70,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // 角色(ROLE_admin)、菜单操作权限 sys:user:list
         String authority = userService.getUserAuthorityInfo(userId);  // ROLE_admin,ROLE_normal,sys:user:list,....
 
-
         System.out.println(AuthorityUtils.commaSeparatedStringToAuthorityList(authority));
+
         // 通过内置的工具类，把权限字符串封装成GrantedAuthority列表
         return AuthorityUtils.commaSeparatedStringToAuthorityList(authority);
 

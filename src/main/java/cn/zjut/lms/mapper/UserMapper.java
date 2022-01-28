@@ -1,7 +1,7 @@
 package cn.zjut.lms.mapper;
 
-import cn.zjut.lms.model.SysRole;
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.entity.SysRole;
+import cn.zjut.lms.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;

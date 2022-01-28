@@ -1,15 +1,9 @@
-package cn.zjut.lms.model;
+package cn.zjut.lms.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 import lombok.Data;
-
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * 用户和角色关联

@@ -1,29 +1,19 @@
 package cn.zjut.lms.controller;
 
 import cn.hutool.core.util.StrUtil;
-import cn.zjut.lms.common.Const;
-import cn.zjut.lms.mapper.SysRoleMapper;
-import cn.zjut.lms.model.SysRole;
-import cn.zjut.lms.model.SysRolePermission;
-import cn.zjut.lms.model.SysUserRole;
-import cn.zjut.lms.model.User;
-import cn.zjut.lms.service.SysRoleService;
-import cn.zjut.lms.service.UserService;
+import cn.zjut.lms.entity.SysRole;
+import cn.zjut.lms.entity.SysRolePermission;
+import cn.zjut.lms.entity.SysUserRole;
 import cn.zjut.lms.util.ResultJson;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;

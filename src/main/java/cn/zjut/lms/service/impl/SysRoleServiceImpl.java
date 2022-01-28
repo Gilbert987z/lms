@@ -2,7 +2,7 @@ package cn.zjut.lms.service.impl;
 
 
 import cn.zjut.lms.mapper.SysRoleMapper;
-import cn.zjut.lms.model.SysRole;
+import cn.zjut.lms.entity.SysRole;
 import cn.zjut.lms.service.SysRoleService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

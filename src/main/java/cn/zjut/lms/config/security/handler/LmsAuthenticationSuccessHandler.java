@@ -1,7 +1,7 @@
 package cn.zjut.lms.config.security.handler;
 
 import cn.zjut.lms.common.dto.AccessToken;
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.entity.User;
 import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.IpUtil;
 import cn.zjut.lms.util.JwtUtil;
@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
 /**
@@ -63,6 +64,10 @@ public class LmsAuthenticationSuccessHandler implements AuthenticationSuccessHan
         ResultJson result = ResultJson.ok().data("token", token).message("登录成功");
 
         response.setContentType("application/json;charset=UTF-8"); // 响应类型
-        response.getWriter().write(JSON.toJSONString(result));
+        PrintWriter out = response.getWriter();
+        out.write( JSON.toJSONString(result));
+
+        out.flush();
+        out.close();
     }
 }

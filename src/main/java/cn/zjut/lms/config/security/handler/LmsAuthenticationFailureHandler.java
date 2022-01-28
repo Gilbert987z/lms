@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @author 王杨帅
@@ -30,6 +31,11 @@ public class LmsAuthenticationFailureHandler implements AuthenticationFailureHan
         ResultJson result = ResultJson.error().message("登录验证失败");
 
         response.setContentType("application/json;charset=UTF-8");
-        response.getWriter().write( JSON.toJSONString(result));
+
+        PrintWriter out = response.getWriter();
+        out.write( JSON.toJSONString(result));
+
+        out.flush();
+        out.close();  //解决了登录失败还会执行登录成功的handler问题
     }
 }

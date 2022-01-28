@@ -1,10 +1,10 @@
 package cn.zjut.lms.controller;
 
 import cn.hutool.core.util.StrUtil;
-import cn.zjut.lms.model.SysPermission;
-import cn.zjut.lms.model.SysRole;
-import cn.zjut.lms.model.SysRolePermission;
-import cn.zjut.lms.model.SysUserRole;
+import cn.zjut.lms.entity.SysPermission;
+import cn.zjut.lms.entity.SysRole;
+import cn.zjut.lms.entity.SysRolePermission;
+import cn.zjut.lms.entity.SysUserRole;
 import cn.zjut.lms.util.ResultJson;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

@@ -2,9 +2,9 @@ package cn.zjut.lms.service.impl;
 
 
 import cn.zjut.lms.mapper.UserMapper;
-import cn.zjut.lms.model.SysPermission;
-import cn.zjut.lms.model.SysRole;
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.entity.SysPermission;
+import cn.zjut.lms.entity.SysRole;
+import cn.zjut.lms.entity.User;
 import cn.zjut.lms.service.SysPermissionService;
 import cn.zjut.lms.service.SysRoleService;
 import cn.zjut.lms.service.UserService;

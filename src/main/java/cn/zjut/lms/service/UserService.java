@@ -1,8 +1,8 @@
 package cn.zjut.lms.service;
 
 
-import cn.zjut.lms.model.SysRole;
-import cn.zjut.lms.model.User;
+import cn.zjut.lms.entity.SysRole;
+import cn.zjut.lms.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
