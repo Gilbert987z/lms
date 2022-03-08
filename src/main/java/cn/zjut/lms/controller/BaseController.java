@@ -23,7 +23,12 @@ public class BaseController {
 	SysUserRoleService sysUserRoleService;
 	@Autowired
 	SysRolePermissionService sysRolePermissionService;
-
+	@Autowired
+	BookService bookService;
+	@Autowired
+	BookTypeService bookTypeService;
+	@Autowired
+	BookPublisherService bookPublisherService;
 
 	//redis
 	@Autowired
