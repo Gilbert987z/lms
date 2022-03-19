@@ -104,7 +104,7 @@ public class ExcelUtil {
     /**
      * 删除excel
      */
-    public static void   deleteFile(String fileName){
+    public static void deleteFile(String fileName){
         File file = new File(fileName);
         // 路径为文件且不为空则进行删除
         if (file.isFile()&& file.exists()) {

@@ -3,6 +3,7 @@ package cn.zjut.lms.controller;
 
 import cn.hutool.core.util.StrUtil;
 import cn.zjut.lms.entity.Book;
+import cn.zjut.lms.entity.User;
 import cn.zjut.lms.util.ResultJson;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.metadata.style.WriteCellStyle;
@@ -10,6 +11,7 @@ import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.security.Principal;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -41,13 +45,20 @@ public class BookController extends BaseController {
     @GetMapping("list")
     public ResultJson list(@RequestParam(value = "name", defaultValue = "") String name,
                            @RequestParam(value = "publisherId", required = false) Integer publisherId,
-                           @RequestParam(value = "bookTypeId", required = false) Integer bookTypeId) {
+                           @RequestParam(value = "bookTypeId", required = false) Integer bookTypeId,
+                           Principal principal) {
+
+        User user = userService.getByUsername(principal.getName());
+        System.out.println(publisherId);
 
         //分页查询
 //        Page<Book> books = bookService.page(getPage(), new QueryWrapper<Book>().isNull("deleted_at")
 //                .like(StrUtil.isNotBlank(name), "name", name).orderBy(true, true, "created_at")); //按时间正排
-        QueryWrapper<Book> queryWrapper = new QueryWrapper<Book>().isNull("deleted_at")
-                .like(StrUtil.isNotBlank(name), "name", name).eq("publisher_id", publisherId).eq("book_type_id", bookTypeId).orderBy(true, true, "created_at");
+        QueryWrapper<Book> queryWrapper = new QueryWrapper<Book>()
+                //数据权限
+                .eq(user.getIsAdmin()!=1,"book.user_id", user.getId())
+                .eq(publisherId!=null,"book.publisher_id", publisherId).eq(bookTypeId!=null,"book.book_type_id", bookTypeId)
+                .like(StrUtil.isNotBlank(name), "book.name", name).isNull("book.deleted_at").orderBy(true, true, "book.created_at");//;
 
 //        Page<Book> books = bookService.page(getPage(), queryWrapper); //按时间正排
         Page<Book> books = bookService.list(getPage(), queryWrapper);
@@ -56,6 +67,8 @@ public class BookController extends BaseController {
         return ResultJson.ok().data(books);
     }
 
+
+    //todo 怎么把export和list和在一起呢？list接口有return而export没有return
     @GetMapping("export")
     public void export(
             @RequestParam(value = "action") String action,

@@ -24,7 +24,7 @@ public interface BookMapper extends BaseMapper<Book> {
     @Select({"<script>",
             "SELECT book.*,type.book_type,publish.publisher FROM book as book",
             "LEFT JOIN book_type as type ON type.id = book.book_type_id",
-            "LEFT JOIN book_publisher as publish ON publish.id = book.publisher_id",
+            "LEFT JOIN book_publisher as publish ON publish.id = book.publisher_id ${ew.customSqlSegment} ",
 //            "WHERE book.deleted_at is null AND book.book_name like concat('%',#{bookName},'%')",
 //            "<if test='publisherId!=null'>",
 //            "AND book.publisher_id = #{publisherId}",
@@ -32,6 +32,7 @@ public interface BookMapper extends BaseMapper<Book> {
 //            "<if test='bookTypeId!=null'>",
 //            "AND book.book_type_id = #{bookTypeId}",
 //            "</if>",
+
             "</script>"
     })
     Page<Book> list(Page page, @Param(Constants.WRAPPER) Wrapper wrapper);

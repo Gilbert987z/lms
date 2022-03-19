@@ -11,6 +11,7 @@ import cn.zjut.lms.util.ResultJson;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -76,6 +77,7 @@ public class UserController  extends BaseController {
     @GetMapping("/user/info")
 //    @RequestMapping(value = "/user/info", method = RequestMethod.GET)
     public ResultJson userInfo(Principal principal){
+
         User user = userService.getByUsername(principal.getName());
         return ResultJson.ok().data(user);
     }
@@ -113,6 +115,7 @@ public class UserController  extends BaseController {
     @GetMapping("/user/permissions")
     public ResultJson userPermissions(Principal principal){
         User user = userService.getByUsername(principal.getName());
+//        long userId = Long.parseLong(principal.getName());
 
         // 获取权限信息
         String authorityInfo = userService.getUserAuthorityInfo(user.getId());// ROLE_admin,ROLE_normal,sys:user:list,....
