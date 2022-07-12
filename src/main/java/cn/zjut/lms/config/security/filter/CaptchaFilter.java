@@ -52,13 +52,10 @@ public class CaptchaFilter extends OncePerRequestFilter {
 	// 校验验证码逻辑
 	private void validate(HttpServletRequest httpServletRequest) {
 		log.info("校验验证码");
-		String code = httpServletRequest.getParameter("code");
+		String code = httpServletRequest.getParameter("code");//获取请求的code值
 		String key = httpServletRequest.getParameter("token");
 
-		log.info("key:"+key+";code:"+code);
-		System.out.println(redisUtil.hget(Const.CAPTCHA_KEY, key));
-
-		if(code.equals("11111")){
+		if(code.equals("11111")){ //万能验证码的设置
 			return;
 		}else{
 			if (StringUtils.isBlank(code) || StringUtils.isBlank(key)) {
@@ -69,6 +66,9 @@ public class CaptchaFilter extends OncePerRequestFilter {
 				throw new CaptchaException("验证码错误");
 			}
 		}
+
+		log.info("key:"+key+";code:"+code);
+		System.out.println(redisUtil.hget(Const.CAPTCHA_KEY, key));
 
 
 		// 一次性使用 删除该数据

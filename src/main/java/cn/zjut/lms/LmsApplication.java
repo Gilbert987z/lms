@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@SpringBootApplication(exclude = {
 //        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
 //})
-@EnableMPP
+@EnableMPP//mybatisplus 启动扩展自定义填充功能  https://blog.51cto.com/u_13442277/2581450
 @SpringBootApplication()
 public class LmsApplication {
 

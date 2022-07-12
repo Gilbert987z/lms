@@ -66,6 +66,15 @@ public class ResultJson {
         return r;
     }
 
+//    public static ResultJson error_unauthorized() {
+//        ResultJson r = new ResultJson();
+//        r.setCode(ResultCode.Unauthorized);
+//        r.setSuccess(false);
+//
+//        r.setMessage("权限不足");
+//        return r;
+//    }
+
     //登录失败
     public static ResultJson login_error() {
         ResultJson r = new ResultJson();

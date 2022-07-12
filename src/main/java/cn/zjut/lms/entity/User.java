@@ -1,16 +1,20 @@
 package cn.zjut.lms.entity;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -44,8 +48,13 @@ public class User extends BaseEntity implements UserDetails   {
 
     private String avatar; //图片
     private Integer status;//状态 0禁止登录 1正常
-    private Integer isAdmin;//是否是超级管理员：1是超级管理员
+
+    private Integer isAdmin;//1是超级管理员；2普通管理员；3读者
+
+    @Size(max = 200, message = "备注最多可输入{max}字")
     private String remark;//备注
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime deletedAt;
 
     //多对多
     @TableField(exist = false)

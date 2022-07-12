@@ -65,7 +65,7 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
             log.info("tokenFilter放行");
 
             //*************************
-            //测试用的userId的数据
+            //测试用的userId的数据   仅测试接口时，postman使用，请求参数中带userId
             //************************
             try{
                 if(!request.getHeader("userId").isEmpty()){
@@ -98,15 +98,15 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
         log.info("token有值");
 
 
-        String username = JwtUtil.getUsernameFromToken(token);//用token获取用户名称
-        String userId = JwtUtil.getUserIdFromToken(token);//用token获取用户ID
+//        String username = JwtUtil.getUsernameFromToken(token);//用token获取用户名称
+        Long userId = JwtUtil.getUserIdFromToken(token);//用token获取用户ID
 
-        if(username==null){//因为validateToken方法中的equals方法的空指针的报错，先提前处理username
+        if(userId==null){//因为validateToken方法中的equals方法的空指针的报错，先提前处理username
             filterChain.doFilter(request, response);
             return;
         }
 
-        User authUser = userService.getByUsername(username);
+        User authUser = userService.getById(userId);
         log.info("" + authUser);
 
         //检查token是否有效

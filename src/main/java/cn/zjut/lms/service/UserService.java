@@ -16,4 +16,6 @@ public interface UserService extends IService<User> {
 
     //获取用户权限
     String getUserAuthorityInfo(Long userId);
+
+
 }

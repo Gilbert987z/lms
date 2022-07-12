@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * <p>
@@ -22,7 +26,8 @@ public class BookType extends BaseEntity {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
+    @NotBlank
+    @Size(max = 10, message = "图书类型最多可输入{max}字")
     private String bookType;
 
     /**
@@ -30,7 +35,9 @@ public class BookType extends BaseEntity {
      */
     private Integer status;
 
-    private LocalDateTime deletedAt;
+    @Size(max = 200, message = "备注最多可输入{max}字")
+    private String remark;
 
+    private LocalDateTime deletedAt;
 
 }

@@ -1,5 +1,7 @@
 package cn.zjut.lms.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -13,8 +15,11 @@ public class BaseEntity implements Serializable {
 //	private Long id;
 //
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField(value = "created_at",fill = FieldFill.INSERT)
 	private LocalDateTime createdAt;
+
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	@TableField(value = "updated_at",fill = FieldFill.INSERT_UPDATE)
 	private LocalDateTime updatedAt;
 
 }

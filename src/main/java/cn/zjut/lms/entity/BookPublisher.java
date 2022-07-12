@@ -30,7 +30,7 @@ public class BookPublisher extends BaseEntity {
      */
     private Integer status;
 
+    private String remark;
+
     private LocalDateTime deletedAt;
-
-
 }

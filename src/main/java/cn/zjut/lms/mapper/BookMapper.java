@@ -1,5 +1,6 @@
 package cn.zjut.lms.mapper;
 
+import cn.zjut.lms.common.dto.book.BookDto;
 import cn.zjut.lms.entity.Book;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -36,5 +37,17 @@ public interface BookMapper extends BaseMapper<Book> {
             "</script>"
     })
     Page<Book> list(Page page, @Param(Constants.WRAPPER) Wrapper wrapper);
+
+
+    @Select({"<script>",
+            "SELECT book.*,type.book_type,publish.publisher FROM book as book",
+            "LEFT JOIN book_type as type ON type.id = book.book_type_id",
+            "LEFT JOIN book_publisher as publish ON publish.id = book.publisher_id where book.id = #{id}",
+            "</script>"
+    })
+    Book selectById(Long id);
+
+
+
 
 }

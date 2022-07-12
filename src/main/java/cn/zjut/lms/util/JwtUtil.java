@@ -17,7 +17,8 @@ import java.util.UUID;
 public class JwtUtil {
 
     //    public static final long EXPIRE_TIME = 1000 * 60 * 30; //半小时过期
-    public static final long EXPIRE_TIME = 1000 * 1000000; //半小时过期
+    public static final long EXPIRE_TIME = 1000 * 100000; //半小时过期
+    public static final long REFEASH_TIME_PLUS =1000*20; //refreash_token比token长的时间
     public static final String HEADER_TOKEN = "Authorization";
 //    public static final long REFRESH_EXPIRE_TIME = 1000 * 30; // refresh_token的过期时间需比access_token的过期时间长。
     private static final String SECRET = "admin";
@@ -30,10 +31,12 @@ public class JwtUtil {
     /**
      * 根据负责生成JWT的token    generate
      */
-    public static String generateToken(User user) {
+    public static String generateToken(User user,long time) {
 
-
-        if (user == null || user.getId() == null || user.getUsername() == null) {
+//        if (user == null || user.getId() == null || user.getUsername() == null) {
+//            return null;
+//        }
+        if (user == null || user.getId() == null ) {
             return null;
         }
 
@@ -44,10 +47,10 @@ public class JwtUtil {
                 .setHeaderParam("alg", "HS256")
                 //payload
                 .claim("userId", user.getId())
-                .claim("username", user.getUsername())
+//                .claim("username", user.getUsername())
                 //.claim("role", "admin")
                 .setSubject(SUBJECT) //主题
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_TIME)) //过期时间
+                .setExpiration(new Date(System.currentTimeMillis() + time)) //过期时间
                 .setId(UUID.randomUUID().toString()) //jwt 编号
                 //signature
                 .signWith(SignatureAlgorithm.HS256, SECRET) //密钥
@@ -80,20 +83,20 @@ public class JwtUtil {
      * @param token 令牌
      * @return 用户名
      */
-    public static String getUsernameFromToken(String token) {
-        String username = null;
-        try {
-            Claims claims = getClaimsFromToken(token);
-
-            username = claims.get("username").toString();
-//            String subject = claims.getSubject();
-//            username = claims.getSubject();
-        } catch (Exception e) {
-//            System.out.println("e = " + e.getMessage());
-            log.info("无法从token中取出username");
-        }
-        return username;
-    }
+//    public static String getUsernameFromToken(String token) {
+//        String username = null;
+//        try {
+//            Claims claims = getClaimsFromToken(token);
+//
+//            username = claims.get("username").toString();
+////            String subject = claims.getSubject();
+////            username = claims.getSubject();
+//        } catch (Exception e) {
+////            System.out.println("e = " + e.getMessage());
+//            log.info("无法从token中取出username");
+//        }
+//        return username;
+//    }
 
     /**
      * 从令牌中获取用户ID
@@ -101,12 +104,12 @@ public class JwtUtil {
      * @param token 令牌
      * @return 用户名
      */
-    public static String getUserIdFromToken(String token) {
-        String userId = null;
+    public static Long getUserIdFromToken(String token) {
+        Long userId = null;
         try {
             Claims claims = getClaimsFromToken(token);
 
-            userId = claims.get("userId").toString();
+            userId = Long.valueOf(claims.get("userId").toString());
 //            String subject = claims.getSubject();
 //            username = claims.getSubject();
         } catch (Exception e) {
@@ -181,8 +184,10 @@ public class JwtUtil {
      */
     public static Boolean validateToken(String token, UserDetails userDetails){
         User user = (User) userDetails;
-        String username = getUsernameFromToken(token);
-        return (username.equals(user.getUsername()) && !isTokenExpired(token)); //校验username，不过期
+        Long userId = getUserIdFromToken(token);
+        return (userId.equals(user.getId()) && !isTokenExpired(token)); //校验username，不过期
+//        String username = getUsernameFromToken(token);
+//        return (username.equals(user.getUsername()) && !isTokenExpired(token)); //校验username，不过期
     }
 
 

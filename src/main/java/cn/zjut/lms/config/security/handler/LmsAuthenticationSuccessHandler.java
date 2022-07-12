@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 王杨帅
@@ -45,8 +47,9 @@ public class LmsAuthenticationSuccessHandler implements AuthenticationSuccessHan
         String username = authentication.getName();
         User user = userService.getByUsername(username);
         //生成jwt
-        String token = JwtUtil.generateToken(user);
-
+        String token = JwtUtil.generateToken(user,JwtUtil.EXPIRE_TIME);
+        //生成refresh_token
+        String refreshToken = JwtUtil.generateToken(user,JwtUtil.EXPIRE_TIME+JwtUtil.REFEASH_TIME_PLUS);
 
         long userId = user.getId();//获取到userId
         //获取IP地址
@@ -60,8 +63,14 @@ public class LmsAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
         //生成一个token对象,保存在redis中
         redisUtil.set(RedisUtil.USER_TOKEN + userId, accessToken, JwtUtil.EXPIRE_TIME);//毫秒
+        //refresh_token
+        redisUtil.set(RedisUtil.USER_TOKEN + userId, accessToken, JwtUtil.EXPIRE_TIME+JwtUtil.REFEASH_TIME_PLUS);//毫秒
 
-        ResultJson result = ResultJson.ok().data("token", token).message("登录成功");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("refreshToken", refreshToken);
+
+        ResultJson result = ResultJson.ok().data(map).message("登录成功");
 
         response.setContentType("application/json;charset=UTF-8"); // 响应类型
         PrintWriter out = response.getWriter();

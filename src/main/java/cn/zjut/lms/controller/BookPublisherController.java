@@ -22,19 +22,34 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-02-07
  */
 @RestController
-@RequestMapping("/book/publisher")
+//@RequestMapping("/book/publisher")
 public class BookPublisherController extends BaseController {
     /**
      * 分页列表
      *
      * @return
      */
-    @GetMapping("list")
+    @GetMapping("/book/publisher/list")
     public ResultJson list(@RequestParam(value = "name", defaultValue = "") String name) {
 
         //分页查询
         Page<BookPublisher> bookPublishers = bookPublisherService.page(getPage(), new QueryWrapper<BookPublisher>().isNull("deleted_at")
                 .like(StrUtil.isNotBlank(name), "name", name).orderBy(true, true, "created_at")); //按时间正排
+
+        return ResultJson.ok().data(bookPublishers);
+    }
+
+    /**
+     * 分页列表
+     *
+     * @return
+     */
+    @GetMapping("/index/book/publisher/list")
+    public ResultJson index_list() {
+
+        //分页查询
+        Page<BookPublisher> bookPublishers = bookPublisherService.page(getPage(), new QueryWrapper<BookPublisher>().isNull("deleted_at")
+                .orderBy(true, true, "created_at")); //按时间正排
 
         return ResultJson.ok().data(bookPublishers);
     }

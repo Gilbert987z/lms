@@ -94,6 +94,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/logout",
             "/captcha", //验证码
             "/favicon.ico",
+            "/index/**",//index接口公开，不用校验token
 //        "/**" //全部路径都能通过
     };
 

@@ -29,6 +29,8 @@ public class BaseController {
 	BookTypeService bookTypeService;
 	@Autowired
 	BookPublisherService bookPublisherService;
+	@Autowired
+	BookBorrowLogService bookBorrowLogService;
 
 	//redis
 	@Autowired

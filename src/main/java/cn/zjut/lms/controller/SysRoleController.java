@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("/sys/role")
+@RequestMapping("/admin/sys/role")
 public class SysRoleController extends BaseController {
 //    @Autowired
 //    SysRoleMapper sysRoleMapper;
@@ -43,7 +43,7 @@ public class SysRoleController extends BaseController {
      *
      * @return
      */
-    @PreAuthorize("hasAuthority('sys.role.list')")
+//    @PreAuthorize("hasAuthority('sys.role.list')")  //会匹配登录时authentication中是否有权限
     @GetMapping("list")
     public ResultJson list(@RequestParam(value = "name", defaultValue = "") String name) {
 
@@ -91,16 +91,20 @@ public class SysRoleController extends BaseController {
             return ResultJson.validation_error().data("fieldErrors", bindingResult.getFieldError().getDefaultMessage()); //输出错误信息
         }
 
-        long count = sysRoleService.count(new QueryWrapper<SysRole>().isNull("deleted_at").eq("name", sysRole.getName()));
+        long count = sysRoleService.count(new QueryWrapper<SysRole>().ne("id",sysRole.getId()).eq("name", sysRole.getName()).isNull("deleted_at")); //获取除了自己以外的
         if (count > 0) {
-            String name = sysRoleService.getOne(new QueryWrapper<SysRole>().eq("id",sysRole.getId()).select("name")).getName(); //SELECT name FROM sys_role WHERE (id = ?)
-            if(name.equals(sysRole.getName())){ //修改时，名称不变
-                return ResultJson.ok().data(sysRole);
-            }
+//            String name = sysRoleService.getOne(new QueryWrapper<SysRole>().eq("id",sysRole.getId()).select("name")).getName(); //SELECT name FROM sys_role WHERE (id = ?)
+//            if(name.equals(sysRole.getName())){ //修改时，名称不变
+//                return ResultJson.ok().data(sysRole);
+//            }
             return ResultJson.error().message("角色名称已被占用");
         }
+        long codeCount = sysRoleService.count(new QueryWrapper<SysRole>().ne("id",sysRole.getId()).eq("code", sysRole.getName()).isNull("deleted_at")); //获取除了自己以外的
+        if (codeCount > 0) {
+            return ResultJson.error().message("唯一编码已被占用");
+        }
         //设置当前的修改时间
-        sysRole.setUpdatedAt(LocalDateTime.now());
+//        sysRole.setUpdatedAt(LocalDateTime.now());
 
         sysRoleService.updateById(sysRole);
 
@@ -136,4 +140,36 @@ public class SysRoleController extends BaseController {
 
         return ResultJson.ok().message("删除成功");
     }
+
+    @Transactional
+    @PostMapping("/permission/edit")
+//    @PreAuthorize("hasAuthority('sys:role:perm')")
+    public ResultJson info(@RequestBody SysRole sysrole) {
+        Long[] menuIds = sysrole.getPermissionIds().toArray(new Long[0]); //将动态数组转化为静态数组
+        Long roleId = sysrole.getId();
+
+
+
+
+        List<SysRolePermission> sysRolePermissions = new ArrayList<>();
+
+        Arrays.stream(menuIds).forEach(menuId -> {
+            SysRolePermission rolePermission = new SysRolePermission();
+            rolePermission.setPermissionId(menuId);
+            rolePermission.setRoleId(roleId);
+
+            sysRolePermissions.add(rolePermission);
+        });
+
+        // 先删除原来的记录，再保存新的
+        sysRolePermissionService.remove(new QueryWrapper<SysRolePermission>().eq("role_id", roleId));
+        sysRolePermissionService.saveBatch(sysRolePermissions); //批量插入
+
+        // 删除缓存
+//        userService.clearUserAuthorityInfoByRoleId(roleId); //处理redis中的数据？以后再处理
+
+        return ResultJson.ok().data(menuIds);
+    }
+
+
 }
