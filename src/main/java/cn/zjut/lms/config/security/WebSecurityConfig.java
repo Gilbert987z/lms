@@ -95,6 +95,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/captcha", //验证码
             "/favicon.ico",
             "/index/**",//index接口公开，不用校验token
+            "/file/**",
+            "/image/**", //上传后图片映射的路径
 //        "/**" //全部路径都能通过
     };
 
@@ -108,6 +110,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login") // 登录请求路径
                 .successHandler(lmsAuthenticationSuccessHandler) // 验证成功处理器
                 .failureHandler(lmsAuthenticationFailureHandler) // 验证失败处理器
+
 
                 //登出处理
                 .and()
@@ -147,5 +150,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilter(jwtAuthenticationTokenFilter())
                 .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class);
+//                .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

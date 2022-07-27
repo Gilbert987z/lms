@@ -2,6 +2,7 @@ package cn.zjut.lms.controller;
 
 import cn.hutool.core.map.MapUtil;
 import cn.zjut.lms.common.Const;
+import cn.zjut.lms.controller.BaseController;
 import cn.zjut.lms.entity.User;
 import cn.zjut.lms.util.JwtUtil;
 import cn.zjut.lms.util.RedisUtil;

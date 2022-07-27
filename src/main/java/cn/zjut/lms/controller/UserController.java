@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -33,10 +34,11 @@ import java.util.*;
 @Slf4j
 @RestController
 //@RequestMapping("/sys/user")
-public class UserController  extends BaseController {
+public class UserController extends BaseController {
 
     /**
      * 注册
+     *
      * @param user
      * @param bindingResult
      * @return
@@ -50,8 +52,8 @@ public class UserController  extends BaseController {
         String username = user.getUsername();
         String mobile = user.getMobile();
 
-        long countUsername = userService.count(new QueryWrapper<User>().eq("username",username));
-        long countMobile = userService.count(new QueryWrapper<User>().eq("mobile",mobile));
+        long countUsername = userService.count(new QueryWrapper<User>().eq("username", username).isNull("deleted_at"));//排除已经删除了的
+        long countMobile = userService.count(new QueryWrapper<User>().eq("mobile", mobile).isNull("deleted_at"));
 
         if (countUsername > 0) { //查重校验
             return ResultJson.error().message("用户名已被占用");
@@ -77,18 +79,20 @@ public class UserController  extends BaseController {
             }
         }
     }
+
     /**
      * 获取用户信息接口
+     *
      * @param principal
      * @return
      */
     @GetMapping("/user/info")
 //    @RequestMapping(value = "/user/info", method = RequestMethod.GET)
-    public ResultJson userInfo(Principal principal){
+    public ResultJson userInfo(Principal principal) {
 
 //        User user = userService.getByUsername(principal.getName());
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("id","username","avatar","mobile","is_admin","status","created_at").eq("username",principal.getName());
+        queryWrapper.select("id", "username", "avatar", "mobile", "is_admin", "status", "created_at").eq("username", principal.getName());
         User user = userService.getOne(queryWrapper);
         return ResultJson.ok().data(user);
     }
@@ -120,11 +124,12 @@ public class UserController  extends BaseController {
 
     /**
      * 获取用户的权限
+     *
      * @param principal
      * @return
      */
     @GetMapping("/user/permissions")
-    public ResultJson userPermissions(Principal principal){
+    public ResultJson userPermissions(Principal principal) {
         User user = userService.getByUsername(principal.getName());
 //        long userId = Long.parseLong(principal.getName());
 
@@ -136,11 +141,12 @@ public class UserController  extends BaseController {
 //        List<SysPermission> navs = sys.getCurrentUserNav();
 
         return ResultJson.ok().data(MapUtil.builder()
-                .put("authoritys", authorityInfoArray)
+                        .put("authoritys", authorityInfoArray)
 //                .put("nav", navs)
-                .map()
+                        .map()
         );
     }
+
     @PostMapping("/user/update/password")
     public ResultJson updatePass(@Validated @RequestBody PasswordDto passDto, Principal principal) {
 
@@ -159,13 +165,13 @@ public class UserController  extends BaseController {
     }
 
     @PostMapping("/user/update/username")
-    public ResultJson updateUsername(@Validated @RequestBody Map<String,Object> map, Principal principal) {
+    public ResultJson updateUsername(@Validated @RequestBody Map<String, Object> map, Principal principal) {
 
         User user = userService.getByUsername(principal.getName());
 
-        try{
+        try {
             user.setUsername((String) map.get("username"));
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResultJson.error().message("修改用户名失败");
         }
 
@@ -177,13 +183,13 @@ public class UserController  extends BaseController {
     }
 
     @PostMapping("/user/update/mobile")
-    public ResultJson updateMobile(@Validated @RequestBody Map<String,Object> map, Principal principal) {
+    public ResultJson updateMobile(@Validated @RequestBody Map<String, Object> map, Principal principal) {
 
         User user = userService.getByUsername(principal.getName());
 
-        try{
+        try {
             user.setMobile((String) map.get("mobile"));
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResultJson.error().message("修改手机号名失败");
         }
 
@@ -193,14 +199,15 @@ public class UserController  extends BaseController {
 
         return ResultJson.ok().message("修改手机号成功");
     }
+
     @PostMapping("/user/update/avatar")
-    public ResultJson updateAvatar(@Validated @RequestBody Map<String,Object> map, Principal principal) {
+    public ResultJson updateAvatar(@Validated @RequestBody Map<String, Object> map, Principal principal) {
 
         User user = userService.getByUsername(principal.getName());
 
-        try{
+        try {
             user.setAvatar((String) map.get("avatar"));
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResultJson.error().message("修改头像失败");
         }
 
@@ -210,11 +217,14 @@ public class UserController  extends BaseController {
 
         return ResultJson.ok().message("修改头像成功");
     }
+
     /**
      * 用户详情
+     *
      * @param id
      * @return
      */
+    @PreAuthorize("hasAuthority('sys.user.detail')")
     @GetMapping("/admin/sys/user/detail")
     public ResultJson userInfo(@RequestParam("id") Long id) {
 
@@ -228,8 +238,10 @@ public class UserController  extends BaseController {
 
     /**
      * 分页列表
+     *
      * @return
      */
+    @PreAuthorize("hasAuthority('sys.user.list')")
     @GetMapping("/admin/sys/user/list")
     public ResultJson list(@RequestParam(value = "username", defaultValue = "") String username) {
 
@@ -244,7 +256,7 @@ public class UserController  extends BaseController {
 
         System.out.println(pageData.getRecords());
         //forEach是list的方法，遍历列表；u是lambda的参数,取出user;
-        pageData.getRecords().forEach(u->{
+        pageData.getRecords().forEach(u -> {
             System.out.println(u);
             System.out.println(sysRoleService.listRolesByUserId(u.getId()));
             u.setSysRoles(sysRoleService.listRolesByUserId(u.getId())); //取出用户所有角色，并设值
@@ -255,9 +267,11 @@ public class UserController  extends BaseController {
 
     /**
      * 添加
+     *
      * @param
      * @return
      */
+    @PreAuthorize("hasAuthority('sys.user.save')")
     @PostMapping("/admin/sys/user/save")
     public ResultJson save(@Validated @RequestBody User user, BindingResult bindingResult) {
         System.out.println(user);
@@ -266,7 +280,7 @@ public class UserController  extends BaseController {
         }
 
         int isAdmin = user.getIsAdmin();
-        if(isAdmin!=2 && isAdmin!=3){ //不等于2和3
+        if (isAdmin != 2 && isAdmin != 3) { //不等于2和3
             return ResultJson.ok().message("输入的身份错误");
         }
 
@@ -289,11 +303,12 @@ public class UserController  extends BaseController {
         return ResultJson.ok().data(user);
     }
 
+    @PreAuthorize("hasAuthority('sys.user.update')")
     @PostMapping("/admin/sys/user/update")
     public ResultJson update(@Validated @RequestBody UserEditDto userEditDto) {
 
-        String jsonObject= JSON.toJSONString(userEditDto);//对象转json
-        User user=JSON.parseObject(jsonObject, User.class);//json转对象
+        String jsonObject = JSON.toJSONString(userEditDto);//对象转json
+        User user = JSON.parseObject(jsonObject, User.class);//json转对象
 
         user.setUpdatedAt(LocalDateTime.now());
 
@@ -306,15 +321,17 @@ public class UserController  extends BaseController {
     /**
      * 分配角色
      * 只需要操作user_role的关联表就可以实现；增或删
+     *
      * @param
      * @return
      */
     @Transactional
+    @PreAuthorize("hasAuthority('sys.user.role.update')")
     @PostMapping("/admin/sys/user/role/update")
     public ResultJson rolePerm(@RequestBody UserRoleDto userRoleDto) {
         Long userId = userRoleDto.getUserId();
         User user = userService.getById(userId);
-        if(user.getIsAdmin()==1 || user.getIsAdmin()==3){
+        if (user.getIsAdmin() == 1 || user.getIsAdmin() == 3) {
             return ResultJson.error().message("无法分配角色");
         }
 
@@ -405,7 +422,7 @@ public class UserController  extends BaseController {
 //        return ResultJson.ok();
 //    }
 
-//    @Transactional
+    //    @Transactional
 //    @PostMapping("/admin/sys/user/delete")
 //    public ResultJson delete(@RequestBody Long[] ids) {
 //
@@ -421,48 +438,42 @@ public class UserController  extends BaseController {
 //
 //        return ResultJson.ok();
 //    }
-@Transactional
-@PostMapping("/admin/sys/user/delete")
-public ResultJson delete(@RequestBody Long id) {
+    @Transactional
+    @PreAuthorize("hasAuthority('sys.user.delete')")
+    @PostMapping("/admin/sys/user/delete")
+    public ResultJson delete(@RequestBody Long id) {
 
 
-    User user = userService.getById(id);
-    if(user.getIsAdmin()==1){
-        return ResultJson.error().message("超级管理员不能被注销");
-    }
-    user.setDeletedAt(LocalDateTime.now()); //设置删除时间
-    boolean result =  userService.updateById(user);//软删除
+        User user = userService.getById(id);
+        if (user.getIsAdmin() == 1) {
+            return ResultJson.error().message("超级管理员不能被注销");
+        }
+        user.setDeletedAt(LocalDateTime.now()); //设置删除时间
+        boolean result = userService.updateById(user);//软删除
 
-    if (result) {
-        return ResultJson.ok().message("注销成功");
-    } else {
-        return ResultJson.error().message("数据不存在");
-    }
+        if (result) {
+            return ResultJson.ok().message("注销成功");
+        } else {
+            return ResultJson.error().message("数据不存在");
+        }
 //        userService.removeByIds(Arrays.asList(ids));  //硬删除
-    //todo 需要关联删除就要用到事务
+        //todo 需要关联删除就要用到事务
 //        sysUserRoleService.remove(new QueryWrapper<SysUserRole>().in("user_id", ids));
 
 //    return ResultJson.ok();
-}
+    }
 
     /**
      * 修改状态
+     *
      * @return
      */
-    @PostMapping("/admin/sys/user/changStatus")
-    public ResultJson changStatus(@Valid @RequestBody User userdto, BindingResult bindingResult) {
-            if (bindingResult.hasErrors()) {
-                Map<String, Object> fieldErrorsMap = new HashMap<>();
+    @PreAuthorize("hasAuthority('sys.user.switch')")
+    @PostMapping("/admin/sys/user/switch")
+    public ResultJson changStatus(@RequestBody User userdto) {
 
-                for (FieldError fieldError : bindingResult.getFieldErrors()) {
-                    fieldErrorsMap.put(fieldError.getField(), fieldError.getDefaultMessage());
-                }
-
-                return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
-            } else {
-
-                User user = userService.getById(userdto.getId());
-                int status = user.getStatus();
+        User user = userService.getById(userdto.getId());
+        int status = userdto.getStatus(); //获取到的status
 
 //                if (bookSearch.getDeletedAt()!=null){ //不能操作软删除的数据
 //                    return ResultJson.error().message("无法操作该数据");
@@ -473,21 +484,27 @@ public ResultJson delete(@RequestBody Long id) {
 //                if(status>1 || status<0){
 //                    return ResultJson.error().message("状态参数异常");
 //                }
-                if(status==user.getStatus()){
-                    return ResultJson.error().message("已经操作成功，请勿重复操作");
-                }
+        if (status == user.getStatus()) {
+            return ResultJson.error().message("已经操作成功，请勿重复操作");
+        }
+        if(status>1 || status<0){
+            return ResultJson.error().message("状态参数异常");
+        }
+        if(user.getIsAdmin()== 1){//超级管理员账户无法封禁
+            return ResultJson.error().message("无法操作");
+        }
 
-                UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
-                updateWrapper.set("status",user.getStatus()).eq("id",user.getId()); //UPDATE user SET status=? WHERE (id = ?)
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.set("status", status).eq("id", user.getId()); //UPDATE user SET status=? WHERE (id = ?)
 
-                boolean result = userService.update(null, updateWrapper);
+        boolean result = userService.update(null, updateWrapper);
 
 //            boolean result = bookService.updateById(book);//根据id修改
-                if (result) {
-                    return ResultJson.ok().message("修改成功");
-                } else {
-                    return ResultJson.error().message("数据不存在");
-                }
-            }
+        if (result) {
+            return ResultJson.ok().message("修改成功");
+        } else {
+            return ResultJson.error().message("数据不存在");
+        }
+
     }
 }

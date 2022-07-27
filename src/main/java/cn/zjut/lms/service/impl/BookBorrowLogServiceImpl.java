@@ -15,6 +15,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -51,7 +52,10 @@ public class BookBorrowLogServiceImpl extends ServiceImpl<BookBorrowLogMapper, B
 //
 //            bookBorrowLog.setStatus(4);//4:未及时归还'
             UpdateWrapper<BookBorrowLog> updateWrapper = new UpdateWrapper<>();
-            updateWrapper.set("status",4).eq("id",id); //UPDATE BookBorrowLog SET status=? WHERE (id = ?)
+            updateWrapper.set("status",4);
+            updateWrapper.set("updated_at", LocalDateTime.now());
+            updateWrapper.set("pass_time", LocalDateTime.now());
+            updateWrapper.eq("id",id); //UPDATE BookBorrowLog SET status=? WHERE (id = ?)
             int result = bookBorrowLogMapper.update(null, updateWrapper);
 
 //            int result = bookBorrowLogMapper.updateById(bookBorrowLog);

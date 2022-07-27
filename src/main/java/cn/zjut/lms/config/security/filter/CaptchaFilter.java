@@ -40,7 +40,7 @@ public class CaptchaFilter extends OncePerRequestFilter {
 				// 校验验证码
 				validate(httpServletRequest);
 			} catch (CaptchaException e) {
-
+				log.info(String.valueOf(e));
 				// 交给认证失败处理器
                 lmsAuthenticationFailureHandler.onAuthenticationFailure(httpServletRequest, httpServletResponse, e);
 			}

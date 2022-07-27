@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/admin/sys/permission")
 public class SysPermissionController extends BaseController {
 
+    @PreAuthorize("hasAuthority('sys.permission.info')")
     @GetMapping("info")
     public ResultJson info(@RequestParam(value = "id") Long id) {
 
@@ -64,6 +66,7 @@ public class SysPermissionController extends BaseController {
      *
      * @return
      */
+    @PreAuthorize("hasAuthority('sys.permission.list')")
     @GetMapping("list")
     public ResultJson list() {
 
@@ -81,6 +84,7 @@ public class SysPermissionController extends BaseController {
      * @param
      * @return
      */
+    @PreAuthorize("hasAuthority('sys.permission.save')")
     @PostMapping("save")
     public ResultJson save(@Validated @RequestBody SysPermission sysPermission, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) { //数据校验
@@ -100,7 +104,7 @@ public class SysPermissionController extends BaseController {
 
         return ResultJson.ok().data(sysPermission);
     }
-
+    @PreAuthorize("hasAuthority('sys.permission.update')")
     @PostMapping("update")
     public ResultJson update(@Validated @RequestBody SysPermission sysPermission, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) { //数据校验
@@ -115,6 +119,10 @@ public class SysPermissionController extends BaseController {
 //            }
             return ResultJson.error().message("角色名称已被占用");
         }
+        if(sysPermission.getStatus()==0){//禁用操作，删除中间表中的权限
+            sysRolePermissionService.remove(new QueryWrapper<SysRolePermission>().in("permission_id", sysPermission.getId()));
+        }
+
         //设置当前的修改时间
 //        sysPermission.setUpdatedAt(LocalDateTime.now());
 
@@ -125,7 +133,7 @@ public class SysPermissionController extends BaseController {
 
         return ResultJson.ok().data(sysPermission);
     }
-
+    @PreAuthorize("hasAuthority('sys.permission.delete')")
     @PostMapping("delete")
     @Transactional //添加事务
     public ResultJson delete(@RequestBody Long[] ids) {

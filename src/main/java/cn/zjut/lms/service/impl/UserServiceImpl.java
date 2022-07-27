@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -76,10 +76,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             // 获取菜单操作编码
             //获取所有权限
             List<SysPermission> permissions = sysPermissionService.list();
+//            List<SysPermission> permissions = sysPermissionService.list(new QueryWrapper<SysPermission>().isNull("deleted_at"));
 
             if (permissions.size() > 0) {
 
-                String permisssions = permissions.stream().map(p -> p.getName()).collect(Collectors.joining(","));
+                String permisssions = permissions.stream().map(p -> p.getPerms()).collect(Collectors.joining(","));//获取权限
 
                 authority = authority.concat(permisssions);
             }
@@ -100,12 +101,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             if (permissionIds.size() > 0) {
 
                 List<SysPermission> permissions = sysPermissionService.listByIds(permissionIds);
-                String permisssions = permissions.stream().map(p -> p.getName()).collect(Collectors.joining(","));
+                String permisssions = permissions.stream().map(p -> p.getPerms()).collect(Collectors.joining(","));
 
                 authority = authority.concat(permisssions);
             }
         }
 
+
+//        Map<String,Object> map = new HashMap<>();
+//
+//        map.put("authoritys",permisssions);
+//        map.put("roles",authority;
 
 //            redisUtil.set("GrantedAuthority:" + sysUser.getUsername(), authority, 60 * 60);
 //        }

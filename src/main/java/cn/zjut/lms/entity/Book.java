@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 /**
@@ -58,16 +59,20 @@ public class Book extends BaseEntity {
     /**
      * 库存
      */
+
+    @Min(value = 0, message = "图书库存必须大于等于0")
     private Integer inventory;
 
     /**
      * 总数
      */
+    @Min(value = 0, message = "图书总数必须大于等于0")
     private Integer total;
 
     /**
      * 价格
      */
+    @Min(value = 0, message = "图书价格必须大于等于0")
     private Double price;
 
     /**

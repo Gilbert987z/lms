@@ -34,7 +34,7 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true  #java代码实体类驼峰式命名，数据库表字段以“_”分割，查询语句映射出问题解决
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #显示执行的sql语句
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #显示执行的sql语句
 
 
 #jwt

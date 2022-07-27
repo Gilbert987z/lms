@@ -18,7 +18,7 @@ public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionMapper, S
     @Override
     public List<SysPermission> tree() {
         // 获取所有菜单信息
-        List<SysPermission> SysPermissions = this.list(new QueryWrapper<SysPermission>().orderByAsc("orderNum"));
+        List<SysPermission> SysPermissions = this.list(new QueryWrapper<SysPermission>().orderByAsc("orderNum").isNull("deleted_at"));
 
         // 转成树状结构
         return buildTreeMenu(SysPermissions);

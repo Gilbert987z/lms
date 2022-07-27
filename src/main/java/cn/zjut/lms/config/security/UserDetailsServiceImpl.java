@@ -47,6 +47,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("用户未找到：'%s'", username));
         }
 
+
+
         //获取用户的权限
         Collection<GrantedAuthority> authList = getUserAuthorities(user.getId());
 

@@ -24,14 +24,18 @@ import java.util.stream.Collectors;
 public class SysRoleController extends BaseController {
 //    @Autowired
 //    SysRoleMapper sysRoleMapper;
-
+    @PreAuthorize("hasAuthority('sys.role.info')")
     @GetMapping("info")
     public ResultJson info(@RequestParam(value = "id") Long id) {
 
         SysRole sysRole = sysRoleService.getById(id);
 
+
+        QueryWrapper<SysRolePermission> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role_id", id);
+//        queryWrapper.eq("status", 1); //展示正常的权限
         // 获取角色相关联的菜单id
-        List<SysRolePermission> rolePermissions = sysRolePermissionService.list(new QueryWrapper<SysRolePermission>().eq("role_id", id));
+        List<SysRolePermission> rolePermissions = sysRolePermissionService.list(queryWrapper);
         List<Long> permissionIds = rolePermissions.stream().map(p -> p.getPermissionId()).collect(Collectors.toList());
 
         sysRole.setPermissionIds(permissionIds);
@@ -43,17 +47,22 @@ public class SysRoleController extends BaseController {
      *
      * @return
      */
-//    @PreAuthorize("hasAuthority('sys.role.list')")  //会匹配登录时authentication中是否有权限
+    @PreAuthorize("hasAuthority('sys.role.list')")  //会匹配登录时authentication中是否有权限
     @GetMapping("list")
-    public ResultJson list(@RequestParam(value = "name", defaultValue = "") String name) {
-
-        //分页查询
+    public ResultJson list(@RequestParam(value = "name", defaultValue = "") String name,
+                           @RequestParam(value = "type", defaultValue = "") String type) {
+        if(type.equals("tree")){
+            List<SysRole> roles = sysRoleService.list(new QueryWrapper<SysRole>().isNull("deleted_at")
+                    .orderBy(true, true, "created_at")); //按时间正排
+            return ResultJson.ok().data(roles);
+        }else {
+            //分页查询
 //        Page<SysRole> roles = sysRoleService.page(new Page<>(page, size), new QueryWrapper<SysRole>().isNull("deleted_at")
 //                .like(StrUtil.isNotBlank(name), "name", name));
-        Page<SysRole> roles = sysRoleService.page(getPage(), new QueryWrapper<SysRole>().isNull("deleted_at")
-                .like(StrUtil.isNotBlank(name), "name", name).orderBy(true, true, "created_at")); //按时间正排
-
-        return ResultJson.ok().data(roles);
+            Page<SysRole> roles = sysRoleService.page(getPage(), new QueryWrapper<SysRole>().isNull("deleted_at")
+                    .like(StrUtil.isNotBlank(name), "name", name).orderBy(true, true, "created_at")); //按时间正排
+            return ResultJson.ok().data(roles);
+        }
     }
 
     /**
@@ -62,6 +71,7 @@ public class SysRoleController extends BaseController {
      * @param
      * @return
      */
+    @PreAuthorize("hasAuthority('sys.role.save')")
     @PostMapping("save")
     public ResultJson save(@Validated @RequestBody SysRole sysrole, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) { //数据校验
@@ -85,6 +95,7 @@ public class SysRoleController extends BaseController {
         return ResultJson.ok().data(sysrole);
     }
 
+    @PreAuthorize("hasAuthority('sys.role.update')")
     @PostMapping("update")
     public ResultJson update(@Validated @RequestBody SysRole sysRole, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) { //数据校验
@@ -103,6 +114,11 @@ public class SysRoleController extends BaseController {
         if (codeCount > 0) {
             return ResultJson.error().message("唯一编码已被占用");
         }
+
+        if(sysRole.getStatus()==0){//禁用操作，删除中间表中的权限
+            sysUserRoleService.remove(new QueryWrapper<SysUserRole>().in("role_id", sysRole.getId()));
+        }
+
         //设置当前的修改时间
 //        sysRole.setUpdatedAt(LocalDateTime.now());
 
@@ -113,7 +129,7 @@ public class SysRoleController extends BaseController {
 
         return ResultJson.ok().data(sysRole);
     }
-
+    @PreAuthorize("hasAuthority('sys.role.delete')")
     @PostMapping("delete")
     @Transactional
     public ResultJson delete(@RequestBody Long[] ids) {
@@ -142,14 +158,16 @@ public class SysRoleController extends BaseController {
     }
 
     @Transactional
+    @PreAuthorize("hasAuthority('sys.role.permission.edit')")
     @PostMapping("/permission/edit")
-//    @PreAuthorize("hasAuthority('sys:role:perm')")
-    public ResultJson info(@RequestBody SysRole sysrole) {
+    public ResultJson permissionEdit(@RequestBody SysRole sysrole) { //前端传值{"id":1,"permissionIds":[2,9,10,11,24,23,26,1]}
         Long[] menuIds = sysrole.getPermissionIds().toArray(new Long[0]); //将动态数组转化为静态数组
         Long roleId = sysrole.getId();
 
-
-
+        SysRole sysRole = sysRoleService.getById(roleId);
+        if(sysRole.getStatus() == 0){
+            return ResultJson.error().message("该角色已被禁用，无法操作！");
+        }
 
         List<SysRolePermission> sysRolePermissions = new ArrayList<>();
 

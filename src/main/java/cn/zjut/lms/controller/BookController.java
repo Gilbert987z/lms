@@ -15,6 +15,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -45,6 +46,7 @@ public class BookController extends BaseController {
      *
      * @return
      */
+    @PreAuthorize("hasAuthority('book.list')")
     @GetMapping("/admin/book/list")
     public ResultJson list(@RequestParam(value = "name", defaultValue = "") String name,
                            @RequestParam(value = "publisherId", required = false) Integer publisherId,
@@ -82,12 +84,14 @@ public class BookController extends BaseController {
 
 
     //查询单个数据
+    @PreAuthorize("hasAuthority('book.detail')")
     @GetMapping("/admin/book/detail")
     public ResultJson detail(@RequestParam(value = "id") Long id) {
         Book book = bookService.getById(id);
         return ResultJson.ok().data(book);
     }
 
+    @PreAuthorize("hasAuthority('book.create')")
     @PostMapping(value = "/admin/book/create", consumes = "application/json")
     public ResultJson add(@Valid @RequestBody Book book, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
@@ -99,6 +103,11 @@ public class BookController extends BaseController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
+
+            if(book.getInventory() > book.getTotal()){
+                return ResultJson.error().message("图书库存不能大于图书总数！");
+            }
+
             book.setUserId(Long.parseLong(principal.getName()));
             boolean result = bookService.save(book);
             if (result) {
@@ -111,6 +120,7 @@ public class BookController extends BaseController {
         }
     }
     //修改
+    @PreAuthorize("hasAuthority('book.update')")
     @PostMapping(value = "/admin/book/update", consumes = "application/json")
     public ResultJson update(@Valid @RequestBody Book book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -122,6 +132,11 @@ public class BookController extends BaseController {
 
             return ResultJson.validation_error().data("fieldErrors", fieldErrorsMap);
         } else {
+
+            if(book.getInventory() > book.getTotal()){
+                return ResultJson.error().message("图书库存不能大于图书总数！");
+            }
+
             boolean result = bookService.updateById(book);
 
             if (result) {
@@ -171,6 +186,7 @@ public class BookController extends BaseController {
 //        }
 //    }
     //上下架
+    @PreAuthorize("hasAuthority('book.switch')")
     @PostMapping(value = "/admin/book/switch", consumes = "application/json")
     public ResultJson switchBookStatus(@Valid @RequestBody Book book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -186,6 +202,7 @@ public class BookController extends BaseController {
             Book bookSearch = bookService.getById(book.getId());
             int status = book.getStatus();
 
+
             if (bookSearch.getDeletedAt()!=null){ //不能操作软删除的数据
                 return ResultJson.error().message("无法操作该数据");
             }
@@ -197,6 +214,12 @@ public class BookController extends BaseController {
             }
             if(status==bookSearch.getStatus()){
                 return ResultJson.error().message("已经操作成功，请勿重复操作");
+            }
+            if(bookTypeService.getById(bookSearch.getBookTypeId()).getStatus() == 0){
+                return ResultJson.error().message("该图书类型已封禁，无法操作");
+            }
+            if(bookPublisherService.getById(bookSearch.getPublisherId()).getStatus() == 0){
+                return ResultJson.error().message("该图书出版社已封禁，无法操作");
             }
 
             UpdateWrapper<Book> updateWrapper = new UpdateWrapper<>();
@@ -214,6 +237,7 @@ public class BookController extends BaseController {
     }
 
     //根据id删除  批量删除
+    @PreAuthorize("hasAuthority('book.delete')")
     @PostMapping(value = "/admin/book/delete", consumes = "application/json")
     public ResultJson deleteById(@RequestBody Long[] ids) {
 //        Long id = book.getId();
@@ -251,7 +275,7 @@ public class BookController extends BaseController {
 //        Page<Book> books = bookService.page(getPage(), new QueryWrapper<Book>().isNull("deleted_at")
 //                .like(StrUtil.isNotBlank(name), "name", name).orderBy(true, true, "created_at")); //按时间正排
         QueryWrapper<Book> queryWrapper = new QueryWrapper<Book>()
-//                .eq("book.status" ,0) 下架的图书不展示？？
+                .eq("book.status" ,1) //下架的图书不展示？？
                 .eq(publisherId != null, "book.publisher_id", publisherId).eq(bookTypeId != null, "book.book_type_id", bookTypeId)
                 .like(StrUtil.isNotBlank(name), "book.name", name).isNull("book.deleted_at").orderBy(true, true, "book.created_at");//;
 
@@ -292,6 +316,7 @@ public class BookController extends BaseController {
 
 
     //todo 怎么把export和list和在一起呢？list接口有return而export没有return
+    @PreAuthorize("hasAuthority('book.export')")
     @GetMapping("/admin/book/export")
     public void export(
             @RequestParam(value = "action") String action,

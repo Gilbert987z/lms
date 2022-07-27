@@ -2,6 +2,7 @@ package cn.zjut.lms.config.security.filter;
 
 
 import cn.zjut.lms.config.security.UserDetailsServiceImpl;
+import cn.zjut.lms.config.security.handler.LmsAuthenticationFailure2Handler;
 import cn.zjut.lms.entity.User;
 import cn.zjut.lms.service.UserService;
 import cn.zjut.lms.util.JwtUtil;
@@ -42,6 +43,9 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    LmsAuthenticationFailure2Handler lmsAuthenticationFailure2andler;
 
     public TokenAuthenticationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
@@ -112,6 +116,14 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
         //检查token是否有效
         if (JwtUtil.validateToken(token, authUser)) {//有效
             log.info("token有效");
+
+
+            //用户封禁操作
+            if (authUser.getStatus() == 0) { //被封禁
+                // 交给认证失败处理器
+                lmsAuthenticationFailure2andler.onAuthenticationFailure(request, response);
+            }
+
 
 //            //通过用户信息得到UserDetails
 //            List<SimpleGrantedAuthority> list = new ArrayList<>();

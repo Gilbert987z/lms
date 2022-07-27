@@ -42,12 +42,12 @@ public class GlobalExceptionHandler {
     }
 
     //	@ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseStatus(HttpStatus.OK)
-    @ExceptionHandler(value = RuntimeException.class)
-    public ResultJson handler(RuntimeException e) {
-        log.error("运行时异常：----------------{}", e.getMessage());
-        return ResultJson.error().data(e.getMessage());
-    }
+//    @ResponseStatus(HttpStatus.OK)
+//    @ExceptionHandler(value = RuntimeException.class)
+//    public ResultJson handler(RuntimeException e) {
+//        log.error("运行时异常：----------------{}", e.getMessage());
+//        return ResultJson.error().data(e.getMessage());
+//    }
 
 //    @ExceptionHandler(NoHandlerFoundException.class)
 //    @ResponseBody
